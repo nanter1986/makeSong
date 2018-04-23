@@ -23,9 +23,14 @@ def createProgression():
         track1.addChord(RomanChord(random.choice(third),4,1,'C',True,100))
         track1.addChord(RomanChord(random.choice(fourth),4,1,'C',True,100))
         return progression
+
 def addPercussion(progression):
-    note=Note('C',2,1,100)
-    for i in range(0,3):
+    for i in range(0,8):
+        volume=100
+        has=random.choice([0,1])
+        if has==0 :
+            volume=0
+        note=Note('C',2,0.5,100)
         drumsTrack.addNotes (note)
 
 def addBass(progression):
