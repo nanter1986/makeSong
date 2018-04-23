@@ -1,39 +1,47 @@
-from EasyMIDI import EasyMIDI,Track,Note,Chord,RomanChord from random import choice
+from EasyMIDI import EasyMIDI,Track,Note,Chord,RomanChord 
+import random
 
 easyMIDI = EasyMIDI()
-track1 = Track("acoustic grand pino")
-
-c = Note('C', octave = 5, duration = 1/4, volume = 100)
-e = Note('E', 5)
-g = Note('G', 5)
-chord = Chord([c,e,g])  # a chord of notes C, E and G
-track1.addNotes([c, e, g, chord])
-
-track1.addNotes(RomanChord('I*', octave = 5, duration = 1))
+track1 = Track("acoustic grand piano")
+drumsTrack=Track("Synth Drum")
 
 
 def createProgression():
+    progression=1
     first=['I','VI']
     second=['II','IV']
     third=['I','VI']
     fourth=['V','VII']
     for i in range(0,3):
-        track1.addChord(RomanChord(random.choice(first),4,1 'C',True,100))
-        track1.addChord(RomanChord(random.choice(second),4,1 'C',True,100))
-        track1.addChord(RomanChord(random.choice(third),4,1 'C',True,100))
-        track1.addChord(RomanChord(random.choice(fourth),4,1 'C',True,100))
-
+        track1.addChord(RomanChord(random.choice(first),4,1,'C',True,100))
+        track1.addChord(RomanChord(random.choice(second),4,1,'C',True,100))
+        track1.addChord(RomanChord(random.choice(third),4,1,'C',True,100))
+        track1.addChord(RomanChord(random.choice(fourth),4,1,'C',True,100))
+        return progression
 def addPercussion(progression):
-    #drums
+    note=Note('C',2,1,100)
+    for i in range(0,3):
+        drumsTrack.addNotes (note)
 
 def addBass(progression):
     #bass
+    pass
 
 def makeMelody(progression):
     #make melody based on chord progression
+    pass
 
 def exportFile():
     easyMIDI.addTrack(track1)
     easyMIDI.writeMIDI("output.mid")
+
+def makeSong():
+    progression=createProgression()
+    addPercussion(progression)
+    addBass(progression)
+    makeMelody(progression)
+    exportFile()
+
+makeSong()    
 
 
