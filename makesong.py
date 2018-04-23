@@ -1,9 +1,14 @@
 from EasyMIDI import EasyMIDI,Track,Note,Chord,RomanChord 
 import random
+import datetime
 
 easyMIDI = EasyMIDI()
 track1 = Track("acoustic grand piano")
 drumsTrack=Track("Synth Drum")
+
+def getTheTime():
+    curTime=str(datetime.datetime.now())
+    return curTime
 
 
 def createProgression():
@@ -33,7 +38,8 @@ def makeMelody(progression):
 
 def exportFile():
     easyMIDI.addTrack(track1)
-    easyMIDI.writeMIDI("output.mid")
+    name=getTheTime()
+    easyMIDI.writeMIDI(name+".mid")
 
 def makeSong():
     progression=createProgression()
