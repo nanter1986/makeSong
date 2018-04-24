@@ -18,10 +18,10 @@ def createProgression():
     third=['I','VI']
     fourth=['V','VII']
     for i in range(0,3):
-        track1.addChord(RomanChord(random.choice(first),4,1,'C',True,100))
-        track1.addChord(RomanChord(random.choice(second),4,1,'C',True,100))
-        track1.addChord(RomanChord(random.choice(third),4,1,'C',True,100))
-        track1.addChord(RomanChord(random.choice(fourth),4,1,'C',True,100))
+        track1.addChord(RomanChord(random.choice(first),4,1,'C',majorOrMinor(),100))
+        track1.addChord(RomanChord(random.choice(second),4,1,'C',majorOrMinor(),100))
+        track1.addChord(RomanChord(random.choice(third),4,1,'C',majorOrMinor(),100))
+        track1.addChord(RomanChord(random.choice(fourth),4,1,'C',majorOrMinor(),100))
         return progression
 
 def addPercussion(progression):
@@ -41,8 +41,13 @@ def makeMelody(progression):
     #make melody based on chord progression
     pass
 
+def majorOrMinor():
+    ch=random.choice(range(0,2))
+    return ch
+
 def exportFile():
     easyMIDI.addTrack(track1)
+    easyMIDI.addTrack(drumsTrack)
     name=getTheTime()
     easyMIDI.writeMIDI(name+".mid")
 
