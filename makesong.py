@@ -3,6 +3,7 @@ import random
 import datetime
 
 easyMIDI = EasyMIDI()
+theKey=chooseKey()
 track1 = Track("acoustic grand piano")
 drumsTrack=Track("Synth Drum")
 duration=4
@@ -10,6 +11,11 @@ duration=4
 def getTheTime():
     curTime=str(datetime.datetime.now())
     return curTime
+
+def chooseKey():
+    keys=['C','D','E','F','G','A','B']
+    key=random.choice(keys)
+    return key
 
 def createProgression():
     progression=[]
@@ -36,15 +42,23 @@ def addProgression(progression):
         track1.addChord(RomanChord(progression['progression'][3],4,1,'C',progression['flavor'][3],100))
 
 def addPercussion(progression):
-    for i in range(0,duration*16):
-        volume=100
-        has=random.choice(range(0,4))
-        if has==0 :
-            volume=0
-        note=Note('C',2,0.25,volume)
-        drumsTrack.addNotes (note)
+    pattern=[]
+    print("pattern created empty")
+    #create the repeating pattern
+    for j in range(0,16):
+        pattern.append(random.choice(range(0,4)))
+    print(pattern)
+    #add the repeating pattern
+    for i in range(0,duration):
+        for x in pattern:
+            volume=100
+            if x==0:
+                volume=0
+            note=Note('C',2,0.25,volume)
+            drumsTrack.addNotes(note)
 
 def addBass(progression):
+
     #bass
     pass
 
