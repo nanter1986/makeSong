@@ -1,9 +1,16 @@
-from EasyMIDI import EasyMIDI,Track,Note,Chord,RomanChord 
+from EasyMIDI import * 
 import random
 import datetime
 
 easyMIDI = EasyMIDI()
+
+def chooseKey():
+    keys=['C','D','E','F','G','A','B']
+    key=random.choice(keys)
+    return key
+1
 theKey=chooseKey()
+print(theKey)
 track1 = Track("acoustic grand piano")
 drumsTrack=Track("Synth Drum")
 duration=4
@@ -12,10 +19,6 @@ def getTheTime():
     curTime=str(datetime.datetime.now())
     return curTime
 
-def chooseKey():
-    keys=['C','D','E','F','G','A','B']
-    key=random.choice(keys)
-    return key
 
 def createProgression():
     progression=[]
@@ -36,10 +39,10 @@ def createProgression():
 def addProgression(progression):
     for i in range(0,duration):
         print(progression['progression'][0])
-        track1.addChord(RomanChord(progression['progression'][0],4,1,'C',progression['flavor'][0],100))
-        track1.addChord(RomanChord(progression['progression'][1],4,1,'C',progression['flavor'][1],100))
-        track1.addChord(RomanChord(progression['progression'][2],4,1,'C',progression['flavor'][2],100))
-        track1.addChord(RomanChord(progression['progression'][3],4,1,'C',progression['flavor'][3],100))
+        track1.addChord(RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],100))
+        track1.addChord(RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100))
+        track1.addChord(RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100))
+        track1.addChord(RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],100))
 
 def addPercussion(progression):
     pattern=[]
@@ -54,11 +57,13 @@ def addPercussion(progression):
             volume=100
             if x==0:
                 volume=0
-            note=Note('C',2,0.25,volume)
+            note=Note(theKey,2,0.25,volume)
             drumsTrack.addNotes(note)
 
 def addBass(progression):
-
+    theory=MusicTheory()
+    scales=theory.getMajorScales()
+    print(scales)
     #bass
     pass
 
