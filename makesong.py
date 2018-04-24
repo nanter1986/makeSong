@@ -5,32 +5,43 @@ import datetime
 easyMIDI = EasyMIDI()
 track1 = Track("acoustic grand piano")
 drumsTrack=Track("Synth Drum")
+duration=4
 
 def getTheTime():
     curTime=str(datetime.datetime.now())
     return curTime
 
-
 def createProgression():
-    progression=1
-    first=['I','VI']
-    second=['II','IV']
-    third=['I','VI']
-    fourth=['V','VII']
-    for i in range(0,3):
-        track1.addChord(RomanChord(random.choice(first),4,1,'C',majorOrMinor(),100))
-        track1.addChord(RomanChord(random.choice(second),4,1,'C',majorOrMinor(),100))
-        track1.addChord(RomanChord(random.choice(third),4,1,'C',majorOrMinor(),100))
-        track1.addChord(RomanChord(random.choice(fourth),4,1,'C',majorOrMinor(),100))
-        return progression
+    progression=[]
+    flavor=[]
+    dictChordsFlavor={}
+    options=[['I','VI'],['II','IV'],['I','VI*'],['V*','III','VII-*']]
+    print(len(options))
+    for i in range(0,4):
+        progression.append(random.choice(options[i]))
+        flavor.append(majorOrMinor())
+    
+    dictChordsFlavor['progression']=progression
+    dictChordsFlavor['flavor']=flavor
+    print(dictChordsFlavor)
+    return dictChordsFlavor
+
+
+def addProgression(progression):
+    for i in range(0,duration):
+        print(progression['progression'][0])
+        track1.addChord(RomanChord(progression['progression'][0],4,1,'C',progression['flavor'][0],100))
+        track1.addChord(RomanChord(progression['progression'][1],4,1,'C',progression['flavor'][1],100))
+        track1.addChord(RomanChord(progression['progression'][2],4,1,'C',progression['flavor'][2],100))
+        track1.addChord(RomanChord(progression['progression'][3],4,1,'C',progression['flavor'][3],100))
 
 def addPercussion(progression):
-    for i in range(0,8):
+    for i in range(0,duration*16):
         volume=100
-        has=random.choice([0,1])
+        has=random.choice(range(0,4))
         if has==0 :
             volume=0
-        note=Note('C',2,0.5,100)
+        note=Note('C',2,0.25,volume)
         drumsTrack.addNotes (note)
 
 def addBass(progression):
@@ -53,6 +64,7 @@ def exportFile():
 
 def makeSong():
     progression=createProgression()
+    addProgression(progression)
     addPercussion(progression)
     addBass(progression)
     makeMelody(progression)
