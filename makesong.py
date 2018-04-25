@@ -13,9 +13,10 @@ theKey=chooseKey()
 print(theKey)
 track1 = Track("acoustic grand piano")
 drumsTrack=Track("Synth Drum")
-bassTrack=Track("Synth Bass")
-melodyTrack=Track("")
-duration=4
+bassTrack=Track("Synth Bass 1")
+melodyTrack=Track("Distortion Guitar")
+duration=8
+duration2=4
 
 def getTheTime():
     curTime=str(datetime.datetime.now())
@@ -85,13 +86,8 @@ def addBass(progression):
         for n in pattern:
             print(n.name)
             bassTrack.addNotes(n)
-    
 
-def makeMelody(progression):
-    #make melody based on chord progression
-    theory=MusicTheory()
-    scales=theory.getMajorScales()[theKey]
-    print(scales)
+def makeMelodyPattern(scales):
     pattern=[]
     for i in range(0,15):
         if i==0:
@@ -106,11 +102,27 @@ def makeMelody(progression):
             note=Note(random.choice(scales),5,0.25,volume)
         pattern.append(note)
     #print("melody:")
-    print(pattern)
-    for j in range(0,duration):
-        for x in pattern:
+    #print(pattern)
+    return pattern
+    
+
+def makeMelody(progression):
+    #make melody based on chord progression
+    theory=MusicTheory()
+    scales=theory.getMajorScales()[theKey]
+    print(scales)
+    pattern1=makeMelodyPattern(scales)
+    pattern2=makeMelodyPattern(scales)
+    for j in range(0,duration2):
+        print("pattern1:")
+        for x in pattern1:
             print(x.name)
             melodyTrack.addNotes(x)
+    for j2 in range(0,duration2):
+        print("pattern1:")
+        for x2 in pattern2:
+            print(x2.name)
+            melodyTrack.addNotes(x2)
 
 def majorOrMinor():
     ch=random.choice(range(0,2))
@@ -119,6 +131,8 @@ def majorOrMinor():
 def exportFile():
     easyMIDI.addTrack(track1)
     easyMIDI.addTrack(drumsTrack)
+    easyMIDI.addTrack(bassTrack)
+    easyMIDI.addTrack(melodyTrack)
     name=getTheTime()
     easyMIDI.writeMIDI("songs/"+name+".mid")
 
