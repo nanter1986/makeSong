@@ -67,18 +67,24 @@ def addBass(progression):
     scales=theory.getMajorScales()[theKey]
     print(scales)
     pattern=[]
-    for i in range(0,15):
+    for i in range(0,16):
         if i==0:
             volume=100
-            note=Note(scales[0],5,0.5,volume)
+            note=Note(scales[0],3,0.25,volume)
         elif i==14:    
             volume=100
-            note=Note(scales[6],5,0.25,volume)
+            note=Note(scales[0],5,0.25,volume)
         else:
             volume=random.choice([0,100])
             #pattern.append(random.choice(scales))
-            note=Note(theKey,5,0.25,volume)
-        bassTrack.addNotes(note)
+            note=Note(scales[0],5,0.25,volume)
+        pattern.append(note)
+    print("bass:")
+    #print(pattern)
+    for j in range(0,duration):
+        for n in pattern:
+            print(n.name)
+            bassTrack.addNotes(n)
     
 
 def makeMelody(progression):
@@ -97,8 +103,14 @@ def makeMelody(progression):
         else:
             volume=random.choice([0,100])
             #pattern.append(random.choice(scales))
-            note=Note(theKey,5,0.25,volume)
-        melodyTrack.addNotes(note)
+            note=Note(random.choice(scales),5,0.25,volume)
+        pattern.append(note)
+    #print("melody:")
+    print(pattern)
+    for j in range(0,duration):
+        for x in pattern:
+            print(x.name)
+            melodyTrack.addNotes(x)
 
 def majorOrMinor():
     ch=random.choice(range(0,2))
@@ -108,7 +120,7 @@ def exportFile():
     easyMIDI.addTrack(track1)
     easyMIDI.addTrack(drumsTrack)
     name=getTheTime()
-    easyMIDI.writeMIDI(name+".mid")
+    easyMIDI.writeMIDI("songs/"+name+".mid")
 
 def makeSong():
     progression=createProgression()
