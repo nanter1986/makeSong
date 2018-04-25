@@ -8,11 +8,13 @@ def chooseKey():
     keys=['C','D','E','F','G','A','B']
     key=random.choice(keys)
     return key
-1
+
 theKey=chooseKey()
 print(theKey)
 track1 = Track("acoustic grand piano")
 drumsTrack=Track("Synth Drum")
+bassTrack=Track("Synth Bass")
+melodyTrack=Track("")
 duration=4
 
 def getTheTime():
@@ -62,14 +64,41 @@ def addPercussion(progression):
 
 def addBass(progression):
     theory=MusicTheory()
-    scales=theory.getMajorScales()
+    scales=theory.getMajorScales()[theKey]
     print(scales)
-    #bass
-    pass
+    pattern=[]
+    for i in range(0,15):
+        if i==0:
+            volume=100
+            note=Note(scales[0],5,0.5,volume)
+        elif i==14:    
+            volume=100
+            note=Note(scales[6],5,0.25,volume)
+        else:
+            volume=random.choice([0,100])
+            #pattern.append(random.choice(scales))
+            note=Note(theKey,5,0.25,volume)
+        bassTrack.addNotes(note)
+    
 
 def makeMelody(progression):
     #make melody based on chord progression
-    pass
+    theory=MusicTheory()
+    scales=theory.getMajorScales()[theKey]
+    print(scales)
+    pattern=[]
+    for i in range(0,15):
+        if i==0:
+            volume=100
+            note=Note(scales[0],5,0.5,volume)
+        elif i==14:    
+            volume=100
+            note=Note(scales[6],5,0.25,volume)
+        else:
+            volume=random.choice([0,100])
+            #pattern.append(random.choice(scales))
+            note=Note(theKey,5,0.25,volume)
+        melodyTrack.addNotes(note)
 
 def majorOrMinor():
     ch=random.choice(range(0,2))
