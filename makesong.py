@@ -31,7 +31,7 @@ def createProgression():
     print(len(options))
     for i in range(0,4):
         progression.append(random.choice(options[i]))
-        flavor.append(majorOrMinor())
+        flavor.append(majorOrMinor(progression))
     
     dictChordsFlavor['progression']=progression
     dictChordsFlavor['flavor']=flavor
@@ -124,7 +124,9 @@ def makeMelody(progression):
             print(x2.name)
             melodyTrack.addNotes(x2)
 
-def majorOrMinor():
+def majorOrMinor(pattern):
+    for i in pattern:
+        if pattern[i] in
     ch=random.choice(range(0,2))
     return ch
 
