@@ -5,8 +5,9 @@ import datetime
 easyMIDI = EasyMIDI()
 
 def chooseKey():
-    keys=['C','D','E','F','G','A','B']
-    key=random.choice(keys)
+    #keys=['C','D','E','F','G','A','B']
+    #key=random.choice(keys)
+    key='C'
     return key
 
 theKey=chooseKey()
@@ -27,12 +28,13 @@ def createProgression():
     progression=[]
     flavor=[]
     dictChordsFlavor={}
-    options=[['I','VI'],['II','IV'],['I','VI*'],['V*','III','VII-*']]
+    options=[['I','VI'],['II','IV'],['I','VI'],['V','III','VII-']]
     print(len(options))
     for i in range(0,4):
-        progression.append(random.choice(options[i]))
-        flavor.append(majorOrMinor(progression))
-    
+        chord=random.choice(options[i])
+        progression.append(chord)
+        flavor.append(majorOrMinor(chord))
+
     dictChordsFlavor['progression']=progression
     dictChordsFlavor['flavor']=flavor
     print(dictChordsFlavor)
@@ -40,12 +42,28 @@ def createProgression():
 
 
 def addProgression(progression):
+    chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],100)
+    chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100)
+    chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100)
+    chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],100)
     for i in range(0,duration):
         print(progression['progression'][0])
-        track1.addChord(RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],100))
-        track1.addChord(RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100))
-        track1.addChord(RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100))
-        track1.addChord(RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],100))
+        track1.addChord(chord1)
+        track1.addChord(chord2)
+        track1.addChord(chord3)
+        track1.addChord(chord4)
+    notes1=chord1.getNotes()
+    notes2=chord2.getNotes()
+    notes3=chord3.getNotes()
+    notes4=chord4.getNotes()
+    for n in notes1:
+        print("chord 1:"+n.name)
+    for n in notes2:
+        print("chord 2:"+n.name)
+    for n in notes3:
+        print("chord 3:"+n.name)
+    for n in notes4:
+        print("chord 4:"+n.name)
 
 def addPercussion(progression):
     pattern=[]
@@ -104,7 +122,7 @@ def makeMelodyPattern(scales):
     #print("melody:")
     #print(pattern)
     return pattern
-    
+
 
 def makeMelody(progression):
     #make melody based on chord progression
@@ -125,9 +143,15 @@ def makeMelody(progression):
             melodyTrack.addNotes(x2)
 
 def majorOrMinor(pattern):
-    for i in pattern:
-        if pattern[i] in
-    ch=random.choice(range(0,2))
+    '''ch=0
+    if pattern=='I':
+        ch=1
+    elif pattern=='IV':
+        ch=1
+    elif pattern=='V':
+        ch=1
+    print("chord "+pattern+" is "+str(ch))'''
+    ch=1
     return ch
 
 def exportFile():
