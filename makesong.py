@@ -11,11 +11,13 @@ def chooseKey():
     return key
 
 theKey=chooseKey()
-print(theKey)
-track1 = Track("acoustic grand piano")
-drumsTrack=Track("Synth Drum")
-bassTrack=Track("Synth Bass 1")
-melodyTrack=Track("Distortion Guitar")
+tempo=random.choice([120,140,160])
+print("key: "+theKey)
+print("tempo: "+str(tempo))
+track1 = Track("acoustic grand piano",tempo)
+drumsTrack=Track("Synth Drum",tempo)
+bassTrack=Track("Synth Bass 1",tempo)
+melodyTrack=Track("Distortion Guitar",tempo)
 duration=8
 duration2=4
 
