@@ -5,9 +5,9 @@ import datetime
 easyMIDI = EasyMIDI()
 
 def chooseKey():
-    #keys=['C','D','E','F','G','A','B']
-    #key=random.choice(keys)
-    key='C'
+    keys=['C','D','E','F','G','A','B']
+    key=random.choice(keys)
+    #key='C'
     return key
 
 theKey=chooseKey()
@@ -28,7 +28,7 @@ def createProgression():
     progression=[]
     flavor=[]
     dictChordsFlavor={}
-    options=[['I','VI'],['II','IV'],['I','VI'],['V','III','VII-']]
+    options=[['I','VI'],['II','IV'],['I','VI'],['V','III','VII']]
     print(len(options))
     for i in range(0,4):
         chord=random.choice(options[i])
