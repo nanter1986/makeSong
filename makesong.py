@@ -10,14 +10,34 @@ def chooseKey():
     #key='C'
     return key
 
+
+def setTheOrgans():
+    org={}
+    org['track1']=random.choice(['Acoustic Grand Piano',
+            'String Ensemble 1',
+            'Synth Strings 1',
+            'Synth Pad 2 (warm)'])
+    org['melodyTrack']=random.choice(['Harmonica',
+            'Distortion Guitar',
+            'Trumpet'])
+    org['bassTrack']=random.choice(['Synth Bass 1','Electric Bass (finger)']) 
+    org['drumsTrack']=random.choice(['Synth Drum'])
+    for key,value in org.items():
+        print('organs:')
+        print(key+':'+value)
+    return org
+
+organOptions=setTheOrgans()
+
+
 theKey=chooseKey()
-tempo=random.choice([120,140,160])
+tempo=random.choice([120,140,160,180])
 print("key: "+theKey)
 print("tempo: "+str(tempo))
-track1 = Track("acoustic grand piano",tempo)
-drumsTrack=Track("Synth Drum",tempo)
-bassTrack=Track("Synth Bass 1",tempo)
-melodyTrack=Track("Distortion Guitar",tempo)
+track1 = Track(organOptions['track1'],tempo)
+drumsTrack=Track(organOptions['drumsTrack'],tempo)
+bassTrack=Track(organOptions['bassTrack'],tempo)
+melodyTrack=Track(organOptions['melodyTrack'],tempo)
 duration=8
 duration2=4
 
@@ -94,17 +114,17 @@ def addBass(progression):
             note=Note(scales[0],3,0.25,volume)
         elif i==14:    
             volume=100
-            note=Note(scales[0],5,0.25,volume)
+            note=Note(scales[0],3,0.25,volume)
         else:
             volume=random.choice([0,100])
             #pattern.append(random.choice(scales))
-            note=Note(scales[0],5,0.25,volume)
+            note=Note(scales[0],3,0.25,volume)
         pattern.append(note)
     print("bass:")
     #print(pattern)
     for j in range(0,duration):
         for n in pattern:
-            print(n.name)
+            #print(n.name)
             bassTrack.addNotes(n)
 
 def makeMelodyPattern(scales):
@@ -125,6 +145,23 @@ def makeMelodyPattern(scales):
     #print(pattern)
     return pattern
 
+def makeChorusPattern(scales):
+    pattern=[]
+    for i in range(0,15):
+        if i==0:
+            volume=100
+            note=Note(scales[0],6,0.5,volume)
+        elif i==14:    
+            volume=100
+            note=Note(scales[6],6,0.25,volume)
+        else:
+            volume=random.choice([0,100])
+            #pattern.append(random.choice(scales))
+            note=Note(random.choice(scales),6,0.25,volume)
+        pattern.append(note)
+    #print("melody:")
+    #print(pattern)
+    return pattern
 
 def makeMelody(progression):
     #make melody based on chord progression
@@ -132,17 +169,18 @@ def makeMelody(progression):
     scales=theory.getMajorScales()[theKey]
     print(scales)
     pattern1=makeMelodyPattern(scales)
-    pattern2=makeMelodyPattern(scales)
-    for j in range(0,duration2):
-        print("pattern1:")
-        for x in pattern1:
-            print(x.name)
-            melodyTrack.addNotes(x)
-    for j2 in range(0,duration2):
-        print("pattern1:")
-        for x2 in pattern2:
-            print(x2.name)
-            melodyTrack.addNotes(x2)
+    pattern2=makeChorusPattern(scales)
+    for times in range(0,2):
+        for j in range(0,duration2):
+            print("pattern1:")
+            for x in pattern1:
+                print(x.name)
+                melodyTrack.addNotes(x)
+        for j2 in range(0,duration2):
+            print("pattern1:")
+            for x2 in pattern2:
+                print(x2.name)
+                melodyTrack.addNotes(x2)
 
 def majorOrMinor(pattern):
     '''ch=0
@@ -162,7 +200,8 @@ def exportFile():
     easyMIDI.addTrack(bassTrack)
     easyMIDI.addTrack(melodyTrack)
     name=getTheTime()
-    easyMIDI.writeMIDI("songs/"+name+".mid")
+    #easyMIDI.writeMIDI("songs/"+name+".mid")
+    easyMIDI.writeMIDI("../../storage/downloads/"+name+".mid")
 
 def makeSong():
     progression=createProgression()
