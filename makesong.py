@@ -16,7 +16,7 @@ def setTheOrgans():
     org['track1']=random.choice(['Acoustic Grand Piano',
             'String Ensemble 1',
             'Synth Strings 1',
-            'Synth Pad 2 (warm)'])
+            'Pad 2 (warm)'])
     org['melodyTrack']=random.choice(['Harmonica',
             'Distortion Guitar',
             'Trumpet'])
@@ -129,11 +129,14 @@ def addBass(progression):
 
 def makeMelodyPattern(scales):
     pattern=[]
-    for i in range(0,15):
+    for i in range(0,14):
         if i==0:
             volume=100
             note=Note(scales[0],5,0.5,volume)
-        elif i==14:    
+        elif i==7:
+            volume=100
+            note=Note(scales[1],5,0.5,volume)
+        elif i==13:    
             volume=100
             note=Note(scales[6],5,0.25,volume)
         else:
@@ -147,11 +150,14 @@ def makeMelodyPattern(scales):
 
 def makeChorusPattern(scales):
     pattern=[]
-    for i in range(0,15):
+    for i in range(0,14):
         if i==0:
             volume=100
             note=Note(scales[0],6,0.5,volume)
-        elif i==14:    
+        elif i==7:
+            volume=100
+            note=Note(scales[1],6,0.5,volume)
+        elif i==13:    
             volume=100
             note=Note(scales[6],6,0.25,volume)
         else:
@@ -177,7 +183,7 @@ def makeMelody(progression):
                 print(x.name)
                 melodyTrack.addNotes(x)
         for j2 in range(0,duration2):
-            print("pattern1:")
+            print("chorus:")
             for x2 in pattern2:
                 print(x2.name)
                 melodyTrack.addNotes(x2)
