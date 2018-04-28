@@ -73,7 +73,7 @@ def addProgression(progression):
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],100)
-    for i in range(0,duration):
+    for i in range(0,2*duration):
         print(progression['progression'][0])
         track1.addChord(chord1)
         track1.addChord(chord2)
@@ -101,7 +101,7 @@ def addPercussion(progression):
         pattern.append(random.choice(range(0,4)))
     print(pattern)
     #add the repeating pattern
-    for i in range(0,duration):
+    for i in range(0,2*duration):
         for x in pattern:
             volume=100
             if x==0:
@@ -129,7 +129,7 @@ def addBass(progression):
         pattern.append(note)
     print("bass:")
     #print(pattern)
-    for j in range(0,duration):
+    for j in range(0,2*duration):
         for n in pattern:
             #print(n.name)
             bassTrack.addNotes(n)
@@ -159,20 +159,20 @@ def makeMelodyPattern(scales):
 def makeChorusPattern(scales):
     #creates melody pattern based on parameter,and adds ut to melody track,chorus
     pattern=[]
-    for i in range(0,14):
+    for i in range(0,30):
         if i==0:
             volume=100
-            note=Note(scales[0],6,0.5,volume)
+            note=Note(scales[0],6,0.25,volume)
         elif i==7:
             volume=100
-            note=Note(scales[1],6,0.5,volume)
+            note=Note(scales[1],6,0.25,volume)
         elif i==13:    
             volume=100
-            note=Note(scales[6],6,0.25,volume)
+            note=Note(scales[6],6,0.125,volume)
         else:
             volume=random.choice([0,100])
             #pattern.append(random.choice(scales))
-            note=Note(random.choice(scales),6,0.25,volume)
+            note=Note(random.choice(scales),6,0.125,volume)
         pattern.append(note)
     #print("melody:")
     #print(pattern)
