@@ -95,19 +95,31 @@ def addProgression(progression):
 def addPercussion(progression):
     #creates drum pattern based on parameter,and adds ut to drum track
     pattern=[]
+    pattern2=[]
     print("pattern created empty")
     #create the repeating pattern
     for j in range(0,16):
         pattern.append(random.choice(range(0,4)))
     print(pattern)
+    for u in range(0,32):
+        pattern2.append(random.choice(range(0,4)))
+    print(pattern2)
     #add the repeating pattern
-    for i in range(0,2*duration):
-        for x in pattern:
-            volume=100
-            if x==0:
-                volume=0
-            note=Note(theKey,2,0.25,volume)
-            drumsTrack.addNotes(note)
+    for i in range(0,2):
+        for i in range(0,duration2):
+            for x in pattern:
+                volume=100
+                if x==0:
+                    volume=0
+                note=Note(theKey,2,0.25,volume)
+                drumsTrack.addNotes(note)
+        for i in range(0,duration2):
+            for y in pattern2:
+                volume=100
+                if y==0:
+                    volume=0
+                note=Note(theKey,2,0.125,volume)
+                drumsTrack.addNotes(note)
 
 def addBass(progression):
     #creates bass pattern based on parameter,and adds ut to bass track
