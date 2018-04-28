@@ -5,6 +5,7 @@ import datetime
 easyMIDI = EasyMIDI()
 
 def chooseKey():
+    #returns a random key
     keys=['C','D','E','F','G','A','B']
     key=random.choice(keys)
     #key='C'
@@ -12,6 +13,7 @@ def chooseKey():
 
 
 def setTheOrgans():
+    #returns a dictionary with randomly selected organs
     org={}
     org['track1']=random.choice(['Acoustic Grand Piano',
             'String Ensemble 1',
@@ -42,11 +44,13 @@ duration=8
 duration2=4
 
 def getTheTime():
+    #returns current time and date
     curTime=str(datetime.datetime.now())
     return curTime
 
 
 def createProgression():
+    #returns a random progression from predefined chords
     progression=[]
     flavor=[]
     dictChordsFlavor={}
@@ -64,6 +68,7 @@ def createProgression():
 
 
 def addProgression(progression):
+    #adds chords to the chord track
     chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],100)
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100)
@@ -88,6 +93,7 @@ def addProgression(progression):
         print("chord 4:"+n.name)
 
 def addPercussion(progression):
+    #creates drum pattern based on parameter,and adds ut to drum track
     pattern=[]
     print("pattern created empty")
     #create the repeating pattern
@@ -104,6 +110,7 @@ def addPercussion(progression):
             drumsTrack.addNotes(note)
 
 def addBass(progression):
+    #creates bass pattern based on parameter,and adds ut to bass track
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print(scales)
@@ -128,6 +135,7 @@ def addBass(progression):
             bassTrack.addNotes(n)
 
 def makeMelodyPattern(scales):
+    #creates melody pattern based on parameter,and adds ut to melody track,verse
     pattern=[]
     for i in range(0,14):
         if i==0:
@@ -149,6 +157,7 @@ def makeMelodyPattern(scales):
     return pattern
 
 def makeChorusPattern(scales):
+    #creates melody pattern based on parameter,and adds ut to melody track,chorus
     pattern=[]
     for i in range(0,14):
         if i==0:
@@ -170,7 +179,7 @@ def makeChorusPattern(scales):
     return pattern
 
 def makeMelody(progression):
-    #make melody based on chord progression
+    #add chorus and verse to melody track
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print(scales)
@@ -189,6 +198,7 @@ def makeMelody(progression):
                 melodyTrack.addNotes(x2)
 
 def majorOrMinor(pattern):
+    #decides if chord comes from major or minor key
     '''ch=0
     if pattern=='I':
         ch=1
@@ -201,6 +211,7 @@ def majorOrMinor(pattern):
     return ch
 
 def exportFile():
+    #adds all tracks to file and exports it,name based on date
     easyMIDI.addTrack(track1)
     easyMIDI.addTrack(drumsTrack)
     easyMIDI.addTrack(bassTrack)
@@ -210,6 +221,7 @@ def exportFile():
     easyMIDI.writeMIDI("../../storage/downloads/"+name+".mid")
 
 def makeSong():
+    #main function,delegates to other functions
     progression=createProgression()
     addProgression(progression)
     addPercussion(progression)
