@@ -175,7 +175,7 @@ def makeMelodyPattern(scales,progression):
     sequenceChorus=chorusSeq()
     pattern=[]
     for ch in progression["progression"]:
-        print("--------------next round-----------------")
+        print("--------------next round -verse----------")
         for i in range(0,15):
             chord1=RomanChord(ch,4,4,theKey,progression['flavor'][0],100)
             if i==0:
@@ -192,29 +192,27 @@ def makeMelodyPattern(scales,progression):
                 print(note.name)
                 pattern.append(note)
     print("--------------------------end of verse----------------")
+    
+    for ch in progression["progression"]:
+        print("--------------next round chorus----------")
+        for i in range(0,31):
+            chord1=RomanChord(ch,4,4,theKey,progression['flavor'][0],100)
+            if i==0:
+                volume=100
+                nnn=random.choice(chord1.getNotes())
+                pprint(nnn.name)
+                note=Note(nnn.name,5,0.25,volume)
+                print(note.name)
+                pattern.append(note)
+            else:
+                volume=random.choice([0,100])
+                #pattern.append(random.choice(scales))
+                note=Note(scales[sequenceChorus[i]],5,0.125,volume)
+                print(note.name)
+                pattern.append(note)
+    print("--------------------------end of verse----------------")
     return pattern
 
-def makeChorusPattern(scales,progression):
-    #creates melody pattern based on parameter,and adds ut to melody track,chorus
-    pattern=[]
-    for i in range(0,30):
-        if i==0:
-            volume=100
-            note=Note(scales[0],6,0.25,volume)
-        elif i==7:
-            volume=100
-            note=Note(scales[1],6,0.25,volume)
-        elif i==13:    
-            volume=100
-            note=Note(scales[6],6,0.125,volume)
-        else:
-            volume=random.choice([0,100])
-            #pattern.append(random.choice(scales))
-            note=Note(random.choice(scales),6,0.125,volume)
-        pattern.append(note)
-    #print("melody:")
-    #print(pattern)
-    return pattern
 
 def makeMelody(progression):
     #add chorus and verse to melody track
@@ -222,18 +220,10 @@ def makeMelody(progression):
     scales=theory.getMajorScales()[theKey]
     print(scales)
     pattern1=makeMelodyPattern(scales,progression)
-    pattern2=makeChorusPattern(scales,progression)
     for times in range(0,2):
-        for j in range(0,duration2):
-            print("pattern1:")
-            for x in pattern1:
-                print(x.name)
-                melodyTrack.addNotes(x)
-        for j2 in range(0,duration2):
-            print("chorus:")
-            for x2 in pattern2:
-                print(x2.name)
-                melodyTrack.addNotes(x2)
+        for j in pattern1:
+            print(j.name)
+            melodyTrack.addNotes(j)
 
 def majorOrMinor(pattern):
     #decides if chord comes from major or minor key
