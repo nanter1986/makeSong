@@ -1,6 +1,7 @@
 from EasyMIDI import * 
 import random
 import datetime
+from pprint import * 
 
 easyMIDI = EasyMIDI()
 
@@ -154,8 +155,16 @@ def addBass(progression):
             #print(n.name)
             bassTrack.addNotes(n)
 
+def verseSeq():
+    theSeq=[]
+    for i in range(0,15):
+        theSeq.append(random.choice(range(0,7)))
+    pprint(theSeq)
+    return theSeq
+
 def makeMelodyPattern(scales):
     #creates melody pattern based on parameter,and adds ut to melody track,verse
+    sequence=verseSeq()
     pattern=[]
     for i in range(0,14):
         if i==0:
