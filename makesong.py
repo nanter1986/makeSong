@@ -34,7 +34,7 @@ organOptions=setTheOrgans()
 
 
 theKey=chooseKey()
-tempo=random.choice([120,140,160,180])
+tempo=random.choice([160,180,200,220])
 print("key: "+theKey)
 print("tempo: "+str(tempo))
 track1 = Track(organOptions['track1'],tempo)
