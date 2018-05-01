@@ -139,24 +139,23 @@ def addBass(progression):
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100).getNotes()[0].name
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100).getNotes()[0].name
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],100).getNotes()[0].name
+    chordNotes=[chord1,chord2,chord3,chord4]
     print("bass notes:")
     print(chord1+" "+chord2+" "+chord3+" "+chord4)
     pattern=[]
-    for i in range(0,16):
-        if i==0:
-            volume=100
-            note=Note(scales[0],3,0.25,volume)
-        elif i==14:    
-            volume=100
-            note=Note(scales[0],3,0.25,volume)
-        else:
-            volume=random.choice([0,100])
-            #pattern.append(random.choice(scales))
-            note=Note(scales[0],3,0.25,volume)
-        pattern.append(note)
+    for ch in chordNotes:
+        for i in range(0,8):
+            if i==0:
+                volume=100
+                note=Note(chord1,3,0.5,volume)
+            else:
+                volume=random.choice([0,100])
+                #pattern.append(random.choice(scales))
+                note=Note(scales[0],3,0.5,volume)
+            pattern.append(note)
     print("bass:")
     #print(pattern)
-    for j in range(0,4*duration):
+    for j in range(0,4):
         for n in pattern:
             #print(n.name)
             bassTrack.addNotes(n)
