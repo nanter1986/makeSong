@@ -147,11 +147,11 @@ def addBass(progression):
         for i in range(0,4):
             if i==0:
                 volume=100
-                note=Note(chord1,3,0.5,volume)
+                note=Note(ch,3,0.5,volume)
             else:
                 volume=random.choice([0,100])
                 #pattern.append(random.choice(scales))
-                note=Note(scales[0],3,0.5,volume)
+                note=Note(ch,3,0.5,volume)
             pattern.append(note)
     print("bass:")
     #print(pattern)
