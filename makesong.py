@@ -158,7 +158,7 @@ def addBass(progression):
 def verseSeq():
     #make the basic sequence of notes used for verse lines,preferes smooth transitions
     theSeq=[]
-    result=0
+    result=2
     for i in range(0,15):
         options=[0,-1,+1]
         choice=random.choice(options)
@@ -173,8 +173,16 @@ def verseSeq():
 
 def chorusSeq():
     theSeq=[]
+    result=2
     for i in range(0,31):
-        theSeq.append(random.choice(range(0,7)))
+        options=[0,-1,+1]
+        choice=random.choice(options)
+        result=result+choice
+        if result<0:
+            result=0
+        elif result>6:
+            result=6
+        theSeq.append(result)
     pprint(theSeq)
     return theSeq
 
