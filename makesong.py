@@ -74,7 +74,7 @@ def addProgression(progression):
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],100)
-    for i in range(0,duration2):
+    for i in range(0,2*duration2):
         print(progression['progression'][0])
         for t1 in range(0,4):
             track1.addChord(chord1)
@@ -114,7 +114,7 @@ def addPercussion(progression):
         pattern2.append(random.choice(range(0,4)))
     print(pattern2)
     #add the repeating pattern
-    for i in range(0,2):
+    for i in range(0,4):
         for i in range(0,duration2):
             for x in pattern:
                 volume=100
@@ -150,7 +150,7 @@ def addBass(progression):
         pattern.append(note)
     print("bass:")
     #print(pattern)
-    for j in range(0,2*duration):
+    for j in range(0,4*duration):
         for n in pattern:
             #print(n.name)
             bassTrack.addNotes(n)
@@ -237,7 +237,7 @@ def makeMelody(progression):
     scales=theory.getMajorScales()[theKey]
     print(scales)
     pattern1=makeMelodyPattern(scales,progression)
-    for times in range(0,2):
+    for times in range(0,4):
         for j in pattern1:
             print(j.name)
             melodyTrack.addNotes(j)
