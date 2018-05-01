@@ -156,9 +156,18 @@ def addBass(progression):
             bassTrack.addNotes(n)
 
 def verseSeq():
+    #make the basic sequence of notes used for verse lines,preferes smooth transitions
     theSeq=[]
+    result=0
     for i in range(0,15):
-        theSeq.append(random.choice(range(0,7)))
+        options=[0,-1,+1]
+        choice=random.choice(options)
+        result=result+choice
+        if result<0:
+            result=0
+        elif result>6:
+            result=6
+        theSeq.append(result)
     pprint(theSeq)
     return theSeq
 
@@ -186,7 +195,7 @@ def makeMelodyPattern(scales,progression):
                 print(note.name)
                 pattern.append(note)
             else:
-                volume=random.choice([0,100])
+                volume=random.choice([0,100,100])
                 #pattern.append(random.choice(scales))
                 note=Note(scales[sequenceVerse[i]],5,0.25,volume)
                 print(note.name)
