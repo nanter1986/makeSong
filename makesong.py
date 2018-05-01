@@ -144,7 +144,7 @@ def addBass(progression):
     print(chord1+" "+chord2+" "+chord3+" "+chord4)
     pattern=[]
     for ch in chordNotes:
-        for i in range(0,4):
+        for i in range(0,8):
             if i==0:
                 volume=100
                 note=Note(ch,3,0.5,volume)
@@ -155,7 +155,7 @@ def addBass(progression):
             pattern.append(note)
     print("bass:")
     #print(pattern)
-    for j in range(0,16):
+    for j in range(0,8):
         for n in pattern:
             #print(n.name)
             bassTrack.addNotes(n)
