@@ -135,6 +135,12 @@ def addBass(progression):
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print(scales)
+    chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],100).getNotes()[0].name
+    chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100).getNotes()[0].name
+    chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100).getNotes()[0].name
+    chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],100).getNotes()[0].name
+    print("bass notes:")
+    print(chord1+" "+chord2+" "+chord3+" "+chord4)
     pattern=[]
     for i in range(0,16):
         if i==0:
