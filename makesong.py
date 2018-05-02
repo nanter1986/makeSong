@@ -24,7 +24,8 @@ def setTheOrgans():
             'Distortion Guitar',
             'Trumpet'])
     org['bassTrack']=random.choice(['Synth Bass 1','Electric Bass (finger)']) 
-    org['drumsTrack']=random.choice(['Synth Drum'])
+    org['kickTrack']=random.choice(['Synth Drum'])
+    org['snareTrack']=random.choice(['Synth Drum'])
     for key,value in org.items():
         print('organs:')
         print(key+':'+value)
@@ -38,7 +39,8 @@ tempo=random.choice([160,180,200,220])
 print("key: "+theKey)
 print("tempo: "+str(tempo))
 track1 = Track(organOptions['track1'],tempo)
-drumsTrack=Track(organOptions['drumsTrack'],tempo)
+kickTrack=Track(organOptions['kickTrack'],tempo)
+snareTrack=Track(organOptions['snareTrack'],tempo)
 bassTrack=Track(organOptions['bassTrack'],tempo)
 melodyTrack=Track(organOptions['melodyTrack'],tempo)
 duration=8
@@ -263,7 +265,8 @@ def majorOrMinor(pattern):
 def exportFile():
     #adds all tracks to file and exports it,name based on date
     easyMIDI.addTrack(track1)
-    #easyMIDI.addTrack(drumsTrack)
+    #easyMIDI.addTrack(kickTrack)
+    #easyMIDI.addTrack(snareTrack)
     easyMIDI.addTrack(bassTrack)
     easyMIDI.addTrack(melodyTrack)
     name=getTheTime()
