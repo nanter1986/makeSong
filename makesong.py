@@ -104,7 +104,7 @@ def addProgression(progression):
                 print("chord 4:"+n.name)
 
 def addPercussion(progression):
-    #creates drum pattern based on parameter,and adds ut to drum track
+    '''creates drum pattern based on parameter,and adds ut to drum track,kick and snare go in alternate patterns'''
     pattern_kick_verse=[]
     pattern_kick_chorus=[]
     pattern_snare_verse=[]
@@ -118,7 +118,6 @@ def addPercussion(progression):
     for u in range(0,16):
         pattern_kick_chorus.append(random.choice(range(0,4)))
         pattern_snare_chorus.append(random.choice(range(0,4)))
-    print(pattern2)
     #add the repeating pattern
     for i in range(0,4):
         for i in range(0,duration2):
@@ -128,7 +127,8 @@ def addPercussion(progression):
                     volume=0
                 noteKick=Note(theKey,2,0.25,volume)
                 noteSnare=Note(theKey,2,0.25,volume)
-                kickTrack.addNotes(note)
+                kickTrack.addNotes(noteKick)
+                snareTrack.addNotes(noteSnare)
         for i in range(0,duration2):
             for y in pattern2:
                 volume=100
