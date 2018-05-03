@@ -25,7 +25,7 @@ def setTheOrgans():
             'Trumpet'])
     org['bassTrack']=random.choice(['Synth Bass 1','Electric Bass (finger)']) 
     org['kickTrack']=random.choice(['Synth Drum'])
-    org['snareTrack']=random.choice(['Synth Drum'])
+    org['snareTrack']=random.choice(['Taiko Drum '])
     for key,value in org.items():
         print('organs:')
         print(key+':'+value)
@@ -76,32 +76,38 @@ def addProgression(progression):
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],100)
-    for i in range(0,2*duration2):
+    totalBarschords=0
+    for i in range(0,4):
         print(progression['progression'][0])
         for t1 in range(0,4):
             track1.addChord(chord1)
             notes1=chord1.getNotes()
+            totalBarschords+=1
             print(chord1.getNumeral())
             for n in notes1:
                 print("chord 1:"+n.name)
         for t2 in range(0,4):
             track1.addChord(chord2)
             notes2=chord2.getNotes()
+            totalBarschords+=1
             print(chord2.getNumeral())
             for n in notes2:
                 print("chord 2:"+n.name)
         for t3 in range(0,4):
             track1.addChord(chord3)
             notes3=chord3.getNotes()
+            totalBarschords+=1
             print(chord3.getNumeral())
             for n in notes3:
                 print("chord 3:"+n.name)
         for t4 in range(0,4):
             track1.addChord(chord4)
             notes4=chord4.getNotes()
+            totalBarschords+=1
             print(chord4.getNumeral())
             for n in notes4:
                 print("chord 4:"+n.name)
+    assert totalBarschords==64
 
 def addPercussion(progression):
     '''creates drum pattern based on parameter,and adds ut to drum track,kick and snare go in alternate patterns'''
@@ -114,28 +120,45 @@ def addPercussion(progression):
     for j in range(0,8):
         pattern_kick_verse.append(random.choice(range(0,4)))
         pattern_snare_verse.append(random.choice(range(0,4)))
-    print(pattern)
     for u in range(0,16):
         pattern_kick_chorus.append(random.choice(range(0,4)))
         pattern_snare_chorus.append(random.choice(range(0,4)))
     #add the repeating pattern
-    for i in range(0,4):
-        for i in range(0,duration2):
-            for x in pattern:
-                volume=100
-                if x==0:
-                    volume=0
-                noteKick=Note(theKey,2,0.25,volume)
-                noteSnare=Note(theKey,2,0.25,volume)
-                kickTrack.addNotes(noteKick)
-                snareTrack.addNotes(noteSnare)
-        for i in range(0,duration2):
-            for y in pattern2:
-                volume=100
-                if y==0:
-                    volume=0
-                note=Note(theKey,2,0.125,volume)
-                drumsTrack.addNotes(note)
+    totalBarsDrums=0
+    for loops in range(0,2):
+        for i in range(0,8):
+            volumeKick=100
+            volumeSnare=100
+            if pattern_kick_verse[i]==0:
+                volume=0
+            if pattern_snare_verse[i]==0:
+                volume=0
+            noteKick=Note(theKey,3,0.5,volumeKick)
+            noteSnare=Note(theKey,3,0.5,volumeSnare)
+            empty=Note(theKey,3,0.5,0)
+            kickTrack.addNote(noteKick)
+            kickTrack.addNote(empty)
+            snareTrack.addNote(empty)
+            snareTrack.addNote(noteSnare)
+            totalBarsDrums+=2
+        for i in range(0,16):
+            volumeKick=100
+            volumeSnare=100
+            if pattern_kick_chorus[i]==0:
+                volume=0
+            if pattern_snare_chorus[i]==0:
+                volume=0
+            noteKick=Note(theKey,3,0.25,volumeKick)
+            noteSnare=Note(theKey,3,0.25,volumeSnare)
+            empty=Note(theKey,3,0.25,0)
+            kickTrack.addNote(noteKick)
+            kickTrack.addNote(empty)
+            snareTrack.addNote(empty)
+            snareTrack.addNote(noteSnare)
+            totalBarsDrums+=1
+    assert totalBarsDrums==64
+
+
 
 def addBass(progression):
     #creates bass pattern based on parameter,and adds ut to bass track
@@ -270,8 +293,8 @@ def majorOrMinor(pattern):
 def exportFile():
     #adds all tracks to file and exports it,name based on date
     easyMIDI.addTrack(track1)
-    #easyMIDI.addTrack(kickTrack)
-    #easyMIDI.addTrack(snareTrack)
+    easyMIDI.addTrack(kickTrack)
+    easyMIDI.addTrack(snareTrack)
     easyMIDI.addTrack(bassTrack)
     easyMIDI.addTrack(melodyTrack)
     name=getTheTime()
