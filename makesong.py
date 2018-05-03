@@ -79,35 +79,35 @@ def addProgression(progression):
     totalBarschords=0
     for i in range(0,4):
         print(progression['progression'][0])
-        for t1 in range(0,4):
+        for t1 in range(0,8):
             track1.addChord(chord1)
             notes1=chord1.getNotes()
             totalBarschords+=1
             print(chord1.getNumeral())
             for n in notes1:
                 print("chord 1:"+n.name)
-        for t2 in range(0,4):
+        for t2 in range(0,8):
             track1.addChord(chord2)
             notes2=chord2.getNotes()
             totalBarschords+=1
             print(chord2.getNumeral())
             for n in notes2:
                 print("chord 2:"+n.name)
-        for t3 in range(0,4):
+        for t3 in range(0,8):
             track1.addChord(chord3)
             notes3=chord3.getNotes()
             totalBarschords+=1
             print(chord3.getNumeral())
             for n in notes3:
                 print("chord 3:"+n.name)
-        for t4 in range(0,4):
+        for t4 in range(0,8):
             track1.addChord(chord4)
             notes4=chord4.getNotes()
             totalBarschords+=1
             print(chord4.getNumeral())
             for n in notes4:
                 print("chord 4:"+n.name)
-    assert totalBarschords==64
+    assert totalBarschords==128
 
 def addPercussion(progression):
     '''creates drum pattern based on parameter,and adds ut to drum track,kick and snare go in alternate patterns'''
@@ -126,37 +126,39 @@ def addPercussion(progression):
     #add the repeating pattern
     totalBarsDrums=0
     for loops in range(0,2):
-        for i in range(0,8):
-            volumeKick=100
-            volumeSnare=100
-            if pattern_kick_verse[i]==0:
-                volume=0
-            if pattern_snare_verse[i]==0:
-                volume=0
-            noteKick=Note(theKey,3,0.5,volumeKick)
-            noteSnare=Note(theKey,3,0.5,volumeSnare)
-            empty=Note(theKey,3,0.5,0)
-            kickTrack.addNote(noteKick)
-            kickTrack.addNote(empty)
-            snareTrack.addNote(empty)
-            snareTrack.addNote(noteSnare)
-            totalBarsDrums+=2
-        for i in range(0,16):
-            volumeKick=100
-            volumeSnare=100
-            if pattern_kick_chorus[i]==0:
-                volume=0
-            if pattern_snare_chorus[i]==0:
-                volume=0
-            noteKick=Note(theKey,3,0.25,volumeKick)
-            noteSnare=Note(theKey,3,0.25,volumeSnare)
-            empty=Note(theKey,3,0.25,0)
-            kickTrack.addNote(noteKick)
-            kickTrack.addNote(empty)
-            snareTrack.addNote(empty)
-            snareTrack.addNote(noteSnare)
-            totalBarsDrums+=1
-    assert totalBarsDrums==64
+        for loops in range(0,4):
+            for i in range(0,8):
+                volumeKick=100
+                volumeSnare=100
+                if pattern_kick_verse[i]==0 and i!=0:
+                    volumeKick=0
+                if pattern_snare_verse[i]==0:
+                    volumeSnare=0
+                noteKick=Note(theKey,3,0.5,volumeKick)
+                noteSnare=Note(theKey,3,0.5,volumeSnare)
+                empty=Note(theKey,3,0.5,0)
+                kickTrack.addNote(noteKick)
+                kickTrack.addNote(empty)
+                snareTrack.addNote(empty)
+                snareTrack.addNote(noteSnare)
+                totalBarsDrums+=1
+        for i in range(0,4):
+            for i in range(0,16):
+                volumeKick=100
+                volumeSnare=100
+                if pattern_kick_chorus[i]==0 and i!=0:
+                    volumeKick=0
+                if pattern_snare_chorus[i]==0:
+                    volumeSnare=0
+                noteKick=Note(theKey,3,0.25,volumeKick)
+                noteSnare=Note(theKey,3,0.25,volumeSnare)
+                empty=Note(theKey,3,0.25,0)
+                kickTrack.addNote(noteKick)
+                kickTrack.addNote(empty)
+                snareTrack.addNote(empty)
+                snareTrack.addNote(noteSnare)
+                totalBarsDrums+=0.5
+    assert totalBarsDrums==128
 
 
 
