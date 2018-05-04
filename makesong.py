@@ -112,6 +112,7 @@ def addProgression(progression):
 
 def addPercussion(progression):
     '''creates drum pattern based on parameter,and adds ut to drum track,kick and snare go in alternate patterns'''
+    drumGeneralVolume=100
     pattern_kick_verse=[]
     pattern_kick_chorus=[]
     pattern_snare_verse=[]
@@ -129,8 +130,8 @@ def addPercussion(progression):
     for loops in range(0,2):
         for loops in range(0,4):
             for i in range(0,8):
-                volumeKick=100
-                volumeSnare=100
+                volumeKick=drumGeneralVolume
+                volumeSnare=drumGeneralVolume
                 if pattern_kick_verse[i]==0 and i!=0:
                     volumeKick=0
                 if pattern_snare_verse[i]==0:
@@ -145,8 +146,8 @@ def addPercussion(progression):
                 totalBarsDrums+=1
         for i in range(0,4):
             for i in range(0,16):
-                volumeKick=100
-                volumeSnare=100
+                volumeKick=drumGeneralVolume
+                volumeSnare=drumGeneralVolume
                 if pattern_kick_chorus[i]==0 and i!=0:
                     volumeKick=0
                 if pattern_snare_chorus[i]==0:
@@ -165,6 +166,7 @@ def addPercussion(progression):
 
 def addBass(progression):
     #creates bass pattern based on parameter,and adds ut to bass track
+    bassGeneralVolume=100
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print(scales)
@@ -179,10 +181,10 @@ def addBass(progression):
     for ch in chordNotes:
         for i in range(0,8):
             if i==0:
-                volume=100
+                volume=bassGeneralVolume
                 note=Note(ch,3,0.5,volume)
             else:
-                volume=random.choice([0,100])
+                volume=random.choice([0,bassGeneralVolume])
                 #pattern.append(random.choice(scales))
                 note=Note(ch,3,0.5,volume)
             pattern.append(note)
