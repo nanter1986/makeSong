@@ -228,22 +228,23 @@ def chorusSeq():
 
 def makeMelodyPattern(scales,progression):
     #creates melody pattern based on parameter,and adds ut to melody track,verse
+    generalMelodyVolume=120
     sequenceVerse=verseSeq()
     sequenceChorus=chorusSeq()
     pattern=[]
     for ch in progression["progression"]:
         print("--------------next round -verse----------")
         for i in range(0,15):
-            chord1=RomanChord(ch,4,4,theKey,progression['flavor'][0],100)
+            chord1=RomanChord(ch,4,4,theKey,progression['flavor'][0],generalMelodyVolume)
             if i==0:
-                volume=100
+                volume=generalMelodyVolume
                 nnn=random.choice(chord1.getNotes())
                 pprint(nnn.name)
                 note=Note(nnn.name,5,0.5,volume)
                 print(note.name)
                 pattern.append(note)
             else:
-                volume=random.choice([0,100,100])
+                volume=random.choice([0,generalMelodyVolume,generalMelodyVolume])
                 #pattern.append(random.choice(scales))
                 note=Note(scales[sequenceVerse[i]],5,0.25,volume)
                 print(note.name)
@@ -253,16 +254,16 @@ def makeMelodyPattern(scales,progression):
     for ch in progression["progression"]:
         print("--------------next round chorus----------")
         for i in range(0,31):
-            chord1=RomanChord(ch,4,4,theKey,progression['flavor'][0],100)
+            chord1=RomanChord(ch,4,4,theKey,progression['flavor'][0],generalMelodyVolume)
             if i==0:
-                volume=100
+                volume=generalMelodyVolume
                 nnn=random.choice(chord1.getNotes())
                 pprint(nnn.name)
                 note=Note(nnn.name,5,0.25,volume)
                 print(note.name)
                 pattern.append(note)
             else:
-                volume=random.choice([0,100])
+                volume=random.choice([0,generalMelodyVolume])
                 #pattern.append(random.choice(scales))
                 note=Note(scales[sequenceChorus[i]],5,0.125,volume)
                 print(note.name)
