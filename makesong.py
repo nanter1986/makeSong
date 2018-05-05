@@ -14,7 +14,7 @@ def chooseKey():
 
 
 def setTheOrgans():
-    #returns a dictionary with randomly selected organs
+    '''returns a dictionary with randomly selected organs'''
     org={}
     org['track1']=random.choice(['Acoustic Grand Piano',
             'String Ensemble 1',
