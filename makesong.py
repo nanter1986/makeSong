@@ -47,13 +47,13 @@ duration=8
 duration2=4
 
 def getTheTime():
-    #returns current time and date
+    '''returns current time and date'''
     curTime=str(datetime.datetime.now())
     return curTime
 
 
 def createProgression():
-    #returns a random progression from predefined chords
+    '''returns a random progression from predefined chords'''
     progression=[]
     flavor=[]
     dictChordsFlavor={}
@@ -71,7 +71,7 @@ def createProgression():
 
 
 def addProgression(progression):
-    #adds chords to the chord track
+    '''adds chords to the chord track'''
     volumeOfChords=80
     chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],volumeOfChords)
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
@@ -165,7 +165,7 @@ def addPercussion(progression):
 
 
 def addBass(progression):
-    #creates bass pattern based on parameter,and adds ut to bass track
+    '''creates bass pattern based on parameter,and adds ut to bass track'''
     bassGeneralVolume=100
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
@@ -196,7 +196,7 @@ def addBass(progression):
             bassTrack.addNotes(n)
 
 def verseSeq():
-    #make the basic sequence of notes used for verse lines,preferes smooth transitions
+    '''make the basic sequence of notes used for verse lines,preferes smooth transitions'''
     theSeq=[]
     result=2
     for i in range(0,15):
@@ -212,6 +212,7 @@ def verseSeq():
     return theSeq
 
 def chorusSeq():
+    '''make the basic sequence of notes used for chorus lines,preferes smooth transitions'''
     theSeq=[]
     result=2
     for i in range(0,31):
@@ -227,7 +228,7 @@ def chorusSeq():
     return theSeq
 
 def makeMelodyPattern(scales,progression):
-    #creates melody pattern based on parameter,and adds ut to melody track,verse
+    '''creates melody pattern based on parameter,and adds ut to melody track,verse'''
     generalMelodyVolume=120
     sequenceVerse=verseSeq()
     sequenceChorus=chorusSeq()
@@ -273,7 +274,7 @@ def makeMelodyPattern(scales,progression):
 
 
 def makeMelody(progression):
-    #add chorus and verse to melody track
+    '''add chorus and verse to melody track'''
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print(scales)
@@ -284,7 +285,7 @@ def makeMelody(progression):
             melodyTrack.addNotes(j)
 
 def majorOrMinor(pattern):
-    #decides if chord comes from major or minor key
+    '''decides if chord comes from major or minor key'''
     '''ch=0
     if pattern=='I':
         ch=1
@@ -297,7 +298,7 @@ def majorOrMinor(pattern):
     return ch
 
 def exportFile():
-    #adds all tracks to file and exports it,name based on date
+    '''adds all tracks to file and exports it,name based on date'''
     easyMIDI.addTrack(track1)
     easyMIDI.addTrack(kickTrack)
     easyMIDI.addTrack(snareTrack)
@@ -308,7 +309,7 @@ def exportFile():
     easyMIDI.writeMIDI("../../storage/downloads/"+name+".mid")
 
 def makeSong():
-    #main function,delegates to other functions
+    '''main function,delegates to other functions'''
     progression=createProgression()
     addProgression(progression)
     addPercussion(progression)
