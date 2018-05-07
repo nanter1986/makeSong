@@ -236,7 +236,10 @@ def makeMelodyPattern(scales,progression):
     for ch in progression["progression"]:
         print("--------------next round -verse----------")
         for i in range(0,15):
-            chord1=RomanChord(ch,4,4,theKey,progression['flavor'][0],generalMelodyVolume)
+            chord1=RomanChord(ch,4,1,theKey,progression['flavor'][0],generalMelodyVolume)
+            chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
+            chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
+            chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
             if i==0:
                 volume=generalMelodyVolume
                 nnn=random.choice(chord1.getNotes())
@@ -244,6 +247,28 @@ def makeMelodyPattern(scales,progression):
                 note=Note(nnn.name,5,0.5,volume)
                 print(note.name)
                 pattern.append(note)
+            elif i==3:
+                volume=generalMelodyVolume
+                nnn=random.choice(chord2.getNotes())
+                pprint(nnn.name)
+                note=Note(nnn.name,5,0.25,volume)
+                print(note.name)
+                pattern.append(note)
+            elif i==7:
+                volume=generalMelodyVolume
+                nnn=random.choice(chord3.getNotes())
+                pprint(nnn.name)
+                note=Note(nnn.name,5,0.25,volume)
+                print(note.name)
+                pattern.append(note)
+            elif i==11:
+                volume=generalMelodyVolume
+                nnn=random.choice(chord4.getNotes())
+                pprint(nnn.name)
+                note=Note(nnn.name,5,0.25,volume)
+                print(note.name)
+                pattern.append(note)
+
             else:
                 volume=random.choice([0,generalMelodyVolume,generalMelodyVolume])
                 #pattern.append(random.choice(scales))
