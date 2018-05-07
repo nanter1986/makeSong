@@ -78,30 +78,30 @@ def addProgression(progression):
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
     totalBarschords=0
-    for i in range(0,4):
+    for i in range(0,32):
         print(progression['progression'][0])
-        for t1 in range(0,8):
+        for t1 in range(0,1):
             track1.addChord(chord1)
             notes1=chord1.getNotes()
             totalBarschords+=1
             print(chord1.getNumeral())
             for n in notes1:
                 print("chord 1:"+n.name)
-        for t2 in range(0,8):
+        for t2 in range(0,1):
             track1.addChord(chord2)
             notes2=chord2.getNotes()
             totalBarschords+=1
             print(chord2.getNumeral())
             for n in notes2:
                 print("chord 2:"+n.name)
-        for t3 in range(0,8):
+        for t3 in range(0,1):
             track1.addChord(chord3)
             notes3=chord3.getNotes()
             totalBarschords+=1
             print(chord3.getNumeral())
             for n in notes3:
                 print("chord 3:"+n.name)
-        for t4 in range(0,8):
+        for t4 in range(0,1):
             track1.addChord(chord4)
             notes4=chord4.getNotes()
             totalBarschords+=1
