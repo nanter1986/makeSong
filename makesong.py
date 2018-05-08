@@ -208,6 +208,7 @@ def verseSeq():
         elif result>6:
             result=6
         theSeq.append(result)
+    print("-------------verse sequence-----------")
     pprint(theSeq)
     return theSeq
 
@@ -224,14 +225,15 @@ def chorusSeq():
         elif result>6:
             result=6
         theSeq.append(result)
+    print("------------chorus sequence -----------")
     pprint(theSeq)
     return theSeq
 
-def makeChordsFromPattern(progression):
-    chord1=RomanChord(ch,4,1,theKey,progression['flavor'][0],generalMelodyVolume)
-    chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
-    chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
-    chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
+def makeChordsFromPattern(progression,volume):
+    chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],volume)
+    chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volume)
+    chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volume)
+    chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volume)
     chords=[chord1,chord2,chord3,chord4]
     return chords
 
@@ -241,7 +243,8 @@ def makeMelodyPattern(scales,progression):
     sequenceVerse=verseSeq()
     sequenceChorus=chorusSeq()
     pattern=[]
-    chords=makeChordsFromPattern(progression)
+    chords=makeChordsFromPattern(progression,generalMelodyVolume)
+    print("---------chords------------")
     pprint(chords)
     print("--------------next round -verse----------")
     for j in range(0,4):
@@ -286,28 +289,28 @@ def makeMelodyPattern(scales,progression):
     for ch in range(0,4):
         print("--------------next round chorus----------")
         for i in range(0,31):
-            if i==0 i==15:
+            if i==0 or i==15:
                 volume=generalMelodyVolume
                 nnn=random.choice(chords[0].getNotes())
                 pprint(nnn.name)
                 note=Note(nnn.name,5,0.5,volume)
                 print(note.name)
                 pattern.append(note)
-            elif i==3 i==18:
+            elif i==3 or i==18:
                 volume=generalMelodyVolume
                 nnn=random.choice(chords[1].getNotes())
                 pprint(nnn.name)
                 note=Note(nnn.name,5,0.25,volume)
                 print(note.name)
                 pattern.append(note)
-            elif i==7 i==22:
+            elif i==7 or i==22:
                 volume=generalMelodyVolume
                 nnn=random.choice(chords[2].getNotes())
                 pprint(nnn.name)
                 note=Note(nnn.name,5,0.25,volume)
                 print(note.name)
                 pattern.append(note)
-            elif i==11 i==26:
+            elif i==11 or i==26:
                 volume=generalMelodyVolume
                 nnn=random.choice(chords[3].getNotes())
                 pprint(nnn.name)
@@ -318,7 +321,7 @@ def makeMelodyPattern(scales,progression):
             else:
                 volume=random.choice([0,generalMelodyVolume,generalMelodyVolume])
                 #pattern.append(random.choice(scales))
-                note=Note(scales[sequenceVerse[i]],5,0.25,volume)
+                note=Note(scales[sequenceChorus[i]],5,0.25,volume)
                 print(note.name)
                 pattern.append(note)
     print("--------------------------end of verse----------------")
