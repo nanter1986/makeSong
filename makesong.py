@@ -35,7 +35,7 @@ organOptions=setTheOrgans()
 
 
 theKey=chooseKey()
-tempo=random.choice([160,180,200,220])
+tempo=random.choice([180,200,220,240])
 print("key: "+theKey)
 print("tempo: "+str(tempo))
 track1 = Track(organOptions['track1'],tempo)
@@ -199,7 +199,7 @@ def verseSeq():
     '''make the basic sequence of notes used for verse lines,preferes smooth transitions'''
     theSeq=[]
     result=2
-    for i in range(0,15):
+    for i in range(0,7):
         options=[0,-1,+1]
         choice=random.choice(options)
         result=result+choice
@@ -216,7 +216,7 @@ def chorusSeq():
     '''make the basic sequence of notes used for chorus lines,preferes smooth transitions'''
     theSeq=[]
     result=2
-    for i in range(0,31):
+    for i in range(0,16):
         options=[0,-1,+1]
         choice=random.choice(options)
         result=result+choice
@@ -247,77 +247,33 @@ def makeMelodyPattern(scales,progression):
     print("---------chords------------")
     pprint(chords)
     print("--------------next round -verse----------")
-    for j in range(0,4):
-        for i in range(0,15):
+    for j in range(0,2):
+        for i in range(0,7):
             if i==0:
                 volume=generalMelodyVolume
-                nnn=random.choice(chords[0].getNotes())
+                nnn=random.choice(chords[i].getNotes())
                 pprint(nnn.name)
-                note=Note(nnn.name,5,0.5,volume)
+                note=Note(nnn.name,4,0.5,volume)
                 print(note.name)
                 pattern.append(note)
-            elif i==3:
-                volume=generalMelodyVolume
-                nnn=random.choice(chords[1].getNotes())
-                pprint(nnn.name)
-                note=Note(nnn.name,5,0.25,volume)
-                print(note.name)
-                pattern.append(note)
-            elif i==7:
-                volume=generalMelodyVolume
-                nnn=random.choice(chords[2].getNotes())
-                pprint(nnn.name)
-                note=Note(nnn.name,5,0.25,volume)
-                print(note.name)
-                pattern.append(note)
-            elif i==11:
-                volume=generalMelodyVolume
-                nnn=random.choice(chords[3].getNotes())
-                pprint(nnn.name)
-                note=Note(nnn.name,5,0.25,volume)
-                print(note.name)
-                pattern.append(note)
-
             else:
                 volume=random.choice([0,generalMelodyVolume,generalMelodyVolume])
                 #pattern.append(random.choice(scales))
-                note=Note(scales[sequenceVerse[i]],5,0.25,volume)
+                note=Note(scales[sequenceVerse[i]],4,0.25,volume)
                 print(note.name)
                 pattern.append(note)
     print("--------------------------end of verse----------------")
     
     for ch in range(0,4):
         print("--------------next round chorus----------")
-        for i in range(0,31):
-            if i==0 or i==15:
+        for i in range(0,15):
+            if i==0:
                 volume=generalMelodyVolume
-                nnn=random.choice(chords[0].getNotes())
+                nnn=random.choice(chords[i].getNotes())
                 pprint(nnn.name)
                 note=Note(nnn.name,5,0.5,volume)
                 print(note.name)
                 pattern.append(note)
-            elif i==3 or i==18:
-                volume=generalMelodyVolume
-                nnn=random.choice(chords[1].getNotes())
-                pprint(nnn.name)
-                note=Note(nnn.name,5,0.25,volume)
-                print(note.name)
-                pattern.append(note)
-            elif i==7 or i==22:
-                volume=generalMelodyVolume
-                nnn=random.choice(chords[2].getNotes())
-                pprint(nnn.name)
-                note=Note(nnn.name,5,0.25,volume)
-                print(note.name)
-                pattern.append(note)
-            elif i==11 or i==26:
-                volume=generalMelodyVolume
-                nnn=random.choice(chords[3].getNotes())
-                pprint(nnn.name)
-                note=Note(nnn.name,5,0.25,volume)
-                print(note.name)
-                pattern.append(note)
-
             else:
                 volume=random.choice([0,generalMelodyVolume,generalMelodyVolume])
                 #pattern.append(random.choice(scales))
@@ -354,10 +310,10 @@ def majorOrMinor(pattern):
 
 def exportFile():
     '''adds all tracks to file and exports it,name based on date'''
-    easyMIDI.addTrack(track1)
-    easyMIDI.addTrack(kickTrack)
-    easyMIDI.addTrack(snareTrack)
-    easyMIDI.addTrack(bassTrack)
+    #easyMIDI.addTrack(track1)
+    #easyMIDI.addTrack(kickTrack)
+    #easyMIDI.addTrack(snareTrack)
+    #easyMIDI.addTrack(bassTrack)
     easyMIDI.addTrack(melodyTrack)
     name=getTheTime()
     #easyMIDI.writeMIDI("songs/"+name+".mid")
