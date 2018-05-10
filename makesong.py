@@ -163,7 +163,7 @@ def addPercussion(progression):
 
 def bassVolumePattern():
     theSeq=[]
-    for i in range(0,7):
+    for i in range(0,4):
         options=[0,1]
         choice=random.choice(options)
         theSeq.append(choice)
@@ -186,19 +186,24 @@ def addBass(progression):
     print("bass notes:")
     print(chord1+" "+chord2+" "+chord3+" "+chord4)
     pattern=[]
-    for ch in chordNotes:
-        for i in range(0,4):
-            if i==0:
-                volume=bassGeneralVolume
-                note=Note(ch,3,0.5,volume)
-            else:
-                volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
-                note=Note(ch,3,0.5,volume)
-            pattern.append(note)
-    print("bass:")
-    for j in range(0,8):
-        for n in pattern:
-            bassTrack.addNotes(n)
+    totalBars=0
+    for j in range(0,16):
+        for ch in chordNotes:
+            for i in range(0,4):
+                if i==0:
+                    volume=bassGeneralVolume
+                    note=Note(ch,3,0.5,volume)
+                    totalBars+=0.5
+                else:
+                    volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
+                    note=Note(ch,3,0.5,volume)
+                    totalBars+=0.5
+                pattern.append(note)
+                print("bass note")
+                print(str(totalBars)+" "+note.name+" "+str(volume))
+    for n in pattern:
+        bassTrack.addNotes(n)
+    assert totalBars==128
 
 def verseSeq():
     '''make the basic sequence of notes used for verse lines,preferes smooth transitions'''
