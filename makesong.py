@@ -243,7 +243,7 @@ def volumeVerseMaker():
     for i in range(0,7):
         options=[0,1]
         choice=random.choice(options)
-        theSeq.append(result)
+        theSeq.append(choice)
     print("-------------verse volumes-----------")
     pprint(theSeq)
     return theSeq
@@ -255,7 +255,7 @@ def volumeChorusMaker():
     for i in range(0,15):
         options=[0,1]
         choice=random.choice(options)
-        theSeq.append(result)
+        theSeq.append(choice)
     print("-------------chorus volumes-----------")
     pprint(theSeq)
     return theSeq
@@ -275,18 +275,17 @@ def makeMelodyPattern(scales,progression):
     for j in range(0,4):
         for i in range(0,7):
             if i==0:
-                volume=generalMelodyVolume
+                volume=generalMelodyVolume*volumePatternVerse[i]
                 nnn=random.choice(chords[j].getNotes())
-                note=Note(nnn.name,4,0.5,volumePatternVerse[i]*generalMelodyVolume
-                        )
+                note=Note(nnn.name,4,0.5,volume)
                 print("variable verse note")
-                print(note.name)
+                print(note.name+"-"+str(volume))
                 pattern.append(note)
             else:
+                volume=generalMelodyVolume*volumePatternVerse[i]
                 print("fixed verse note")
-                note=Note(scales[sequenceVerse[i]],4,0.25,volumePatternChorus[i]*generalMelodyVolume
-                        )
-                print(note.name)
+                note=Note(scales[sequenceVerse[i]],4,0.25,volume)
+                print(note.name+"-"+str(volume))
                 pattern.append(note)
     print("--------------------------end of verse----------------")
     
@@ -298,14 +297,14 @@ def makeMelodyPattern(scales,progression):
                 nnn=random.choice(chords[j].getNotes())
                 note=Note(nnn.name,5,0.25,volume)
                 print("fixed chorus note")
-                print(note.name)
+                print(note.name+"-"+str(volume))
                 pattern.append(note)
             else:
                 volume=random.choice([0,generalMelodyVolume])
                 #pattern.append(random.choice(scales))
                 note=Note(scales[sequenceChorus[i]],5,0.125,volume)
                 print("variable chorus note")
-                print(note.name)
+                print(note.name+"-"+str(volume))
                 pattern.append(note)
     print("--------------------------end of verse----------------")
     return pattern
