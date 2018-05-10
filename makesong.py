@@ -161,13 +161,22 @@ def addPercussion(progression):
                 totalBarsDrums+=0.5
     assert totalBarsDrums==128
 
-
+def bassVolumePattern():
+    theSeq=[]
+    for i in range(0,7):
+        options=[0,1]
+        choice=random.choice(options)
+        theSeq.append(choice)
+    print("-------------bass volumes sequence-----------")
+    pprint(theSeq)
+    return theSeq
 
 def addBass(progression):
     '''creates bass pattern based on parameter,and adds ut to bass track'''
     bassGeneralVolume=100
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
+    bassVolumes=bassVolumePattern()
     print(scales)
     chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],100).getNotes()[0].name
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100).getNotes()[0].name
@@ -178,20 +187,17 @@ def addBass(progression):
     print(chord1+" "+chord2+" "+chord3+" "+chord4)
     pattern=[]
     for ch in chordNotes:
-        for i in range(0,8):
+        for i in range(0,4):
             if i==0:
                 volume=bassGeneralVolume
                 note=Note(ch,3,0.5,volume)
             else:
-                volume=random.choice([0,bassGeneralVolume])
-                #pattern.append(random.choice(scales))
+                volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
                 note=Note(ch,3,0.5,volume)
             pattern.append(note)
     print("bass:")
-    #print(pattern)
     for j in range(0,8):
         for n in pattern:
-            #print(n.name)
             bassTrack.addNotes(n)
 
 def verseSeq():
@@ -335,7 +341,7 @@ def majorOrMinor(pattern):
 
 def exportFile():
     '''adds all tracks to file and exports it,name based on date'''
-    #easyMIDI.addTrack(track1)
+    easyMIDI.addTrack(track1)
     #easyMIDI.addTrack(kickTrack)
     #easyMIDI.addTrack(snareTrack)
     #easyMIDI.addTrack(bassTrack)
