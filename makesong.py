@@ -238,10 +238,27 @@ def makeChordsFromPattern(progression,volume):
     return chords
 
 def volumeVerseMaker():
-    pass
+    '''make the basic sequence of volumes for tge verse'''
+    theSeq=[]
+    for i in range(0,7):
+        options=[0,1]
+        choice=random.choice(options)
+        theSeq.append(result)
+    print("-------------verse volumes-----------")
+    pprint(theSeq)
+    return theSeq
+    
 
 def volumeChorusMaker():
-    pass
+    '''make the basic sequence of volumes for the chorus'''
+    theSeq=[]
+    for i in range(0,15):
+        options=[0,1]
+        choice=random.choice(options)
+        theSeq.append(result)
+    print("-------------chorus volumes-----------")
+    pprint(theSeq)
+    return theSeq
 
 def makeMelodyPattern(scales,progression):
     '''creates melody pattern based on parameter,and adds ut to melody track,verse'''
@@ -260,15 +277,15 @@ def makeMelodyPattern(scales,progression):
             if i==0:
                 volume=generalMelodyVolume
                 nnn=random.choice(chords[j].getNotes())
-                note=Note(nnn.name,4,0.5,volume)
+                note=Note(nnn.name,4,0.5,volumePatternVerse[i]*generalMelodyVolume
+                        )
                 print("variable verse note")
                 print(note.name)
                 pattern.append(note)
             else:
-                volume=random.choice([0,generalMelodyVolume])
-                #pattern.append(random.choice(scales))
                 print("fixed verse note")
-                note=Note(scales[sequenceVerse[i]],4,0.25,volume)
+                note=Note(scales[sequenceVerse[i]],4,0.25,volumePatternChorus[i]*generalMelodyVolume
+                        )
                 print(note.name)
                 pattern.append(note)
     print("--------------------------end of verse----------------")
