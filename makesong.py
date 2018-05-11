@@ -143,6 +143,9 @@ def addPercussion(progression):
                 snareTrack.addNote(empty)
                 snareTrack.addNote(noteSnare)
                 totalBarsDrums+=1
+                print("drum bar "+str(totalBarsDrums)+"----------")
+                print("kick:"+noteKick.name+" "+str(volumeKick))
+                print("snare:"+noteSnare.name+" "+str(volumeSnare))
         for i in range(0,4):
             for i in range(0,16):
                 volumeKick=drumGeneralVolume
@@ -282,41 +285,50 @@ def makeMelodyPattern(scales,progression):
     print("---------chords------------")
     pprint(chords)
     print("--------------next round -verse----------")
-    for j in range(0,4):
-        for i in range(0,7):
-            if i==0:
-                volume=generalMelodyVolume*volumePatternVerse[i]
-                nnn=random.choice(chords[j].getNotes())
-                note=Note(nnn.name,4,0.5,volume)
-                print("variable verse note")
-                print(note.name+"-"+str(volume))
-                pattern.append(note)
-            else:
-                volume=generalMelodyVolume*volumePatternVerse[i]
-                print("fixed verse note")
-                note=Note(scales[sequenceVerse[i]],4,0.25,volume)
-                print(note.name+"-"+str(volume))
-                pattern.append(note)
-    print("--------------------------end of verse----------------")
-    
-    for ch in range(0,4):
-        print("--------------next round chorus----------")
-        for i in range(0,15):
-            if i==0:
-                volume=generalMelodyVolume
-                nnn=random.choice(chords[j].getNotes())
-                note=Note(nnn.name,5,0.25,volume)
-                print("fixed chorus note")
-                print(note.name+"-"+str(volume))
-                pattern.append(note)
-            else:
-                volume=random.choice([0,generalMelodyVolume])
-                #pattern.append(random.choice(scales))
-                note=Note(scales[sequenceChorus[i]],5,0.125,volume)
-                print("variable chorus note")
-                print(note.name+"-"+str(volume))
-                pattern.append(note)
-    print("--------------------------end of verse----------------")
+    totalBars=0
+    for times in range(0,4):
+        for verseLength in range(0,2):
+            for j in range(0,4):
+                for i in range(0,7):
+                    if i==0:
+                        volume=generalMelodyVolume*volumePatternVerse[i]
+                        nnn=random.choice(chords[j].getNotes())
+                        note=Note(nnn.name,4,0.5,volume)
+                        totalBars+=0.5
+                        print("variable verse note")
+                        print(note.name+"-"+str(volume)+" "+str(totalBars))
+                        pattern.append(note)
+                    else:
+                        volume=generalMelodyVolume*volumePatternVerse[i]
+                        totalBars+=0.25
+                        print("fixed verse note")
+                        note=Note(scales[sequenceVerse[i]],4,0.25,volume)
+                        print(note.name+"-"+str(volume)+" "+str(totalBars))
+                        pattern.append(note)
+        print("--------------------------end of verse----------------")
+        
+        for chorusLength in range(0,2):
+            for j in range(0,4):
+                print("--------------next round chorus----------")
+                for i in range(0,15):
+                    if i==0:
+                        volume=generalMelodyVolume*volumePatternChorus[i]
+                        nnn=random.choice(chords[j].getNotes())
+                        note=Note(nnn.name,5,0.25,volume)
+                        totalBars+=0.25
+                        print("fixed chorus note")
+                        print(note.name+"-"+str(volume)+" "+str(totalBars))
+                        pattern.append(note)
+                    else:
+                        volume=random.choice([0,generalMelodyVolume])*volumePatternChorus[i]
+                        #pattern.append(random.choice(scales))
+                        note=Note(scales[sequenceChorus[i]],5,0.125,volume)
+                        totalBars+=0.125
+                        print("variable chorus note")
+                        print(note.name+"-"+str(volume)+" "+str(totalBars))
+                        pattern.append(note)
+        print("--------------------------end of chorus----------------")
+    assert totalBars==128
     return pattern
 
 
@@ -326,10 +338,8 @@ def makeMelody(progression):
     scales=theory.getMajorScales()[theKey]
     print(scales)
     pattern1=makeMelodyPattern(scales,progression)
-    for times in range(0,4):
-        for j in pattern1:
-            print(j.name)
-            melodyTrack.addNotes(j)
+    for j in pattern1:
+        melodyTrack.addNotes(j)
 
 def majorOrMinor(pattern):
     '''decides if chord comes from major or minor key'''
@@ -347,9 +357,9 @@ def majorOrMinor(pattern):
 def exportFile():
     '''adds all tracks to file and exports it,name based on date'''
     easyMIDI.addTrack(track1)
-    #easyMIDI.addTrack(kickTrack)
-    #easyMIDI.addTrack(snareTrack)
-    #easyMIDI.addTrack(bassTrack)
+    easyMIDI.addTrack(kickTrack)
+    easyMIDI.addTrack(snareTrack)
+    easyMIDI.addTrack(bassTrack)
     easyMIDI.addTrack(melodyTrack)
     name=getTheTime()
     #easyMIDI.writeMIDI("songs/"+name+".mid")
