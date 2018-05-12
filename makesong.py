@@ -273,30 +273,38 @@ def volumeChorusMaker():
     pprint(theSeq)
     return theSeq
 
+def melodyPatternVariables(progression):
+    v={}
+    v["generalMelodyVolume"]=120
+    v["sequenceVerse"]=verseSeq()
+    v["volumePatternVerse"]=volumeVerseMaker()
+    v["sequenceChorus"]=chorusSeq()
+    v["volumePatternChorus"]=volumeChorusMaker()
+    v["pattern"]=[]
+    v["chords"]=makeChordsFromPattern(progression,generalMelodyVolume)
+    return v
+
+def doOnFirstNoteOfBarVerse(variablesNeededForMelody):
+    volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
+    nnn=random.choice(chords[j].getNotes())
+    note=Note(nnn.name,4,0.5,volume)
+    totalBars+=0.5
+    print("variable verse note")
+    print(note.name+"-"+str(volume)+" "+str(totalBars))
+    variablesNeededForMelody["pattern"].append(note)
+
 def makeMelodyPattern(scales,progression):
     '''creates melody pattern based on parameter,and adds ut to melody track,verse'''
-    generalMelodyVolume=120
-    sequenceVerse=verseSeq()
-    volumePatternVerse=volumeVerseMaker()
-    sequenceChorus=chorusSeq()
-    volumePatternChorus=volumeChorusMaker()
-    pattern=[]
-    chords=makeChordsFromPattern(progression,generalMelodyVolume)
+    variablesNeededForMelody=melodyPatternVariables(progression)
     print("---------chords------------")
-    pprint(chords)
+    pprint(variablesNeededForMelody["chords"])
     print("--------------next round -verse----------")
     totalBars=0
     for verseLength in range(0,2):
         for j in range(0,4):
             for i in range(0,7):
                 if i==0:
-                    volume=generalMelodyVolume*volumePatternVerse[i]
-                    nnn=random.choice(chords[j].getNotes())
-                    note=Note(nnn.name,4,0.5,volume)
-                    totalBars+=0.5
-                    print("variable verse note")
-                    print(note.name+"-"+str(volume)+" "+str(totalBars))
-                    pattern.append(note)
+                    doOnFirstNoteOfBarVerse(variablesNeededForMelody)
                 else:
                     volume=generalMelodyVolume*volumePatternVerse[i]
                     totalBars+=0.25
@@ -343,14 +351,6 @@ def makeMelody(progression):
 
 def majorOrMinor(pattern):
     '''decides if chord comes from major or minor key'''
-    '''ch=0
-    if pattern=='I':
-        ch=1
-    elif pattern=='IV':
-        ch=1
-    elif pattern=='V':
-        ch=1
-    print("chord "+pattern+" is "+str(ch))'''
     ch=1
     return ch
 
