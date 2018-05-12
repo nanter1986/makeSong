@@ -281,17 +281,25 @@ def melodyPatternVariables(progression):
     v["sequenceChorus"]=chorusSeq()
     v["volumePatternChorus"]=volumeChorusMaker()
     v["pattern"]=[]
-    v["chords"]=makeChordsFromPattern(progression,generalMelodyVolume)
+    v["chords"]=makeChordsFromPattern(progression,v["generalMelodyVolume"])
     return v
 
-def doOnFirstNoteOfBarVerse(variablesNeededForMelody):
+def doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars):
     volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
-    nnn=random.choice(chords[j].getNotes())
+    nnn=random.choice(variablesNeededForMelody["chords"][j].getNotes())
     note=Note(nnn.name,4,0.5,volume)
     totalBars+=0.5
     print("variable verse note")
     print(note.name+"-"+str(volume)+" "+str(totalBars))
     variablesNeededForMelody["pattern"].append(note)
+
+def doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars):
+    volume=generalMelodyVolume*volumePatternVerse[i]
+    totalBars+=0.25
+    print("fixed verse note")
+    note=Note(scales[sequenceVerse[i]],4,0.25,volume)
+    print(note.name+"-"+str(volume)+" "+str(totalBars))
+    pattern.append(note)
 
 def makeMelodyPattern(scales,progression):
     '''creates melody pattern based on parameter,and adds ut to melody track,verse'''
@@ -304,14 +312,9 @@ def makeMelodyPattern(scales,progression):
         for j in range(0,4):
             for i in range(0,7):
                 if i==0:
-                    doOnFirstNoteOfBarVerse(variablesNeededForMelody)
+                    doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars)
                 else:
-                    volume=generalMelodyVolume*volumePatternVerse[i]
-                    totalBars+=0.25
-                    print("fixed verse note")
-                    note=Note(scales[sequenceVerse[i]],4,0.25,volume)
-                    print(note.name+"-"+str(volume)+" "+str(totalBars))
-                    pattern.append(note)
+                    doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars)
     print("--------------------------end of verse----------------")
     
     for chorusLength in range(0,2):
