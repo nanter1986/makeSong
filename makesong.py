@@ -284,6 +284,16 @@ def melodyPatternVariables(progression):
     v["chords"]=makeChordsFromPattern(progression,v["generalMelodyVolume"])
     return v
 
+def doOnFirstNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars):
+    volume=variablesNeededForMelody["generalMelodyVolume"]
+    nnn=random.choice(variablesNeededForMelody["chords"][j].getNotes())
+    note=Note(nnn.name,5,0.25,volume)
+    totalBars+=0.25
+    print("fixed chorus note")
+    print(note.name+"-"+str(volume)+" "+str(totalBars))
+    variablesNeededForMelody["pattern"].append(note)
+
+
 def doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars):
     volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
     nnn=random.choice(variablesNeededForMelody["chords"][j].getNotes())
@@ -294,10 +304,10 @@ def doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars):
     variablesNeededForMelody["pattern"].append(note)
 
 def doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars):
-    volume=generalMelodyVolume*volumePatternVerse[i]
+    volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
     totalBars+=0.25
     print("fixed verse note")
-    note=Note(scales[sequenceVerse[i]],4,0.25,volume)
+    note=Note(scales[variablesNeededForMelody["sequenceVerse"][i]],4,0.25,volume)
     print(note.name+"-"+str(volume)+" "+str(totalBars))
     pattern.append(note)
 
@@ -322,13 +332,7 @@ def makeMelodyPattern(scales,progression):
             print("--------------next round chorus----------")
             for i in range(0,14):
                 if i==0 or i==7:
-                    volume=generalMelodyVolume
-                    nnn=random.choice(chords[j].getNotes())
-                    note=Note(nnn.name,5,0.25,volume)
-                    totalBars+=0.25
-                    print("fixed chorus note")
-                    print(note.name+"-"+str(volume)+" "+str(totalBars))
-                    pattern.append(note)
+                    pass
                 else:
                     volume=random.choice([0,generalMelodyVolume])*volumePatternChorus[i]
                     #pattern.append(random.choice(scales))
