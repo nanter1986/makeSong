@@ -284,7 +284,7 @@ def melodyPatternVariables(progression):
     v["chords"]=makeChordsFromPattern(progression,v["generalMelodyVolume"])
     return v
 
-def doOnFirstNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars):
+def doOnFirstNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales):
     volume=variablesNeededForMelody["generalMelodyVolume"]
     nnn=random.choice(variablesNeededForMelody["chords"][j].getNotes())
     note=Note(nnn.name,5,0.25,volume)
@@ -294,7 +294,7 @@ def doOnFirstNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars):
     variablesNeededForMelody["pattern"].append(note)
 
 
-def doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars):
+def doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
     volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
     nnn=random.choice(variablesNeededForMelody["chords"][j].getNotes())
     note=Note(nnn.name,4,0.5,volume)
@@ -303,13 +303,21 @@ def doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars):
     print(note.name+"-"+str(volume)+" "+str(totalBars))
     variablesNeededForMelody["pattern"].append(note)
 
-def doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars):
+def doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
     volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
     totalBars+=0.25
     print("fixed verse note")
     note=Note(scales[variablesNeededForMelody["sequenceVerse"][i]],4,0.25,volume)
     print(note.name+"-"+str(volume)+" "+str(totalBars))
-    pattern.append(note)
+    variablesNeededForMelody["pattern"].append(note)
+
+def doOnOtherNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales):
+    volume=random.choice([0,variablesNeededForMelody["generalMelodyVolume"]])*variablesNeededForMelody["volumePatternChorus"][i]
+    totalBars+=0.125
+    print("variable chorus note")
+    note=Note(scales[variablesNeededForMelody["sequenceChorus"][i]],5,0.125,volume)
+    print(note.name+"-"+str(volume)+" "+str(totalBars))
+    variablesNeededForMelody["pattern"].append(note)
 
 def makeMelodyPattern(scales,progression):
     '''creates melody pattern based on parameter,and adds ut to melody track,verse'''
@@ -322,9 +330,9 @@ def makeMelodyPattern(scales,progression):
         for j in range(0,4):
             for i in range(0,7):
                 if i==0:
-                    doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars)
+                    doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales)
                 else:
-                    doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars)
+                    doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales)
     print("--------------------------end of verse----------------")
     
     for chorusLength in range(0,2):
@@ -332,16 +340,11 @@ def makeMelodyPattern(scales,progression):
             print("--------------next round chorus----------")
             for i in range(0,14):
                 if i==0 or i==7:
-                    pass
+                    doOnFirstNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales)
                 else:
-                    volume=random.choice([0,generalMelodyVolume])*volumePatternChorus[i]
-                    #pattern.append(random.choice(scales))
-                    note=Note(scales[sequenceChorus[i]],5,0.125,volume)
-                    totalBars+=0.125
-                    print("variable chorus note")
-                    print(note.name+"-"+str(volume)+" "+str(totalBars))
-                    pattern.append(note)
+                    doOnOtherNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales)
         print("--------------------------end of chorus----------------")
+    print(totalBars)
     assert totalBars==32
     return pattern
 
