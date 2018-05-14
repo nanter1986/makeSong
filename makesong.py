@@ -124,6 +124,52 @@ def makeDrumPatterns():
         pattern["snare_chorus"].append(random.choice(range(0,4)))
     return pattern
 
+def makeDrumsBarVerse(drumGeneralVolume,pattern,totalBarsDrums):
+    bars=0
+    for i in range(0,8):
+        volumeKick=drumGeneralVolume
+        volumeSnare=drumGeneralVolume
+        if pattern["kick_verse"][i]==0 and i!=0:
+            volumeKick=0
+        if pattern["snare_verse"][i]==0:
+            volumeSnare=0
+        noteKick=Note(theKey,3,0.5,volumeKick)
+        noteSnare=Note(theKey,3,0.5,volumeSnare)
+        empty=Note(theKey,3,0.5,0)
+        kickTrack.addNote(noteKick)
+        kickTrack.addNote(empty)
+        snareTrack.addNote(empty)
+        snareTrack.addNote(noteSnare)
+        bars+=1
+        print("drum bar "+str(totalBarsDrums)+"----------")
+        print("kick:"+noteKick.name+" "+str(volumeKick))
+        print("snare:"+noteSnare.name+" "+str(volumeSnare))
+        print("bars from verse"+str(bars))
+        return bars 
+
+def makeDrumsBarChorus(drumGeneralVolume,pattern,totalBarsDrums):
+    bars=0
+    for i in range(0,16):
+        volumeKick=drumGeneralVolume
+        volumeSnare=drumGeneralVolume
+        if pattern["kick_chorus"][i]==0 and i!=0:
+            volumeKick=0
+        if pattern["snare_chorus"][i]==0:
+            volumeSnare=0
+        noteKick=Note(theKey,3,0.25,volumeKick)
+        noteSnare=Note(theKey,3,0.25,volumeSnare)
+        empty=Note(theKey,3,0.25,0)
+        kickTrack.addNote(noteKick)
+        kickTrack.addNote(empty)
+        snareTrack.addNote(empty)
+        snareTrack.addNote(noteSnare)
+        bars+=0.5
+        print("drum bar "+str(totalBarsDrums)+"----------")
+        print("kick:"+noteKick.name+" "+str(volumeKick))
+        print("snare:"+noteSnare.name+" "+str(volumeSnare))
+        print("bars from chorus"+str(bars))
+    return bars
+
 def addPercussion(progression):
     '''creates drum pattern based on parameter,and adds ut to drum track,kick and snare go in alternate patterns'''
     drumGeneralVolume=100
@@ -133,40 +179,12 @@ def addPercussion(progression):
     totalBarsDrums=0
     for loops in range(0,2):
         for loops in range(0,4):
-            for i in range(0,8):
-                volumeKick=drumGeneralVolume
-                volumeSnare=drumGeneralVolume
-                if pattern_kick_verse[i]==0 and i!=0:
-                    volumeKick=0
-                if pattern_snare_verse[i]==0:
-                    volumeSnare=0
-                noteKick=Note(theKey,3,0.5,volumeKick)
-                noteSnare=Note(theKey,3,0.5,volumeSnare)
-                empty=Note(theKey,3,0.5,0)
-                kickTrack.addNote(noteKick)
-                kickTrack.addNote(empty)
-                snareTrack.addNote(empty)
-                snareTrack.addNote(noteSnare)
-                totalBarsDrums+=1
-                print("drum bar "+str(totalBarsDrums)+"----------")
-                print("kick:"+noteKick.name+" "+str(volumeKick))
-                print("snare:"+noteSnare.name+" "+str(volumeSnare))
+            totalBarsDrums+=makeDrumsBarVerse(drumGeneralVolume,pattern,totalBarsDrums)
+        print("bars so far:"+str(totalBarsDrums))
         for i in range(0,4):
-            for i in range(0,16):
-                volumeKick=drumGeneralVolume
-                volumeSnare=drumGeneralVolume
-                if pattern_kick_chorus[i]==0 and i!=0:
-                    volumeKick=0
-                if pattern_snare_chorus[i]==0:
-                    volumeSnare=0
-                noteKick=Note(theKey,3,0.25,volumeKick)
-                noteSnare=Note(theKey,3,0.25,volumeSnare)
-                empty=Note(theKey,3,0.25,0)
-                kickTrack.addNote(noteKick)
-                kickTrack.addNote(empty)
-                snareTrack.addNote(empty)
-                snareTrack.addNote(noteSnare)
-                totalBarsDrums+=0.5
+            totalBarsDrums+=makeDrumsBarChorus(drumGeneralVolume,pattern,totalBarsDrums)
+        print("bars so far:"+str(totalBarsDrums))
+    print(totalBarsDrums)
     assert totalBarsDrums==128
 
 def bassVolumePattern():
