@@ -1,7 +1,7 @@
-from EasyMIDI import * 
+from EasyMIDI import *
 import random
 import datetime
-from pprint import * 
+from pprint import *
 
 easyMIDI = EasyMIDI()
 
@@ -23,7 +23,7 @@ def setTheOrgans():
     org['melodyTrack']=random.choice(['Harmonica',
             'Distortion Guitar',
             'Trumpet'])
-    org['bassTrack']=random.choice(['Synth Bass 1','Electric Bass (finger)']) 
+    org['bassTrack']=random.choice(['Synth Bass 1','Electric Bass (finger)'])
     org['kickTrack']=random.choice(['Synth Drum'])
     org['snareTrack']=random.choice(['Taiko Drum '])
     for key,value in org.items():
@@ -145,7 +145,7 @@ def makeDrumsBarVerse(drumGeneralVolume,pattern,totalBarsDrums):
         print("kick:"+noteKick.name+" "+str(volumeKick))
         print("snare:"+noteSnare.name+" "+str(volumeSnare))
         print("bars from verse"+str(bars))
-        return bars 
+    return bars
 
 def makeDrumsBarChorus(drumGeneralVolume,pattern,totalBarsDrums):
     bars=0
@@ -283,7 +283,7 @@ def volumeVerseMaker():
     print("-------------verse volumes-----------")
     pprint(theSeq)
     return theSeq
-    
+
 
 def volumeChorusMaker():
     '''make the basic sequence of volumes for the chorus'''
@@ -361,7 +361,7 @@ def makeMelodyPattern(scales,progression):
                 else:
                    totalBars+=doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales)
     print("--------------------------end of verse----------------")
-    
+
     for chorusLength in range(0,2):
         for j in range(0,4):
             print("--------------next round chorus----------")
@@ -411,6 +411,6 @@ def makeSong():
     makeMelody(progression)
     exportFile()
 
-makeSong()    
+makeSong()
 
 
