@@ -109,21 +109,26 @@ def addProgression(progression):
                 print("chord 4:"+n.name)
     assert totalBarschords==128
 
+def makeDrumPatterns():
+    pattern={}
+    pattern["kick_verse"]=[]
+    pattern["kick_chorus"]=[]
+    pattern["snare_verse"]=[]
+    pattern["snare_chorus"]=[]
+    print("pattern created empty")
+    for j in range(0,8):
+        pattern["kick_verse"].append(random.choice(range(0,4)))
+        pattern["snare_verse"].append(random.choice(range(0,4)))
+    for u in range(0,16):
+        pattern["kick_chorus"].append(random.choice(range(0,4)))
+        pattern["snare_chorus"].append(random.choice(range(0,4)))
+    return pattern
+
 def addPercussion(progression):
     '''creates drum pattern based on parameter,and adds ut to drum track,kick and snare go in alternate patterns'''
     drumGeneralVolume=100
-    pattern_kick_verse=[]
-    pattern_kick_chorus=[]
-    pattern_snare_verse=[]
-    pattern_snare_chorus=[]
-    print("pattern created empty")
+    pattern=makeDrumPatterns()
     #create the repeating pattern
-    for j in range(0,8):
-        pattern_kick_verse.append(random.choice(range(0,4)))
-        pattern_snare_verse.append(random.choice(range(0,4)))
-    for u in range(0,16):
-        pattern_kick_chorus.append(random.choice(range(0,4)))
-        pattern_snare_chorus.append(random.choice(range(0,4)))
     #add the repeating pattern
     totalBarsDrums=0
     for loops in range(0,2):
