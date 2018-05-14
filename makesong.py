@@ -288,7 +288,7 @@ def doOnFirstNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales):
     volume=variablesNeededForMelody["generalMelodyVolume"]
     nnn=random.choice(variablesNeededForMelody["chords"][j].getNotes())
     note=Note(nnn.name,5,0.25,volume)
-    totalBars+=0.25
+    totalBarsChange=0.25
     print("fixed chorus note")
     print(note.name+"-"+str(volume)+" "+str(totalBars))
     variablesNeededForMelody["pattern"].append(note)
@@ -298,14 +298,14 @@ def doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
     volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
     nnn=random.choice(variablesNeededForMelody["chords"][j].getNotes())
     note=Note(nnn.name,4,0.5,volume)
-    totalBars+=0.5
+    totalBarsChange=0.5
     print("variable verse note")
     print(note.name+"-"+str(volume)+" "+str(totalBars))
     variablesNeededForMelody["pattern"].append(note)
 
 def doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
     volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
-    totalBars+=0.25
+    totalBarsChange=0.25
     print("fixed verse note")
     note=Note(scales[variablesNeededForMelody["sequenceVerse"][i]],4,0.25,volume)
     print(note.name+"-"+str(volume)+" "+str(totalBars))
@@ -313,7 +313,7 @@ def doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
 
 def doOnOtherNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales):
     volume=random.choice([0,variablesNeededForMelody["generalMelodyVolume"]])*variablesNeededForMelody["volumePatternChorus"][i]
-    totalBars+=0.125
+    totalBarsChange=0.125
     print("variable chorus note")
     note=Note(scales[variablesNeededForMelody["sequenceChorus"][i]],5,0.125,volume)
     print(note.name+"-"+str(volume)+" "+str(totalBars))
