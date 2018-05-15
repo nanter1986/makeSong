@@ -197,6 +197,32 @@ def bassVolumePattern():
     pprint(theSeq)
     return theSeq
 
+def makeChordsFromPattern(progression,volume):
+    chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],volume)
+    chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volume)
+    chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volume)
+    chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volume)
+    chords=[chord1,chord2,chord3,chord4]
+    return chords
+
+def addBassBar(chordNotes,bassGeneralVolume):
+    totalBars=0
+    for ch in chordNotes:
+        for i in range(0,4):
+            if i==0:
+                volume=bassGeneralVolume
+                print(ch.getNotes()[0].name)
+                note=Note(ch.getNotes()[0].name,3,0.5,volume)
+                totalBars=0.5
+            else:
+                volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
+                note=Note(ch,3,0.5,volume)
+                totalBars=0.5
+            pattern.append(note)
+            print("bass note")
+            print(str(totalBars)+" "+note.name+" "+str(volume))
+    return totalBars
+
 def addBass(progression):
     '''creates bass pattern based on parameter,and adds ut to bass track'''
     bassGeneralVolume=100
@@ -204,29 +230,11 @@ def addBass(progression):
     scales=theory.getMajorScales()[theKey]
     bassVolumes=bassVolumePattern()
     print(scales)
-    chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],100).getNotes()[0].name
-    chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],100).getNotes()[0].name
-    chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],100).getNotes()[0].name
-    chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],100).getNotes()[0].name
-    chordNotes=[chord1,chord2,chord3,chord4]
-    print("bass notes:")
-    print(chord1+" "+chord2+" "+chord3+" "+chord4)
+    chordNotes=makeChordsFromPattern(progression,bassGeneralVolume)
     pattern=[]
     totalBars=0
     for j in range(0,16):
-        for ch in chordNotes:
-            for i in range(0,4):
-                if i==0:
-                    volume=bassGeneralVolume
-                    note=Note(ch,3,0.5,volume)
-                    totalBars+=0.5
-                else:
-                    volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
-                    note=Note(ch,3,0.5,volume)
-                    totalBars+=0.5
-                pattern.append(note)
-                print("bass note")
-                print(str(totalBars)+" "+note.name+" "+str(volume))
+        totalBars+=addBassBar(chordNotes,bassGeneralVolume)
     for n in pattern:
         bassTrack.addNotes(n)
     assert totalBars==128
@@ -265,13 +273,6 @@ def chorusSeq():
     pprint(theSeq)
     return theSeq
 
-def makeChordsFromPattern(progression,volume):
-    chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],volume)
-    chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volume)
-    chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volume)
-    chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volume)
-    chords=[chord1,chord2,chord3,chord4]
-    return chords
 
 def volumeVerseMaker():
     '''make the basic sequence of volumes for tge verse'''
