@@ -205,23 +205,26 @@ def makeChordsFromPattern(progression,volume):
     chords=[chord1,chord2,chord3,chord4]
     return chords
 
-def addBassBar(chordNotes,bassGeneralVolume):
+def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
+    pattern=[]
     totalBars=0
-    for ch in chordNotes:
-        for i in range(0,4):
-            if i==0:
-                volume=bassGeneralVolume
-                print(ch.getNotes()[0].name)
-                note=Note(ch.getNotes()[0].name,3,0.5,volume)
-                totalBars=0.5
-            else:
-                volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
-                note=Note(ch,3,0.5,volume)
-                totalBars=0.5
-            pattern.append(note)
-            print("bass note")
-            print(str(totalBars)+" "+note.name+" "+str(volume))
-    return totalBars
+    for j in range(0,16):
+        for ch in chordNotes:
+            for i in range(0,4):
+                if i==0:
+                    volume=bassGeneralVolume
+                    print(ch.getNotes()[0].name)
+                    note=Note(ch.getNotes()[0].name,3,0.5,volume)
+                    totalBars+=0.5
+                else:
+                    volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
+                    note=Note(ch.getNotes()[0].name,3,0.5,volume)
+                    totalBars+=0.5
+                pattern.append(note)
+                print("bass note")
+                print(str(totalBars)+" "+note.name+" "+str(volume))
+    assert totalBars==128
+    return pattern
 
 def addBass(progression):
     '''creates bass pattern based on parameter,and adds ut to bass track'''
@@ -231,13 +234,9 @@ def addBass(progression):
     bassVolumes=bassVolumePattern()
     print(scales)
     chordNotes=makeChordsFromPattern(progression,bassGeneralVolume)
-    pattern=[]
-    totalBars=0
-    for j in range(0,16):
-        totalBars+=addBassBar(chordNotes,bassGeneralVolume)
+    pattern=addBassBar(chordNotes,bassGeneralVolume,bassVolumes)
     for n in pattern:
         bassTrack.addNotes(n)
-    assert totalBars==128
 
 def verseSeq():
     '''make the basic sequence of notes used for verse lines,preferes smooth transitions'''
