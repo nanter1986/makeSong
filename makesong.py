@@ -364,16 +364,20 @@ def makeMelodyPattern(scales,progression):
         for j in range(0,4):
             print("adding verse------------------")
             variablesNeededForMelody["patternVerse"].append(verseStarting[j])
+            print(verseStarting[j].name+" "+str(verseStarting[j].octave)+" "+str(verseStarting[j].volume))
             for note in verseRepeating:
                 variablesNeededForMelody["patternVerse"].append(note)
+                print(note.name+" "+str(note.octave)+" "+str(note.volume))
     print("--------------------------end of verse----------------")
 
     for chorusLength in range(0,2):
         for j in range(0,4):
             print("adding chorus------------------")
             variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
+            print(chorusStarting[j].name+" "+str(chorusStarting[j].octave)+" "+str(chorusStarting[j].volume))
             for note in chorusRepeating:
                 variablesNeededForMelody["patternChorus"].append(note)
+                print(note.name+" "+str(note.octave)+" "+str(note.volume))
     print("--------------------------end of chorus----------------")
     return variablesNeededForMelody
 
