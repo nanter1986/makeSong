@@ -275,7 +275,8 @@ def melodyPatternVariables(progression):
     v["volumePatternVerse"]=volumeVerseMaker()
     v["sequenceChorus"]=verseSeq()
     v["volumePatternChorus"]=volumeVerseMaker()
-    v["pattern"]=[]
+    v["patternVerse"]=[]
+    v["patternChorus"]=[]
     v["chords"]=makeChordsFromPattern(progression,v["generalMelodyVolume"])
     return v
 
@@ -286,7 +287,7 @@ def doOnFirstNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales):
     totalBarsChange=0.5
     print("fixed chorus note")
     print(note.name+"-"+str(volume)+" "+str(totalBars))
-    variablesNeededForMelody["pattern"].append(note)
+    variablesNeededForMelody["patternChorus"].append(note)
     return totalBarsChange
 
 
@@ -297,7 +298,7 @@ def doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
     totalBarsChange=0.5
     print("variable verse note")
     print(note.name+"-"+str(volume)+" "+str(totalBars))
-    variablesNeededForMelody["pattern"].append(note)
+    variablesNeededForMelody["patternVerse"].append(note)
     return totalBarsChange
 
 def doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
@@ -306,7 +307,7 @@ def doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
     print("fixed verse note")
     note=Note(scales[variablesNeededForMelody["sequenceVerse"][i]],4,0.25,volume)
     print(note.name+"-"+str(volume)+" "+str(totalBars))
-    variablesNeededForMelody["pattern"].append(note)
+    variablesNeededForMelody["patternVerse"].append(note)
     return totalBarsChange
 
 def doOnOtherNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales):
@@ -315,37 +316,41 @@ def doOnOtherNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales):
     print("variable chorus note")
     note=Note(scales[variablesNeededForMelody["sequenceChorus"][i]],5,0.25,volume)
     print(note.name+"-"+str(volume)+" "+str(totalBars))
-    variablesNeededForMelody["pattern"].append(note)
+    variablesNeededForMelody["patternChorus"].append(note)
     return totalBarsChange
 
 def makeMelodyPattern(scales,progression):
     '''creates melody pattern based on parameter,and adds ut to melody track,verse'''
     variablesNeededForMelody=melodyPatternVariables(progression)
-    print("---------chords------------")
-    pprint(variablesNeededForMelody["chords"])
-    print("--------------next round -verse----------")
     totalBars=0
     for verseLength in range(0,2):
         for j in range(0,4):
+            print("adding verse------------------")
             for i in range(0,7):
                 if i==0:
                     totalBars+=doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales)
                 else:
                     totalBars+=doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales)
+            for n in variablesNeededForMelody["patternVerse"]:
+                print("here are the names verse")
+                print(n.name+" "+str(n.volume))
     print("--------------------------end of verse----------------")
 
     for chorusLength in range(0,2):
         for j in range(0,4):
-            print("--------------next round chorus----------")
+            print("adding chorus----------------")
             for i in range(0,7):
                 if i==0:
                     totalBars+=doOnFirstNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales)
                 else:
                     totalBars+=doOnOtherNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales)
+            for n in variablesNeededForMelody["patternChorus"]:
+                print("here are the names chorus")
+                print(n.name+" "+str(n.volume))
         print("--------------------------end of chorus----------------")
     print(totalBars)
     assert totalBars==32
-    return variablesNeededForMelody["pattern"]
+    return variablesNeededForMelody
 
 
 def makeMelody(progression):
@@ -353,10 +358,12 @@ def makeMelody(progression):
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print(scales)
-    pattern1=makeMelodyPattern(scales,progression)
+    patterns=makeMelodyPattern(scales,progression)
     for times in range(0,4):
-        for j in pattern1:
+        for j in patterns["patternVerse"]:
             melodyTrack.addNotes(j)
+        for x in patterns["patternChorus"]:
+            melodyTrack.addNotes(x)
 
 def majorOrMinor(pattern):
     '''decides if chord comes from major or minor key'''
