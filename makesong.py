@@ -359,7 +359,7 @@ def makeMelodyPattern(scales,progression):
                 if i==0:
                     totalBars+=doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales)
                 else:
-                   totalBars+=doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales)
+                    totalBars+=doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales)
     print("--------------------------end of verse----------------")
 
     for chorusLength in range(0,2):
