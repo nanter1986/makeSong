@@ -78,7 +78,7 @@ def addProgression(progression):
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
     totalBarschords=0
-    for i in range(0,16):
+    for i in range(0,24):
         for t1 in range(0,2):
             track1.addChord(chord1)
             notes1=chord1.getNotes()
@@ -107,43 +107,77 @@ def addProgression(progression):
             print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
             for n in notes4:
                 print("chord 4:"+n.name)
-    assert totalBarschords==128
+    assert totalBarschords==192
 
 def makeDrumPatterns():
     pattern={}
     pattern["kick_verse"]=[]
     pattern["kick_chorus"]=[]
+    pattern["kick_bridge"]=[]
     pattern["snare_verse"]=[]
     pattern["snare_chorus"]=[]
+    pattern["snare_bridge"]=[]
     print("pattern created empty")
     for j in range(0,8):
         pattern["kick_verse"].append(random.choice(range(0,4)))
         pattern["snare_verse"].append(random.choice(range(0,4)))
+    for x in range(0,8):
+        pattern["kick_bridge"].append(random.choice(range(0,4)))
+        pattern["snare_bridge"].append(random.choice(range(0,4)))
     for u in range(0,16):
         pattern["kick_chorus"].append(random.choice(range(0,4)))
         pattern["snare_chorus"].append(random.choice(range(0,4)))
     return pattern
+
+def makeDrumsBarBridge(drumGeneralVolume,pattern,totalBarsDrums):
+    bars=0
+    for i in range(0,8):
+        volumeKick=drumGeneralVolume
+        volumeSnare=drumGeneralVolume
+        empty=Note(theKey,3,0.5,0)
+        if i%2==0:
+            if pattern["kick_bridge"][i]==0 and i!=0:
+                volumeKick=0
+            noteKick=Note(theKey,3,0.5,volumeKick)
+            kickTrack.addNote(noteKick)
+            snareTrack.addNote(empty)
+            print("kick:"+noteKick.name+" "+str(volumeKick))
+        else:
+            if pattern["snare_bridge"][i]==0:
+                volumeSnare=0
+            noteSnare=Note(theKey,3,0.5,volumeSnare)
+            kickTrack.addNote(empty)
+            snareTrack.addNote(noteSnare)
+            print("snare:"+noteSnare.name+" "+str(volumeSnare))
+        bars+=1
+        print("drum bar "+str(totalBarsDrums)+"----------")
+        print("bars from bridge"+str(bars))
+    return bars
+
 
 def makeDrumsBarVerse(drumGeneralVolume,pattern,totalBarsDrums):
     bars=0
     for i in range(0,8):
         volumeKick=drumGeneralVolume
         volumeSnare=drumGeneralVolume
-        if pattern["kick_verse"][i]==0 and i!=0:
-            volumeKick=0
-        if pattern["snare_verse"][i]==0:
-            volumeSnare=0
-        noteKick=Note(theKey,3,0.5,volumeKick)
-        noteSnare=Note(theKey,3,0.5,volumeSnare)
         empty=Note(theKey,3,0.5,0)
-        kickTrack.addNote(noteKick)
-        kickTrack.addNote(empty)
-        snareTrack.addNote(empty)
-        snareTrack.addNote(noteSnare)
+        if i%2==0:
+            if pattern["kick_verse"][i]==0 and i!=0:
+                volumeKick=0
+            noteKick=Note(theKey,3,0.5,volumeKick)
+            empty=Note(theKey,3,0.5,0)
+            kickTrack.addNote(noteKick)
+            snareTrack.addNote(empty)
+            print("kick:"+noteKick.name+" "+str(volumeKick))
+        else:
+            if pattern["snare_verse"][i]==0:
+                volumeSnare=0
+            noteSnare=Note(theKey,3,0.5,volumeSnare)
+            kickTrack.addNote(empty)
+            snareTrack.addNote(noteSnare)
+            print("snare:"+noteSnare.name+" "+str(volumeSnare))
         bars+=1
         print("drum bar "+str(totalBarsDrums)+"----------")
-        print("kick:"+noteKick.name+" "+str(volumeKick))
-        print("snare:"+noteSnare.name+" "+str(volumeSnare))
         print("bars from verse"+str(bars))
     return bars
 
@@ -152,21 +186,23 @@ def makeDrumsBarChorus(drumGeneralVolume,pattern,totalBarsDrums):
     for i in range(0,16):
         volumeKick=drumGeneralVolume
         volumeSnare=drumGeneralVolume
-        if pattern["kick_chorus"][i]==0 and i!=0:
-            volumeKick=0
-        if pattern["snare_chorus"][i]==0:
-            volumeSnare=0
-        noteKick=Note(theKey,3,0.25,volumeKick)
-        noteSnare=Note(theKey,3,0.25,volumeSnare)
         empty=Note(theKey,3,0.25,0)
-        kickTrack.addNote(noteKick)
-        kickTrack.addNote(empty)
-        snareTrack.addNote(empty)
-        snareTrack.addNote(noteSnare)
+        if i%2==0:
+            if pattern["kick_chorus"][i]==0 and i!=0:
+                volumeKick=0
+            noteKick=Note(theKey,3,0.25,volumeKick)
+            kickTrack.addNote(noteKick)
+            snareTrack.addNote(empty)
+            print("kick:"+noteKick.name+" "+str(volumeKick))
+        else:
+            if pattern["snare_chorus"][i]==0:
+                volumeSnare=0
+            noteSnare=Note(theKey,3,0.25,volumeSnare)
+            kickTrack.addNote(empty)
+            snareTrack.addNote(noteSnare)
+            print("snare:"+noteSnare.name+" "+str(volumeSnare))
         bars+=0.5
         print("drum bar "+str(totalBarsDrums)+"----------")
-        print("kick:"+noteKick.name+" "+str(volumeKick))
-        print("snare:"+noteSnare.name+" "+str(volumeSnare))
         print("bars from chorus"+str(bars))
     return bars
 
@@ -181,11 +217,14 @@ def addPercussion(progression):
         for loops in range(0,4):
             totalBarsDrums+=makeDrumsBarVerse(drumGeneralVolume,pattern,totalBarsDrums)
         print("bars so far:"+str(totalBarsDrums))
+        for loops in range(0,4):
+            totalBarsDrums+=makeDrumsBarBridge(drumGeneralVolume,pattern,totalBarsDrums)
+        print("bars so far:"+str(totalBarsDrums))
         for i in range(0,4):
             totalBarsDrums+=makeDrumsBarChorus(drumGeneralVolume,pattern,totalBarsDrums)
         print("bars so far:"+str(totalBarsDrums))
     print(totalBarsDrums)
-    assert totalBarsDrums==128
+    assert totalBarsDrums==192
 
 def bassVolumePattern():
     theSeq=[]
@@ -208,7 +247,7 @@ def makeChordsFromPattern(progression,volume):
 def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
     pattern=[]
     totalBars=0
-    for j in range(0,16):
+    for j in range(0,24):
         for ch in chordNotes:
             for i in range(0,4):
                 if i==0:
@@ -223,7 +262,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
                 pattern.append(note)
                 print("bass note")
                 print(str(totalBars)+" "+note.name+" "+str(volume))
-    assert totalBars==128
+    assert totalBars==192
     return pattern
 
 def addBass(progression):
@@ -274,50 +313,15 @@ def melodyPatternVariables(progression):
     v["sequenceVerse"]=verseSeq()
     v["volumePatternVerse"]=volumeVerseMaker()
     v["sequenceChorus"]=verseSeq()
+    v["sequenceBridge"]=verseSeq()
     v["volumePatternChorus"]=volumeVerseMaker()
+    v["volumePatternBridge"]=volumeVerseMaker()
     v["patternVerse"]=[]
     v["patternChorus"]=[]
+    v["patternBridge"]=[]
     v["chords"]=makeChordsFromPattern(progression,v["generalMelodyVolume"])
     return v
 
-def doOnFirstNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales):
-    volume=variablesNeededForMelody["generalMelodyVolume"]
-    nnn=random.choice(variablesNeededForMelody["chords"][j].getNotes())
-    note=Note(nnn.name,5,0.5,volume)
-    totalBarsChange=0.5
-    print("fixed chorus note")
-    print(note.name+"-"+str(volume)+" "+str(totalBars))
-    variablesNeededForMelody["patternChorus"].append(note)
-    return totalBarsChange
-
-
-def doOnFirstNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
-    volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
-    nnn=random.choice(variablesNeededForMelody["chords"][j].getNotes())
-    note=Note(nnn.name,4,0.5,volume)
-    totalBarsChange=0.5
-    print("variable verse note")
-    print(note.name+"-"+str(volume)+" "+str(totalBars))
-    variablesNeededForMelody["patternVerse"].append(note)
-    return totalBarsChange
-
-def doOnOtherNoteOfBarVerse(variablesNeededForMelody,i,j,totalBars,scales):
-    volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
-    totalBarsChange=0.25
-    print("fixed verse note")
-    note=Note(scales[variablesNeededForMelody["sequenceVerse"][i]],4,0.25,volume)
-    print(note.name+"-"+str(volume)+" "+str(totalBars))
-    variablesNeededForMelody["patternVerse"].append(note)
-    return totalBarsChange
-
-def doOnOtherNoteOfBarChorus(variablesNeededForMelody,i,j,totalBars,scales):
-    volume=random.choice([0,variablesNeededForMelody["generalMelodyVolume"]])*variablesNeededForMelody["volumePatternChorus"][i]
-    totalBarsChange=0.25
-    print("variable chorus note")
-    note=Note(scales[variablesNeededForMelody["sequenceChorus"][i]],5,0.25,volume)
-    print(note.name+"-"+str(volume)+" "+str(totalBars))
-    variablesNeededForMelody["patternChorus"].append(note)
-    return totalBarsChange
 
 def verseFourVaryingStartingNotes(variablesNeededForMelody):
     notes=[]
@@ -337,11 +341,30 @@ def chorusFourVaryingStartingNotes(variablesNeededForMelody):
         notes.append(note)
     return notes
 
+
+def bridgeFourVaryingStartingNotes(variablesNeededForMelody):
+    notes=[]
+    for i in range(0,4):
+        volume=variablesNeededForMelody["generalMelodyVolume"]
+        nnn=random.choice(variablesNeededForMelody["chords"][i].getNotes())
+        note=Note(nnn.name,4,0.5,volume)
+        notes.append(note)
+    return notes
+
 def verseSixRepeatingNotes(variablesNeededForMelody,scales):
     notes=[]
     for i in range(0,6):
         volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternVerse"][i]
         note=Note(scales[variablesNeededForMelody["sequenceVerse"][i]],4,0.25,volume)
+        notes.append(note)
+    return notes
+
+
+def bridgeSixRepeatingNotes(variablesNeededForMelody,scales):
+    notes=[]
+    for i in range(0,6):
+        volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternBridge"][i]
+        note=Note(scales[variablesNeededForMelody["sequenceBridge"][i]],4,0.25,volume)
         notes.append(note)
     return notes
 
@@ -360,6 +383,8 @@ def makeMelodyPattern(scales,progression):
     verseRepeating=verseSixRepeatingNotes(variablesNeededForMelody,scales)
     chorusStarting=chorusFourVaryingStartingNotes(variablesNeededForMelody)
     chorusRepeating=chorusSixRepeatingNotes(variablesNeededForMelody,scales)
+    bridgeStarting=bridgeFourVaryingStartingNotes(variablesNeededForMelody)
+    bridgeRepeating=bridgeSixRepeatingNotes(variablesNeededForMelody,scales)
     for verseLength in range(0,2):
         for j in range(0,4):
             print("adding verse------------------")
@@ -369,6 +394,16 @@ def makeMelodyPattern(scales,progression):
                 variablesNeededForMelody["patternVerse"].append(note)
                 print(note.name+" "+str(note.octave)+" "+str(note.volume))
     print("--------------------------end of verse----------------")
+
+    for bridgeLength in range(0,2):
+        for j in range(0,4):
+            print("adding bridge------------------")
+            variablesNeededForMelody["patternBridge"].append(bridgeStarting[j])
+            print(bridgeStarting[j].name+" "+str(bridgeStarting[j].octave)+" "+str(bridgeStarting[j].volume))
+            for note in bridgeRepeating:
+                variablesNeededForMelody["patternBridge"].append(note)
+                print(note.name+" "+str(note.octave)+" "+str(note.volume))
+    print("--------------------------end of bridge----------------")
 
     for chorusLength in range(0,2):
         for j in range(0,4):
