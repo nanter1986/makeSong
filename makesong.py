@@ -24,8 +24,8 @@ def setTheOrgans():
             'Distortion Guitar',
             'Trumpet'])
     org['bassTrack']=random.choice(['Synth Bass 1','Electric Bass (finger)'])
-    org['kickTrack']=random.choice(['Woodblock'])
-    org['snareTrack']=random.choice(['Reverse Cymbal'])
+    org['kickTrack']=random.choice(['Synth Drum'])
+    org['snareTrack']=random.choice(['Steel Drums'])
     for key,value in org.items():
         print('organs:')
         print(key+':'+value)
@@ -134,22 +134,22 @@ def makeDrumsBarBridge(drumGeneralVolume,pattern,totalBarsDrums):
     for i in range(0,8):
         volumeKick=drumGeneralVolume
         volumeSnare=drumGeneralVolume
-        empty=Note(theKey,2,0.5,0)
+        empty=Note(theKey,2,0.25,0)
         if i%2==0:
             if pattern["kick_bridge"][i]==0 and i!=0:
                 volumeKick=0
-            noteKick=Note(theKey,2,0.5,volumeKick)
+            noteKick=Note(theKey,2,0.25,volumeKick)
             kickTrack.addNote(noteKick)
             snareTrack.addNote(empty)
             print("kick:"+noteKick.name+" "+str(volumeKick))
         else:
             if pattern["snare_bridge"][i]==0:
                 volumeSnare=0
-            noteSnare=Note(theKey,2,0.5,volumeSnare)
+            noteSnare=Note(theKey,2,0.25,volumeSnare)
             kickTrack.addNote(empty)
             snareTrack.addNote(noteSnare)
             print("snare:"+noteSnare.name+" "+str(volumeSnare))
-        bars+=1
+        bars+=0.5
         print("drum bar "+str(totalBarsDrums)+"----------")
         print("bars from bridge"+str(bars))
     return bars
@@ -160,23 +160,25 @@ def makeDrumsBarVerse(drumGeneralVolume,pattern,totalBarsDrums):
     for i in range(0,8):
         volumeKick=drumGeneralVolume
         volumeSnare=drumGeneralVolume
-        empty=Note(theKey,2,0.5,0)
+        empty=Note(theKey,2,0.25,0)
         if i%2==0:
             if pattern["kick_verse"][i]==0 and i!=0:
                 volumeKick=0
-            noteKick=Note(theKey,2,0.5,volumeKick)
-            empty=Note(theKey,2,0.5,0)
+            noteKick=Note(theKey,2,0.25,volumeKick)
+            empty=Note(theKey,2,0.25,0)
             kickTrack.addNote(noteKick)
             snareTrack.addNote(empty)
             print("kick:"+noteKick.name+" "+str(volumeKick))
         else:
             if pattern["snare_verse"][i]==0:
                 volumeSnare=0
-            noteSnare=Note(theKey,2,0.5,volumeSnare)
+            noteSnare=Note(theKey,2,0.25,volumeSnare)
             kickTrack.addNote(empty)
             snareTrack.addNote(noteSnare)
+            print("here to check-----------------------------")
+            print(str(pattern["snare_verse"][i])+" "+"volume pattern")
             print("snare:"+noteSnare.name+" "+str(volumeSnare))
-        bars+=1
+        bars+=0.5
         print("drum bar "+str(totalBarsDrums)+"----------")
         print("bars from verse"+str(bars))
     return bars
@@ -186,34 +188,34 @@ def makeDrumsBarChorus(drumGeneralVolume,pattern,totalBarsDrums):
     for i in range(0,16):
         volumeKick=drumGeneralVolume
         volumeSnare=drumGeneralVolume
-        empty=Note(theKey,2,0.25,0)
+        empty=Note(theKey,2,0.125,0)
         if i%2==0:
             if pattern["kick_chorus"][i]==0 and i!=0:
                 volumeKick=0
-            noteKick=Note(theKey,2,0.25,volumeKick)
+            noteKick=Note(theKey,2,0.125,volumeKick)
             kickTrack.addNote(noteKick)
             snareTrack.addNote(empty)
             print("kick:"+noteKick.name+" "+str(volumeKick))
         else:
             if pattern["snare_chorus"][i]==0:
                 volumeSnare=0
-            noteSnare=Note(theKey,2,0.25,volumeSnare)
+            noteSnare=Note(theKey,2,0.125,volumeSnare)
             kickTrack.addNote(empty)
             snareTrack.addNote(noteSnare)
             print("snare:"+noteSnare.name+" "+str(volumeSnare))
-        bars+=0.5
+        bars+=0.25
         print("drum bar "+str(totalBarsDrums)+"----------")
         print("bars from chorus"+str(bars))
     return bars
 
 def addPercussion(progression):
     '''creates drum pattern based on parameter,and adds ut to drum track,kick and snare go in alternate patterns'''
-    drumGeneralVolume=100
+    drumGeneralVolume=120
     pattern=makeDrumPatterns()
     #create the repeating pattern
     #add the repeating pattern
     totalBarsDrums=0
-    for loops in range(0,2):
+    for loops in range(0,4):
         for loops in range(0,4):
             totalBarsDrums+=makeDrumsBarVerse(drumGeneralVolume,pattern,totalBarsDrums)
         for loops in range(0,4):
@@ -441,12 +443,12 @@ def majorOrMinor(pattern):
 def exportFile():
     '''adds all tracks to file and exports it,name based on date'''
     easyMIDI.addTrack(track1)
-    easyMIDI.addTrack(kickTrack)
+    #easyMIDI.addTrack(kickTrack)
     #notesInTrack=kickTrack.getNotes()
     #for n in notesInTrack:
     #    print(n.name+"/"+str(n.volume))
     #print("-------------------")
-    easyMIDI.addTrack(snareTrack)
+    #easyMIDI.addTrack(snareTrack)
     notesInTrackS=snareTrack.getNotes()
     for m in notesInTrackS:
         print(m.name+"/"+str(m.volume))
