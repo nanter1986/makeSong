@@ -25,7 +25,7 @@ def setTheOrgans():
             'Trumpet'])
     org['bassTrack']=random.choice(['Synth Bass 1','Electric Bass (finger)'])
     org['kickTrack']=random.choice(['Woodblock'])
-    org['snareTrack']=random.choice(['Steel Drums'])
+    org['snareTrack']=random.choice(['Reverse Cymbal'])
     for key,value in org.items():
         print('organs:')
         print(key+':'+value)
@@ -83,30 +83,30 @@ def addProgression(progression):
             track1.addChord(chord1)
             notes1=chord1.getNotes()
             totalBarschords+=1
-            print("bar "+str(totalBarschords)+" "+chord1.getNumeral())
-            for n in notes1:
-                print("chord 1:"+n.name)
+            #print("bar "+str(totalBarschords)+" "+chord1.getNumeral())
+            #for n in notes1:
+            #    print("chord 1:"+n.name)
         for t2 in range(0,2):
             track1.addChord(chord2)
             notes2=chord2.getNotes()
             totalBarschords+=1
-            print("bar "+str(totalBarschords)+" "+chord2.getNumeral())
-            for n in notes2:
-                print("chord 2:"+n.name)
+            #print("bar "+str(totalBarschords)+" "+chord2.getNumeral())
+            #for n in notes2:
+            #    print("chord 2:"+n.name)
         for t3 in range(0,2):
             track1.addChord(chord3)
             notes3=chord3.getNotes()
             totalBarschords+=1
-            print("bar "+str(totalBarschords)+" "+chord3.getNumeral())
-            for n in notes3:
-                print("chord 3:"+n.name)
+            #print("bar "+str(totalBarschords)+" "+chord3.getNumeral())
+            #for n in notes3:
+            #    print("chord 3:"+n.name)
         for t4 in range(0,2):
             track1.addChord(chord4)
             notes4=chord4.getNotes()
             totalBarschords+=1
-            print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
-            for n in notes4:
-                print("chord 4:"+n.name)
+            #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
+            #for n in notes4:
+            #    print("chord 4:"+n.name)
     assert totalBarschords==192
 
 def makeDrumPatterns():
@@ -216,14 +216,10 @@ def addPercussion(progression):
     for loops in range(0,2):
         for loops in range(0,4):
             totalBarsDrums+=makeDrumsBarVerse(drumGeneralVolume,pattern,totalBarsDrums)
-        print("bars so far:"+str(totalBarsDrums))
         for loops in range(0,4):
             totalBarsDrums+=makeDrumsBarBridge(drumGeneralVolume,pattern,totalBarsDrums)
-        print("bars so far:"+str(totalBarsDrums))
         for i in range(0,4):
             totalBarsDrums+=makeDrumsBarChorus(drumGeneralVolume,pattern,totalBarsDrums)
-        print("bars so far:"+str(totalBarsDrums))
-    print(totalBarsDrums)
     assert totalBarsDrums==192
 
 def bassVolumePattern():
@@ -260,8 +256,8 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
                     note=Note(ch.getNotes()[0].name,3,0.5,volume)
                     totalBars+=0.5
                 pattern.append(note)
-                print("bass note")
-                print(str(totalBars)+" "+note.name+" "+str(volume))
+                #print("bass note")
+                #print(str(totalBars)+" "+note.name+" "+str(volume))
     assert totalBars==192
     return pattern
 
@@ -424,10 +420,18 @@ def makeMelody(progression):
     print(scales)
     patterns=makeMelodyPattern(scales,progression)
     for times in range(0,4):
+        print("verse starts here----------------------------")
         for j in patterns["patternVerse"]:
             melodyTrack.addNotes(j)
+            #print(j.name+"/"+str(j.volume))
+        print("bridge starts here----------------------------")
+        for y in patterns["patternBridge"]:
+            melodyTrack.addNotes(y)
+            #print(y.name+"/"+str(y.volume))
+        print("chorus starts here----------------------------")
         for x in patterns["patternChorus"]:
             melodyTrack.addNotes(x)
+            #print(x.name+"/"+str(x.volume))
 
 def majorOrMinor(pattern):
     '''decides if chord comes from major or minor key'''
@@ -446,8 +450,8 @@ def exportFile():
     notesInTrackS=snareTrack.getNotes()
     for m in notesInTrackS:
         print(m.name+"/"+str(m.volume))
-    #easyMIDI.addTrack(bassTrack)
-    #easyMIDI.addTrack(melodyTrack)
+    easyMIDI.addTrack(bassTrack)
+    easyMIDI.addTrack(melodyTrack)
     name=getTheTime()
     #easyMIDI.writeMIDI("songs/"+name+".mid")
     easyMIDI.writeMIDI("../../storage/downloads/"+name+".mid")
