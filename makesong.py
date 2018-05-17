@@ -438,10 +438,10 @@ def exportFile():
     '''adds all tracks to file and exports it,name based on date'''
     easyMIDI.addTrack(track1)
     easyMIDI.addTrack(kickTrack)
-    notesInTrack=kickTrack.getNotes()
-    for n in notesInTrack:
-        print(n.name+"/"+str(n.volume))
-    print("-------------------")
+    #notesInTrack=kickTrack.getNotes()
+    #for n in notesInTrack:
+    #    print(n.name+"/"+str(n.volume))
+    #print("-------------------")
     easyMIDI.addTrack(snareTrack)
     notesInTrackS=snareTrack.getNotes()
     for m in notesInTrackS:
