@@ -112,7 +112,18 @@ def addProgression(progression):
 
 def addPercussion(progression):
     '''creates drum pattern based on parameter,and adds ut to drum track,kick and snare go in alternate patterns'''
+    print("start of drums----------------------------------------")
     drumGeneralVolume=120
+    noteKick=Note(theKey,2,0.5,drumGeneralVolume)
+    noteSnare=Note(theKey,2,0.5,drumGeneralVolume)
+    noteEmpty=Note(theKey,2,0.5,0)
+    for i in range(0,192):
+        kickTrack.addNotes(noteKick)
+        kickTrack.addNotes(noteEmpty)
+        snareTrack.addNotes(noteEmpty)
+        snareTrack.addNotes(noteSnare)
+        print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
+    print("end of drums----------------------------------------")
 
 def bassVolumePattern():
     theSeq=[]
@@ -333,12 +344,12 @@ def majorOrMinor(pattern):
 def exportFile():
     '''adds all tracks to file and exports it,name based on date'''
     easyMIDI.addTrack(track1)
-    #easyMIDI.addTrack(kickTrack)
+    easyMIDI.addTrack(kickTrack)
     #notesInTrack=kickTrack.getNotes()
     #for n in notesInTrack:
     #    print(n.name+"/"+str(n.volume))
     #print("-------------------")
-    #easyMIDI.addTrack(snareTrack)
+    easyMIDI.addTrack(snareTrack)
     notesInTrackS=snareTrack.getNotes()
     for m in notesInTrackS:
         print(m.name+"/"+str(m.volume))
