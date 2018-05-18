@@ -122,7 +122,8 @@ def addPercussion(progression):
         kickTrack.addNotes(noteEmpty)
         snareTrack.addNotes(noteEmpty)
         snareTrack.addNotes(noteSnare)
-        print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
+        #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
+        print("%d %s %s %s %s"%(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
     print("end of drums----------------------------------------")
 
 def bassVolumePattern():
