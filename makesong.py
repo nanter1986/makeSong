@@ -25,7 +25,7 @@ def setTheOrgans():
             'Trumpet'])
     org['bassTrack']=random.choice(['Synth Bass 1','Electric Bass (finger)'])
     org['kickTrack']=random.choice(['Synth Drum'])
-    org['snareTrack']=random.choice(['Steel Drums'])
+    org['snareTrack']=random.choice(['Taiko Drum'])
     for key,value in org.items():
         print('organs:')
         print(key+':'+value)
@@ -115,7 +115,7 @@ def addPercussion(progression):
     print("start of drums----------------------------------------")
     drumGeneralVolume=120
     noteKick=Note(theKey,2,0.5,drumGeneralVolume)
-    noteSnare=Note(theKey,2,0.5,drumGeneralVolume)
+    noteSnare=Note(theKey,3,0.5,drumGeneralVolume)
     noteEmpty=Note(theKey,2,0.5,0)
     for i in range(0,192):
         kickTrack.addNotes(noteKick)
