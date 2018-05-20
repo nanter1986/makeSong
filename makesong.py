@@ -199,7 +199,7 @@ def volumeVerseMaker():
     '''make the basic sequence of volumes for tge verse'''
     theSeq=[]
     for i in range(0,7):
-        options=[0,1]
+        options=[0,1,1]
         choice=random.choice(options)
         theSeq.append(choice)
     print("-------------verse volumes-----------")
