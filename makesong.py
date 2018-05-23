@@ -334,7 +334,7 @@ def makeMelodyPattern(scales,progression):
             variablesNeededForMelody["patternChorusVariable"].append(chorusStarting[j])
             print(chorusStarting[j].name+" "+str(chorusStarting[j].octave)+" "+str(chorusStarting[j].volume))
             for note in chorusRepVar:
-                variablesNeededForMelody["patternChorus"].append(note)
+                variablesNeededForMelody["patternChorusVariable"].append(note)
                 print(note.name+" "+str(note.octave)+" "+str(note.volume))
     print("--------------------------end of chorus----------------")
 
@@ -360,6 +360,9 @@ def makeMelody(progression):
         for x in patterns["patternChorus"]:
             melodyTrack.addNotes(x)
             #print(x.name+"/"+str(x.volume))
+        for z in patterns["patternChorusVariable"]:
+            melodyTrack.addNotes(z)
+            #print(z.name+"/"+str(z.volume))
 
 def majorOrMinor(pattern):
     '''decides if chord comes from major or minor key'''
