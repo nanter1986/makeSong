@@ -124,7 +124,7 @@ def addPercussion(progression):
         snareTrack.addNotes(noteEmpty)
         snareTrack.addNotes(noteSnare)
         #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
-        print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
+        #print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
     print("end of drums----------------------------------------")
 
 def bassVolumePattern():
@@ -153,7 +153,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
             for i in range(0,4):
                 if i==0:
                     volume=bassGeneralVolume
-                    print(ch.getNotes()[0].name)
+                    #print(ch.getNotes()[0].name)
                     note=Note(ch.getNotes()[0].name,3,0.5,volume)
                     totalBars+=0.5
                 else:
@@ -380,8 +380,6 @@ def exportFile():
     #print("-------------------")
     easyMIDI.addTrack(snareTrack)
     notesInTrackS=snareTrack.getNotes()
-    for m in notesInTrackS:
-        print(m.name+"/"+str(m.volume))
     easyMIDI.addTrack(bassTrack)
     easyMIDI.addTrack(melodyTrack)
     name=getTheTime()
