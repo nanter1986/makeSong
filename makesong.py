@@ -78,7 +78,7 @@ def addProgression(progression):
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
     totalBarschords=0
-    for i in range(0,24):
+    for i in range(0,32):
         for t1 in range(0,2):
             track1.addChord(chord1)
             notes1=chord1.getNotes()
@@ -107,7 +107,8 @@ def addProgression(progression):
             #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
             #for n in notes4:
             #    print("chord 4:"+n.name)
-    assert totalBarschords==192
+    print(totalBarschords)
+    assert totalBarschords==256
 
 
 def addPercussion(progression):
@@ -117,7 +118,7 @@ def addPercussion(progression):
     noteKick=Note(theKey,2,0.5,drumGeneralVolume)
     noteSnare=Note(theKey,3,0.5,drumGeneralVolume)
     noteEmpty=Note(theKey,2,0.5,0)
-    for i in range(0,192):
+    for i in range(0,256):
         kickTrack.addNotes(noteKick)
         kickTrack.addNotes(noteEmpty)
         snareTrack.addNotes(noteEmpty)
@@ -147,7 +148,7 @@ def makeChordsFromPattern(progression,volume):
 def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
     pattern=[]
     totalBars=0
-    for j in range(0,24):
+    for j in range(0,32):
         for ch in chordNotes:
             for i in range(0,4):
                 if i==0:
@@ -162,7 +163,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
                 pattern.append(note)
                 #print("bass note")
                 #print(str(totalBars)+" "+note.name+" "+str(volume))
-    assert totalBars==192
+    assert totalBars==256
     return pattern
 
 def addBass(progression):
