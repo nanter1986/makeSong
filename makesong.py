@@ -219,6 +219,7 @@ def melodyPatternVariables(progression):
     v["volumePatternBridge"]=volumeVerseMaker()
     v["patternVerse"]=[]
     v["patternChorus"]=[]
+    v["patternChorusVariable"]=[]
     v["patternBridge"]=[]
     v["chords"]=makeChordsFromPattern(progression,v["generalMelodyVolume"])
     return v
@@ -325,6 +326,18 @@ def makeMelodyPattern(scales,progression):
                 variablesNeededForMelody["patternChorus"].append(note)
                 print(note.name+" "+str(note.octave)+" "+str(note.volume))
     print("--------------------------end of chorus----------------")
+
+
+    for chorusVarLength in range(0,2):
+        for j in range(0,4):
+            print("adding chorus variable------------------")
+            variablesNeededForMelody["patternChorusVariable"].append(chorusStarting[j])
+            print(chorusStarting[j].name+" "+str(chorusStarting[j].octave)+" "+str(chorusStarting[j].volume))
+            for note in chorusRepVar:
+                variablesNeededForMelody["patternChorus"].append(note)
+                print(note.name+" "+str(note.octave)+" "+str(note.volume))
+    print("--------------------------end of chorus----------------")
+
     return variablesNeededForMelody
 
 
