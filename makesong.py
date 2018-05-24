@@ -183,7 +183,7 @@ def verseSeq():
     theSeq=[]
     result=2
     for i in range(0,7):
-        options=[0,-1,+1]
+        options=[0,-1,+1,-1,+1,-1,+1,+6,-6]
         choice=random.choice(options)
         result=result+choice
         if result<0:
