@@ -217,6 +217,7 @@ def melodyPatternVariables(progression):
     v["sequenceChorusVariable"]=verseSeq()
     v["sequenceBridge"]=verseSeq()
     v["volumePatternChorus"]=volumeVerseMaker()
+    v["volumePatternChorusVariable"]=volumeVerseMaker()
     v["volumePatternBridge"]=volumeVerseMaker()
     v["patternVerse"]=[]
     v["patternChorus"]=[]
@@ -283,7 +284,7 @@ def chorusSixRepeatingNotes(variablesNeededForMelody,scales):
 def chorusSixRepeatingNotesVariable(variablesNeededForMelody,scales):
     notes=[]
     for i in range(0,6):
-        volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternChorus"][i]
+        volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternChorusVariable"][i]
         note=Note(scales[variablesNeededForMelody["sequenceChorusVariable"][i]],5,0.25,volume)
         notes.append(note)
     return notes
