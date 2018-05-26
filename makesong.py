@@ -195,6 +195,8 @@ def verseSeq():
     pprint(theSeq)
     return theSeq
 
+def volumeOptionsForSections():
+    pass
 
 def volumeVerseMaker():
     '''make the basic sequence of volumes for tge verse'''
