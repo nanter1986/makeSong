@@ -195,8 +195,15 @@ def verseSeq():
     pprint(theSeq)
     return theSeq
 
-def volumeOptionsForSections():
-    pass
+def volumeOptionsForSections(section):
+    if section=="bridge":
+        pass
+    elif section=="chorus":
+        pass
+    elif dection=="chorusVariable":
+        pass
+    else:
+        pass
 
 def volumeVerseMaker():
     '''make the basic sequence of volumes for tge verse'''
