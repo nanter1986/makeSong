@@ -197,19 +197,20 @@ def verseSeq():
 
 def volumeOptionsForSections(section):
     if section=="bridge":
-        options=[0,-1,+1,-1,+1]
+        options=[0,1,1,1]
     elif section=="chorus":
-        options=[0,-1,+1,-1,+1,+3,-3]
-    elif dection=="chorusVariable":
-        options=[0,-1,+1,-1,+1,-1,+1,+6,-6]
+        options=[0,1,1,1,1]
+    elif section=="chorusVariable":
+        options=[0,1,1,1,1,1]
     else:
-        options=[0,-1,+1]
+        options=[0,1,1]
+    return options
 
-def volumeVerseMaker():
+def volumeVerseMaker(section):
     '''make the basic sequence of volumes for tge verse'''
     theSeq=[]
     for i in range(0,7):
-        options=[0,1,1]
+        options=volumeOptionsForSections(section)
         choice=random.choice(options)
         theSeq.append(choice)
     print("-------------verse volumes-----------")
@@ -221,13 +222,13 @@ def melodyPatternVariables(progression):
     v={}
     v["generalMelodyVolume"]=120
     v["sequenceVerse"]=verseSeq()
-    v["volumePatternVerse"]=volumeVerseMaker()
+    v["volumePatternVerse"]=volumeVerseMaker("verse")
     v["sequenceChorus"]=verseSeq()
     v["sequenceChorusVariable"]=verseSeq()
     v["sequenceBridge"]=verseSeq()
-    v["volumePatternChorus"]=volumeVerseMaker()
-    v["volumePatternChorusVariable"]=volumeVerseMaker()
-    v["volumePatternBridge"]=volumeVerseMaker()
+    v["volumePatternChorus"]=volumeVerseMaker("chorus")
+    v["volumePatternChorusVariable"]=volumeVerseMaker("chorusVariable")
+    v["volumePatternBridge"]=volumeVerseMaker("bridge")
     v["patternVerse"]=[]
     v["patternChorus"]=[]
     v["patternChorusVariable"]=[]
