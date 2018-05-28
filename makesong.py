@@ -197,13 +197,13 @@ def verseSeq():
 
 def volumeOptionsForSections(section):
     if section=="bridge":
-        options=[0,-1,+1,-1,+1,-1,+1,+6,-6]
+        options=[0,-1,+1,-1,+1]
     elif section=="chorus":
-        options=[0,-1,+1,-1,+1,-1,+1,+6,-6]
+        options=[0,-1,+1,-1,+1,+3,-3]
     elif dection=="chorusVariable":
         options=[0,-1,+1,-1,+1,-1,+1,+6,-6]
     else:
-        options=[0,-1,+1,-1,+1,-1,+1,+6,-6]
+        options=[0,-1,+1]
 
 def volumeVerseMaker():
     '''make the basic sequence of volumes for tge verse'''
