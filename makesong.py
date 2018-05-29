@@ -178,6 +178,9 @@ def addBass(progression):
     for n in pattern:
         bassTrack.addNotes(n)
 
+def pitchOptionsForSections(section):
+    pass
+
 def verseSeq():
     '''make the basic sequence of notes used for verse lines,preferes smooth transitions'''
     theSeq=[]
