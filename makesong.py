@@ -179,14 +179,22 @@ def addBass(progression):
         bassTrack.addNotes(n)
 
 def pitchOptionsForSections(section):
-    pass
+    if section=="bridge":
+        options=[0,+1,-1,+2,-2]
+    elif section=="chorus":
+        options=[0,1,-1,1,-1,+3,-3]
+    elif section=="chorusVariable":
+        options=[0,+1,-1,+1,-1,+3,-3,+6,-6]
+    else:
+        options=[0,+1,-1]
+    return options
 
-def verseSeq():
+def verseSeq(section):
     '''make the basic sequence of notes used for verse lines,preferes smooth transitions'''
     theSeq=[]
     result=2
     for i in range(0,7):
-        options=[0,-1,+1,-1,+1,-1,+1,+6,-6]
+        options=pitchOptionsForSections(section)
         choice=random.choice(options)
         result=result+choice
         if result<0:
@@ -224,11 +232,11 @@ def volumeVerseMaker(section):
 def melodyPatternVariables(progression):
     v={}
     v["generalMelodyVolume"]=120
-    v["sequenceVerse"]=verseSeq()
+    v["sequenceVerse"]=verseSeq("verse")
     v["volumePatternVerse"]=volumeVerseMaker("verse")
-    v["sequenceChorus"]=verseSeq()
-    v["sequenceChorusVariable"]=verseSeq()
-    v["sequenceBridge"]=verseSeq()
+    v["sequenceChorus"]=verseSeq("chorus")
+    v["sequenceChorusVariable"]=verseSeq("chorusVariable")
+    v["sequenceBridge"]=verseSeq("bridge")
     v["volumePatternChorus"]=volumeVerseMaker("chorus")
     v["volumePatternChorusVariable"]=volumeVerseMaker("chorusVariable")
     v["volumePatternBridge"]=volumeVerseMaker("bridge")
