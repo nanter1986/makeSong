@@ -180,9 +180,9 @@ def addBass(progression):
 
 def pitchOptionsForSections(section):
     if section=="bridge":
-        options=[0,+1,-1,+2,-2]
+        options=[0,+1,-1,+1,-1,+2,-2]
     elif section=="chorus":
-        options=[0,1,-1,1,-1,+3,-3]
+        options=[0,+1,-1,+1,-1,+2,-2,+3,-3]
     elif section=="chorusVariable":
         options=[0,+1,-1,+1,-1,+3,-3,+6,-6]
     else:
