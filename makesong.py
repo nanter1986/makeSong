@@ -202,7 +202,7 @@ def verseSeq(section):
         elif result>6:
             result=6
         theSeq.append(result)
-    print("-------------verse sequence-----------")
+    print("-------------"+section+" sequence-----------")
     pprint(theSeq)
     return theSeq
 
@@ -214,7 +214,7 @@ def volumeOptionsForSections(section):
     elif section=="chorusVariable":
         options=[0,1,1,1,1,1]
     else:
-        options=[0,1,1]
+        options=[0,0,1,1]
     return options
 
 def volumeVerseMaker(section):
@@ -224,7 +224,7 @@ def volumeVerseMaker(section):
         options=volumeOptionsForSections(section)
         choice=random.choice(options)
         theSeq.append(choice)
-    print("-------------verse volumes-----------")
+    print("-------------"+section+" volumes-----------")
     pprint(theSeq)
     return theSeq
 
