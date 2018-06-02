@@ -57,7 +57,7 @@ def createProgression():
     progression=[]
     flavor=[]
     dictChordsFlavor={}
-    options=[['I','VI'],['II','IV'],['I','VI'],['V','III','VII']]
+    options=[['I','VI'],['I','III','V','VI','VII'],['II','IV'],['V']]
     print(len(options))
     for i in range(0,4):
         chord=random.choice(options[i])
