@@ -179,6 +179,7 @@ def addBass(progression):
         bassTrack.addNotes(n)
 
 def pitchOptionsForSections(section):
+    '''Provide the pitch movement options,more important sections get highlighted'''
     if section=="bridge":
         options=[0,+1,-1,+1,-1,+2,-2]
     elif section=="chorus":
