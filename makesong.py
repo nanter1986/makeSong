@@ -319,7 +319,7 @@ def makeMelodyPattern(scales,progression):
     chorusStarting=chorusFourVaryingStartingNotes(variablesNeededForMelody)
     chorusRepeating=chorusSixRepeatingNotes(variablesNeededForMelody,scales)
     chorusRepVar=chorusSixRepeatingNotesVariable(variablesNeededForMelody,scales)
-    bridgeStarting=bridgeFourVaryingStartingNotes(variablesNeededForMelody)
+    bridgeStarting=verseStarting
     bridgeRepeating=bridgeSixRepeatingNotes(variablesNeededForMelody,scales)
     for verseLength in range(0,2):
         for j in range(0,4):
