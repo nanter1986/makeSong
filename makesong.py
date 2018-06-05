@@ -55,6 +55,7 @@ def getTheTime():
 def createProgression():
     '''returns a random progression from predefined chords'''
     progression=[]
+    progressionChorus=[]
     flavor=[]
     dictChordsFlavor={}
     options=[['I','VI'],['I','III','V','VI','VII'],['II','IV'],['V']]
@@ -65,6 +66,7 @@ def createProgression():
         flavor.append(majorOrMinor(chord))
 
     dictChordsFlavor['progression']=progression
+    dictChordsFlavor['progressionChorus']=progressionChorus
     dictChordsFlavor['flavor']=flavor
     print(dictChordsFlavor)
     return dictChordsFlavor
