@@ -79,6 +79,10 @@ def addProgression(progression):
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
+    chord5=RomanChord(progression['progressionChorus'][0],4,1,theKey,progression['flavor'][0],volumeOfChords)
+    chord6=RomanChord(progression['progressionChorus'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
+    chord7=RomanChord(progression['progressionChorus'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
+    chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
     totalBarschords=0
     for i in range(0,32):
         for t1 in range(0,2):
