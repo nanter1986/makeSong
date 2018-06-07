@@ -84,7 +84,8 @@ def addProgression(progression):
     chord7=RomanChord(progression['progressionChorus'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
     chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
     totalBarschords=0
-    for i in range(0,32):
+    for vch in range(0,4):
+    for i in range(0,4):
         for t1 in range(0,2):
             track1.addChord(chord1)
             notes1=chord1.getNotes()
@@ -109,6 +110,35 @@ def addProgression(progression):
         for t4 in range(0,2):
             track1.addChord(chord4)
             notes4=chord4.getNotes()
+            totalBarschords+=1
+            #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
+            #for n in notes4:
+            #    print("chord 4:"+n.name)
+    for i in range(0,4):
+        for t1 in range(0,2):
+            track1.addChord(chord5)
+            notes1=chord5.getNotes()
+            totalBarschords+=1
+            #print("bar "+str(totalBarschords)+" "+chord1.getNumeral())
+            #for n in notes1:
+            #    print("chord 1:"+n.name)
+        for t2 in range(0,2):
+            track1.addChord(chord6)
+            notes2=chord6.getNotes()
+            totalBarschords+=1
+            #print("bar "+str(totalBarschords)+" "+chord2.getNumeral())
+            #for n in notes2:
+            #    print("chord 2:"+n.name)
+        for t3 in range(0,2):
+            track1.addChord(chord7)
+            notes3=chord7.getNotes()
+            totalBarschords+=1
+            #print("bar "+str(totalBarschords)+" "+chord3.getNumeral())
+            #for n in notes3:
+            #    print("chord 3:"+n.name)
+        for t4 in range(0,2):
+            track1.addChord(chord8)
+            notes4=chord8.getNotes()
             totalBarschords+=1
             #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
             #for n in notes4:
