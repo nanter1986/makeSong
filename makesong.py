@@ -184,7 +184,11 @@ def makeChordsFromPattern(progression,volume):
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volume)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volume)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volume)
-    chords=[chord1,chord2,chord3,chord4]
+    chord5=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][0],volume)
+    chord6=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][1],volume)
+    chord7=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][2],volume)
+    chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][3],volume)
+    chords=[chord1,chord2,chord3,chord4,chord5,chord6,chord7,chord8]
     return chords
 
 def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
@@ -288,6 +292,7 @@ def melodyPatternVariables(progression):
     v["patternChorusVariable"]=[]
     v["patternBridge"]=[]
     v["chords"]=makeChordsFromPattern(progression,v["generalMelodyVolume"])
+    v["chordsChorus"]=makeChordsFromPattern(progression,v["generalMelodyVolume"])
     return v
 
 
@@ -304,7 +309,7 @@ def chorusFourVaryingStartingNotes(variablesNeededForMelody):
     notes=[]
     for i in range(0,4):
         volume=variablesNeededForMelody["generalMelodyVolume"]
-        nnn=random.choice(variablesNeededForMelody["chords"][i].getNotes())
+        nnn=random.choice(variablesNeededForMelody["chordsChorus"][i].getNotes())
         note=Note(nnn.name,5,0.5,volume)
         notes.append(note)
     return notes
