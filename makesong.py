@@ -57,6 +57,7 @@ def createProgression():
     progression=[]
     progressionChorus=[]
     flavor=[]
+    flavorChorus=[]
     dictChordsFlavor={}
     options=[['I','VI'],['I','III','V','VI','VII'],['II','IV'],['V']]
     print(len(options))
@@ -64,10 +65,15 @@ def createProgression():
         chord=random.choice(options[i])
         progression.append(chord)
         flavor.append(majorOrMinor(chord))
+    for i in range(0,4):
+        chord=random.choice(options[i])
+        progressionChorus.append(chord)
+        flavorChorus.append(majorOrMinor(chord))
 
     dictChordsFlavor['progression']=progression
     dictChordsFlavor['progressionChorus']=progressionChorus
     dictChordsFlavor['flavor']=flavor
+    dictChordsFlavor['flavorChorus']=flavorChorus
     print(dictChordsFlavor)
     return dictChordsFlavor
 
@@ -79,70 +85,70 @@ def addProgression(progression):
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
-    chord5=RomanChord(progression['progressionChorus'][0],4,1,theKey,progression['flavor'][0],volumeOfChords)
-    chord6=RomanChord(progression['progressionChorus'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
-    chord7=RomanChord(progression['progressionChorus'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
-    chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
+    chord5=RomanChord(progression['progressionChorus'][0],4,1,theKey,progression['flavorChorus'][0],volumeOfChords)
+    chord6=RomanChord(progression['progressionChorus'][1],4,1,theKey,progression['flavorChorus'][1],volumeOfChords)
+    chord7=RomanChord(progression['progressionChorus'][2],4,1,theKey,progression['flavorChorus'][2],volumeOfChords)
+    chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][3],volumeOfChords)
     totalBarschords=0
     for vch in range(0,4):
-    for i in range(0,4):
-        for t1 in range(0,2):
-            track1.addChord(chord1)
-            notes1=chord1.getNotes()
-            totalBarschords+=1
-            #print("bar "+str(totalBarschords)+" "+chord1.getNumeral())
-            #for n in notes1:
-            #    print("chord 1:"+n.name)
-        for t2 in range(0,2):
-            track1.addChord(chord2)
-            notes2=chord2.getNotes()
-            totalBarschords+=1
-            #print("bar "+str(totalBarschords)+" "+chord2.getNumeral())
-            #for n in notes2:
-            #    print("chord 2:"+n.name)
-        for t3 in range(0,2):
-            track1.addChord(chord3)
-            notes3=chord3.getNotes()
-            totalBarschords+=1
-            #print("bar "+str(totalBarschords)+" "+chord3.getNumeral())
-            #for n in notes3:
-            #    print("chord 3:"+n.name)
-        for t4 in range(0,2):
-            track1.addChord(chord4)
-            notes4=chord4.getNotes()
-            totalBarschords+=1
-            #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
-            #for n in notes4:
-            #    print("chord 4:"+n.name)
-    for i in range(0,4):
-        for t1 in range(0,2):
-            track1.addChord(chord5)
-            notes1=chord5.getNotes()
-            totalBarschords+=1
-            #print("bar "+str(totalBarschords)+" "+chord1.getNumeral())
-            #for n in notes1:
-            #    print("chord 1:"+n.name)
-        for t2 in range(0,2):
-            track1.addChord(chord6)
-            notes2=chord6.getNotes()
-            totalBarschords+=1
-            #print("bar "+str(totalBarschords)+" "+chord2.getNumeral())
-            #for n in notes2:
-            #    print("chord 2:"+n.name)
-        for t3 in range(0,2):
-            track1.addChord(chord7)
-            notes3=chord7.getNotes()
-            totalBarschords+=1
-            #print("bar "+str(totalBarschords)+" "+chord3.getNumeral())
-            #for n in notes3:
-            #    print("chord 3:"+n.name)
-        for t4 in range(0,2):
-            track1.addChord(chord8)
-            notes4=chord8.getNotes()
-            totalBarschords+=1
-            #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
-            #for n in notes4:
-            #    print("chord 4:"+n.name)
+        for i in range(0,4):
+            for t1 in range(0,2):
+                track1.addChord(chord1)
+                notes1=chord1.getNotes()
+                totalBarschords+=1
+                #print("bar "+str(totalBarschords)+" "+chord1.getNumeral())
+                #for n in notes1:
+                #    print("chord 1:"+n.name)
+            for t2 in range(0,2):
+                track1.addChord(chord2)
+                notes2=chord2.getNotes()
+                totalBarschords+=1
+                #print("bar "+str(totalBarschords)+" "+chord2.getNumeral())
+                #for n in notes2:
+                #    print("chord 2:"+n.name)
+            for t3 in range(0,2):
+                track1.addChord(chord3)
+                notes3=chord3.getNotes()
+                totalBarschords+=1
+                #print("bar "+str(totalBarschords)+" "+chord3.getNumeral())
+                #for n in notes3:
+                #    print("chord 3:"+n.name)
+            for t4 in range(0,2):
+                track1.addChord(chord4)
+                notes4=chord4.getNotes()
+                totalBarschords+=1
+                #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
+                #for n in notes4:
+                #    print("chord 4:"+n.name)
+        for i in range(0,4):
+            for t1 in range(0,2):
+                track1.addChord(chord5)
+                notes1=chord5.getNotes()
+                totalBarschords+=1
+                #print("bar "+str(totalBarschords)+" "+chord1.getNumeral())
+                #for n in notes1:
+                #    print("chord 1:"+n.name)
+            for t2 in range(0,2):
+                track1.addChord(chord6)
+                notes2=chord6.getNotes()
+                totalBarschords+=1
+                #print("bar "+str(totalBarschords)+" "+chord2.getNumeral())
+                #for n in notes2:
+                #    print("chord 2:"+n.name)
+            for t3 in range(0,2):
+                track1.addChord(chord7)
+                notes3=chord7.getNotes()
+                totalBarschords+=1
+                #print("bar "+str(totalBarschords)+" "+chord3.getNumeral())
+                #for n in notes3:
+                #    print("chord 3:"+n.name)
+            for t4 in range(0,2):
+                track1.addChord(chord8)
+                notes4=chord8.getNotes()
+                totalBarschords+=1
+                #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
+                #for n in notes4:
+                #    print("chord 4:"+n.name)
     print(totalBarschords)
     assert totalBarschords==256
 
