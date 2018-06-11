@@ -197,35 +197,36 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
     ch2=[chordNotes[4],chordNotes[5],chordNotes[6],chordNotes[7]]
     totalBars=0
     for j in range(0,4):
-        for difProg in range(0,2)
+        for difProg in range(0,2):
             for ch in ch1:
                 for i in range(0,4):
                     if i==0:
                         volume=bassGeneralVolume
                         #print(ch.getNotes()[0].name)
-                        note=Note(ch1.getNotes()[0].name,3,0.5,volume)
+                        note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     else:
                         volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
-                        note=Note(ch1.getNotes()[0].name,3,0.5,volume)
+                        note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     pattern.append(note)
                     #print("bass note")
                     #print(str(totalBars)+" "+note.name+" "+str(volume))
+        for difProgCh in range(0,2):
             for ch in ch2:
                 for i in range(0,4):
                     if i==0:
                         volume=bassGeneralVolume
                         #print(ch.getNotes()[0].name)
-                        note=Note(ch2.getNotes()[0].name,3,0.5,volume)
+                        note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     else:
                         volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
-                        note=Note(ch2.getNotes()[0].name,3,0.5,volume)
+                        note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     pattern.append(note)
                     #print("bass note")
-                    #print(str(totalBars)+" "+note.name+" "+str(volume))
+    print(str(totalBars))
     assert totalBars==256
     return pattern
 
