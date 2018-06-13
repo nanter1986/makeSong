@@ -197,7 +197,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
     ch2=[chordNotes[4],chordNotes[5],chordNotes[6],chordNotes[7]]
     totalBars=0
     for j in range(0,4):
-        for difProg in range(0,2):
+        for difProg in range(0,4):
             for ch in ch1:
                 for i in range(0,4):
                     if i==0:
@@ -211,7 +211,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
                         totalBars+=0.5
                     pattern.append(note)
         print("bass first half:"+str(totalBars))
-        for difProgCh in range(0,2):
+        for difProgCh in range(0,4):
             for ch in ch2:
                 for i in range(0,4):
                     if i==0:
