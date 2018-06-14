@@ -75,7 +75,7 @@ def createProgression():
 
 def addProgression(progression):
     '''adds chords to the chord track'''
-    volumeOfChords=80
+    volumeOfChords=40
     chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],volumeOfChords)
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
@@ -227,7 +227,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
 
 def addBass(progression):
     '''creates bass pattern based on parameter,and adds ut to bass track'''
-    bassGeneralVolume=100
+    bassGeneralVolume=70
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     bassVolumes=bassVolumePattern()
