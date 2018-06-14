@@ -84,6 +84,12 @@ def addProgression(progression):
     chord6=RomanChord(progression['progressionChorus'][1],4,1,theKey,progression['flavorChorus'][1],volumeOfChords)
     chord7=RomanChord(progression['progressionChorus'][2],4,1,theKey,progression['flavorChorus'][2],volumeOfChords)
     chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][3],volumeOfChords)
+    allChords=[chord1,chord2,chord3,chord4,chord5,chord6,chord7,chord8]
+    for chd in allChords:
+        notes=chd.getNotes()
+        for n in notes:
+            print(n.name)
+        print("---------chord end----------1")
     totalBarschords=0
     for vch in range(0,4):
         for i in range(0,4):
