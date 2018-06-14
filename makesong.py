@@ -16,14 +16,9 @@ def chooseKey():
 def setTheOrgans():
     '''returns a dictionary with randomly selected organs'''
     org={}
-    org['track1']=random.choice(['Acoustic Grand Piano',
-            'String Ensemble 1',
-            'Synth Strings 1',
-            'Pad 2 (warm)'])
-    org['melodyTrack']=random.choice(['Harmonica',
-            'Distortion Guitar',
-            'Trumpet'])
-    org['bassTrack']=random.choice(['Synth Bass 1','Electric Bass (finger)'])
+    org['track1']=random.choice(['Acoustic Grand Piano'])
+    org['melodyTrack']=random.choice(['Acoustic Grand Piano'])
+    org['bassTrack']=random.choice(['Electric Bass (finger)'])
     org['kickTrack']=random.choice(['Synth Drum'])
     org['snareTrack']=random.choice(['Taiko Drum'])
     for key,value in org.items():
