@@ -30,7 +30,7 @@ organOptions=setTheOrgans()
 
 
 theKey=chooseKey()
-tempo=random.choice([160,180,200,220,240,260])
+tempo=random.choice([220,240,260,280,300])
 print("key: "+theKey)
 print("tempo: "+str(tempo))
 track1 = Track(organOptions['track1'],tempo)
@@ -161,13 +161,25 @@ def addPercussion(progression):
     noteKick=Note(theKey,2,0.5,drumGeneralVolume)
     noteSnare=Note(theKey,3,0.5,drumGeneralVolume)
     noteEmpty=Note(theKey,2,0.5,0)
-    for i in range(0,256):
-        kickTrack.addNotes(noteKick)
-        kickTrack.addNotes(noteEmpty)
-        snareTrack.addNotes(noteEmpty)
-        snareTrack.addNotes(noteSnare)
-        #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
-        #print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
+    noteKickFast=Note(theKey,2,0.25,drumGeneralVolume)
+    noteSnareFast=Note(theKey,3,0.25,drumGeneralVolume)
+    noteEmptyFast=Note(theKey,2,0.25,0)
+    print("start of drums----------------------------------------")
+    for i in range(0,4):
+        for i in range(0,32):
+            kickTrack.addNotes(noteKick)
+            kickTrack.addNotes(noteEmpty)
+            snareTrack.addNotes(noteEmpty)
+            snareTrack.addNotes(noteSnare)
+            #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
+            #print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
+        for i in range(0,32):
+            kickTrack.addNotes(noteKick)
+            kickTrack.addNotes(noteEmpty)
+            snareTrack.addNotes(noteEmpty)
+            snareTrack.addNotes(noteSnare)
+            #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
+            #print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
     print("end of drums----------------------------------------")
 
 def bassVolumePattern():
