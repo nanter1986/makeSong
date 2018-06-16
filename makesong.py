@@ -174,12 +174,13 @@ def addPercussion(progression):
             #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
             #print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
         for i in range(0,32):
-            kickTrack.addNotes(noteKick)
-            kickTrack.addNotes(noteEmpty)
-            snareTrack.addNotes(noteEmpty)
-            snareTrack.addNotes(noteSnare)
-            #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
-            #print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
+            for times in range(0,2):
+                kickTrack.addNotes(noteKickFast)
+                kickTrack.addNotes(noteEmptyFast)
+                snareTrack.addNotes(noteEmptyFast)
+                snareTrack.addNotes(noteSnareFast)
+                #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
+                #print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
     print("end of drums----------------------------------------")
 
 def bassVolumePattern():
