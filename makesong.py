@@ -205,7 +205,7 @@ def makeChordsFromPattern(progression,volume):
     chords=[chord1,chord2,chord3,chord4,chord5,chord6,chord7,chord8]
     return chords
 
-def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
+def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
     pattern=[]
     ch1=[chordNotes[0],chordNotes[1],chordNotes[2],chordNotes[3]]
     ch2=[chordNotes[4],chordNotes[5],chordNotes[6],chordNotes[7]]
@@ -234,7 +234,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes):
                         note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     else:
-                        volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
+                        volume=random.choice([0,bassGeneralVolume])*bassVolumesChorus[i]
                         note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     pattern.append(note)
@@ -250,9 +250,10 @@ def addBass(progression):
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     bassVolumes=bassVolumePattern()
+    bassVolumesChorus=bassVolumePattern()
     print(scales)
     chordNotes=makeChordsFromPattern(progression,bassGeneralVolume)
-    pattern=addBassBar(chordNotes,bassGeneralVolume,bassVolumes)
+    pattern=addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus)
     for n in pattern:
         bassTrack.addNotes(n)
 
