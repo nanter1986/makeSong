@@ -38,6 +38,7 @@ kickTrack=Track(organOptions['kickTrack'],tempo)
 snareTrack=Track(organOptions['snareTrack'],tempo)
 bassTrack=Track(organOptions['bassTrack'],tempo)
 melodyTrack=Track(organOptions['melodyTrack'],tempo)
+harmonyTrack=Track(organOptions['melodyTrack'],tempo)
 duration=8
 duration2=4
 
@@ -468,6 +469,9 @@ def makeMelody(progression):
             melodyTrack.addNotes(z)
             #print(z.name+"/"+str(z.volume))
 
+def makeHarmony(pattern):
+    pass
+
 def majorOrMinor(pattern):
     '''decides if chord comes from major or minor key'''
     ch=1
@@ -477,14 +481,11 @@ def exportFile():
     '''adds all tracks to file and exports it,name based on date'''
     easyMIDI.addTrack(track1)
     easyMIDI.addTrack(kickTrack)
-    #notesInTrack=kickTrack.getNotes()
-    #for n in notesInTrack:
-    #    print(n.name+"/"+str(n.volume))
-    #print("-------------------")
     easyMIDI.addTrack(snareTrack)
     notesInTrackS=snareTrack.getNotes()
     easyMIDI.addTrack(bassTrack)
     easyMIDI.addTrack(melodyTrack)
+    easyMIDI.addTrack(harmonyTrack)
     name=getTheTime()
     #easyMIDI.writeMIDI("songs/"+name+".mid")
     easyMIDI.writeMIDI("../../storage/downloads/"+name+".mid")
@@ -496,6 +497,7 @@ def makeSong():
     addPercussion(progression)
     addBass(progression)
     makeMelody(progression)
+    makeHarmony(progression)
     exportFile()
 
 makeSong()
