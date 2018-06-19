@@ -496,8 +496,8 @@ def makeSong():
     addProgression(progression)
     addPercussion(progression)
     addBass(progression)
-    makeMelody(progression)
-    makeHarmony(progression)
+    melodyToFeedHarmonyCreation=makeMelody(progression)
+    makeHarmony(progression,melodyToFeedHarmonyCreation)
     exportFile()
 
 makeSong()
