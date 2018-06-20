@@ -468,8 +468,9 @@ def makeMelody(progression):
         for z in patterns["patternChorusVariable"]:
             melodyTrack.addNotes(z)
             #print(z.name+"/"+str(z.volume))
+    return patterns
 
-def makeHarmony(pattern):
+def makeHarmony(patterns):
     pass
 
 def majorOrMinor(pattern):
