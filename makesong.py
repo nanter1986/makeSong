@@ -473,7 +473,11 @@ def makeMelody(progression):
 def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     print("-----------patterns---------------")
     pprint(patterns)
-    pprint(melodyToFeedHarmonyCreation)
+    print("---------------feed--------------")
+    for note in melodyToFeedHarmonyCreation["patternChorus"]:
+        print("this note")
+        print(note.name)
+    #pprint(melodyToFeedHarmonyCreation["patternChorus"])
     print("-----------patterns end---------------")
 
 def majorOrMinor(pattern):
