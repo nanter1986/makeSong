@@ -470,8 +470,11 @@ def makeMelody(progression):
             #print(z.name+"/"+str(z.volume))
     return patterns
 
-def makeHarmony(patterns):
-    pass
+def makeHarmony(patterns,melodyToFeedHarmonyCreation):
+    print("-----------patterns---------------")
+    pprint(patterns)
+    pprint(melodyToFeedHarmonyCreation)
+    print("-----------patterns end---------------")
 
 def majorOrMinor(pattern):
     '''decides if chord comes from major or minor key'''
