@@ -476,7 +476,7 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     print("---------------feed--------------")
     for note in melodyToFeedHarmonyCreation["patternChorus"]:
         print("this note")
-        print(note.name)
+        print(note.name+" octave:"+str(note.getOctave()))
     #pprint(melodyToFeedHarmonyCreation["patternChorus"])
     print("-----------patterns end---------------")
 
