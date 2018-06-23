@@ -470,6 +470,12 @@ def makeMelody(progression):
             #print(z.name+"/"+str(z.volume))
     return patterns
 
+def noteAbsoluteTranslator():
+    print("note absolute translator runs")
+    theory=MusicTheory()
+    scales=theory.getMajorScales()[theKey]
+    pprint(scales)
+
 def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     print("-----------patterns---------------")
     pprint(patterns)
@@ -479,6 +485,7 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
         print(note.name+" octave:"+str(note.getOctave()))
     #pprint(melodyToFeedHarmonyCreation["patternChorus"])
     print("-----------patterns end---------------")
+    noteAbsoluteTranslator()
 
 def majorOrMinor(pattern):
     '''decides if chord comes from major or minor key'''
