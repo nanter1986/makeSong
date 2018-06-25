@@ -479,6 +479,7 @@ def noteAbsoluteTranslator(inputNote):
         if note==inputNote.name:
             print("match found")
             print(note)
+            print(str(inputNote.getOctave()))
             break
 
 def makeHarmony(patterns,melodyToFeedHarmonyCreation):
