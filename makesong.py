@@ -479,6 +479,9 @@ def noteAbsoluteTranslator(inputNote):
         if note==inputNote.name:
             print("match found")
             print(note)
+            print("index of note:")
+            print(str(scales.index(note)))
+            print("octave of note:")
             print(str(inputNote.getOctave()))
             break
 
