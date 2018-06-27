@@ -471,6 +471,7 @@ def makeMelody(progression):
     return patterns
 
 def noteAbsoluteTranslator(inputNote):
+    absolutePosition=0
     print("note absolute translator runs")
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
@@ -479,10 +480,15 @@ def noteAbsoluteTranslator(inputNote):
         if note==inputNote.name:
             print("match found")
             print(note)
+            index=scales.index(note)
             print("index of note:")
-            print(str(scales.index(note)))
+            print(str(index))
+            octave=inputNote.getOctave()
             print("octave of note:")
-            print(str(inputNote.getOctave()))
+            print(str(octave))
+            print("print absolute position:")
+            absolutePosition=index+octave*7
+            print(absolutePosition)
             break
 
 def makeHarmony(patterns,melodyToFeedHarmonyCreation):
