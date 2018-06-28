@@ -491,6 +491,9 @@ def noteAbsoluteTranslator(inputNote):
             print(absolutePosition)
             break
 
+def noteOctavePositionTranslator(inputNote):
+    pass
+
 def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     print("-----------patterns---------------")
     pprint(patterns)
