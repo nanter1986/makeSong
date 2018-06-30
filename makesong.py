@@ -506,6 +506,7 @@ def noteOctavePositionTranslator(inputNoteAbsolutePosition):
     print(str(index))
     print("octave of note:")
     print(str(octave))
+    return octave
 
 def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     print("-----------patterns---------------")
@@ -518,7 +519,7 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     print("-----------patterns end---------------")
     noteAbsoluteTranslator(melodyToFeedHarmonyCreation["patternChorus"][0])
     noteOctave=noteOctavePositionTranslator(40)
-    print("note octave"+str(noteOctave))
+    print("note octave:"+str(noteOctave))
 
 def majorOrMinor(pattern):
     '''decides if chord comes from major or minor key'''
