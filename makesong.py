@@ -511,6 +511,11 @@ def noteOctavePositionTranslator(inputNoteAbsolutePosition):
     return theDict
 
 def makeHarmony(patterns,melodyToFeedHarmonyCreation):
+    noteEmpty=Note(theKey,2,1,0)
+    for i in range(0,256):
+        harmonyTrack.append(noteEmpty)
+    print("harmony track")
+    pprint(harmonyTrack)
     print("-----------patterns---------------")
     pprint(patterns)
     print("---------------feed--------------")
