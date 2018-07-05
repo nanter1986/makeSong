@@ -512,20 +512,31 @@ def noteOctavePositionTranslator(inputNoteAbsolutePosition):
 
 def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     noteEmpty=Note(theKey,2,1,0)
-    for i in range(0,256):
-        harmonyTrack.addNotes(noteEmpty)
+    total=[]
+    for i in range(0,128):
+        total.append(noteEmpty)
+    harmonyTrack.addNotes(total)
     print("harmony track")
     notesEmpty=harmonyTrack.getNotes()
     for n in notesEmpty:
-        print(n.name+" "+str(notesEmpty.index(n)))
+       print(n.name+" "+str(notesEmpty.index(n))+" "+str(len(notesEmpty)))
     print("-----------patterns---------------")
     pprint(patterns)
     print("---------------feed--------------")
     for note in melodyToFeedHarmonyCreation["patternChorus"]:
-        print("this note")
-        print(note.name+" octave:"+str(note.getOctave()))
+        nKey=theKey
+        nOctave=note.getOctave()
+        nDuration=note.getDuration()
+        nVolume=note.getVolume()
         absNote=noteAbsoluteTranslator(note)
-        octaveAndIndexDict=noteOctavePositionTranslator(absNote+2)
+        newAbs=absNote+2
+        octaveAndIndexDict=noteOctavePositionTranslator(newAbs)
+        print("key:"+nKey)
+        print("octave old:"+nOctave)
+        print("duration:"+nDuration)
+        print("volume:"+nVolume)
+        print("octave new:"+octaveAndIndexDict["octave"])
+        print("index new:"+octaveAndIndexDict["index"])
     print("-----------patterns end---------------")
 
 def majorOrMinor(pattern):
