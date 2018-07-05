@@ -524,7 +524,7 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print("---------------feed--------------")
-    for round in range(0,2):
+    for round in range(0,8):
         for note in melodyToFeedHarmonyCreation["patternChorus"]:
             nKey=theKey
             nIndex=scales.index(note.name)
@@ -574,6 +574,12 @@ def makeSong():
     addBass(progression)
     melodyToFeedHarmonyCreation=makeMelody(progression)
     makeHarmony(progression,melodyToFeedHarmonyCreation)
+    notes=harmonyTrack.getNotes()
+    totalDuration=0
+    for n in notes:
+        print(n.name+"/"+str(n.getOctave())+"/"+str(n.getDuration())+"/"+str(n.getVolume()))
+        totalDuration=totalDuration+n.getDuration()
+        print(totalDuration)
     exportFile()
 
 makeSong()
