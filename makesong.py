@@ -515,7 +515,6 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     total=[]
     for i in range(0,128):
         total.append(noteEmpty)
-    harmonyTrack.addNotes(total)
     print("harmony track")
     notesEmpty=harmonyTrack.getNotes()
     for n in notesEmpty:
@@ -525,22 +524,28 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print("---------------feed--------------")
-    for note in melodyToFeedHarmonyCreation["patternChorus"]:
-        nKey=theKey
-        nIndex=scales.index(note.name)
-        nOctave=note.getOctave()
-        nDuration=note.getDuration()
-        nVolume=note.getVolume()
-        absNote=noteAbsoluteTranslator(note)
-        newAbs=absNote+2
-        octaveAndIndexDict=noteOctavePositionTranslator(newAbs)
-        print("key:"+nKey)
-        print("index:"+str(nIndex))
-        print("octave old:"+str(nOctave))
-        print("duration:"+str(nDuration))
-        print("volume:"+str(nVolume))
-        print("octave new:"+str(octaveAndIndexDict["octave"]))
-        print("index new:"+str(octaveAndIndexDict["index"]))
+    for round in range(0,2):
+        for note in melodyToFeedHarmonyCreation["patternChorus"]:
+            nKey=theKey
+            nIndex=scales.index(note.name)
+            nOctave=note.getOctave()
+            nDuration=note.getDuration()
+            nVolume=note.getVolume()
+            absNote=noteAbsoluteTranslator(note)
+            newAbs=absNote+2
+            octaveAndIndexDict=noteOctavePositionTranslator(newAbs)
+            print("key:"+nKey)
+            print("index:"+str(nIndex))
+            print("octave old:"+str(nOctave))
+            print("duration:"+str(nDuration))
+            print("volume:"+str(nVolume))
+            print("octave new:"+str(octaveAndIndexDict["octave"]))
+            print("index new:"+str(octaveAndIndexDict["index"]))
+            newNote=Note(scales[octaveAndIndexDict["index"]],octaveAndIndexDict["octave"],nDuration,nVolume)
+            total.append(newNote)
+    harmonyTrack.addNotes(total)
+    print("----------pprint harmony track---------")
+    pprint(harmonyTrack.getNotes())
     print("-----------patterns end---------------")
 
 def majorOrMinor(pattern):
