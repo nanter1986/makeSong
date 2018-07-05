@@ -522,9 +522,12 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
        print(n.name+" "+str(notesEmpty.index(n))+" "+str(len(notesEmpty)))
     print("-----------patterns---------------")
     pprint(patterns)
+    theory=MusicTheory()
+    scales=theory.getMajorScales()[theKey]
     print("---------------feed--------------")
     for note in melodyToFeedHarmonyCreation["patternChorus"]:
         nKey=theKey
+        nIndex=scales.index(note.name)
         nOctave=note.getOctave()
         nDuration=note.getDuration()
         nVolume=note.getVolume()
@@ -532,11 +535,12 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
         newAbs=absNote+2
         octaveAndIndexDict=noteOctavePositionTranslator(newAbs)
         print("key:"+nKey)
-        print("octave old:"+nOctave)
-        print("duration:"+nDuration)
-        print("volume:"+nVolume)
-        print("octave new:"+octaveAndIndexDict["octave"])
-        print("index new:"+octaveAndIndexDict["index"])
+        print("index:"+str(nIndex))
+        print("octave old:"+str(nOctave))
+        print("duration:"+str(nDuration))
+        print("volume:"+str(nVolume))
+        print("octave new:"+str(octaveAndIndexDict["octave"]))
+        print("index new:"+str(octaveAndIndexDict["index"]))
     print("-----------patterns end---------------")
 
 def majorOrMinor(pattern):
