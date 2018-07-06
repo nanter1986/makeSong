@@ -524,7 +524,7 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print("---------------feed--------------")
-    for round in range(0,8):
+    for round in range(0,2):
         for note in melodyToFeedHarmonyCreation["patternChorus"]:
             nKey=theKey
             nIndex=scales.index(note.name)
