@@ -525,7 +525,61 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     scales=theory.getMajorScales()[theKey]
     print("---------------feed--------------")
     for round in range(0,2):
+        for note in melodyToFeedHarmonyCreation["patternVerse"]:
+            nKey=theKey
+            nIndex=scales.index(note.name)
+            nOctave=note.getOctave()
+            nDuration=note.getDuration()
+            nVolume=note.getVolume()
+            absNote=noteAbsoluteTranslator(note)
+            newAbs=absNote+2
+            octaveAndIndexDict=noteOctavePositionTranslator(newAbs)
+            print("key:"+nKey)
+            print("index:"+str(nIndex))
+            print("octave old:"+str(nOctave))
+            print("duration:"+str(nDuration))
+            print("volume:"+str(nVolume))
+            print("octave new:"+str(octaveAndIndexDict["octave"]))
+            print("index new:"+str(octaveAndIndexDict["index"]))
+            newNote=Note(scales[octaveAndIndexDict["index"]],octaveAndIndexDict["octave"],nDuration,nVolume)
+            total.append(newNote)
+        for note in melodyToFeedHarmonyCreation["patternBridge"]:
+            nKey=theKey
+            nIndex=scales.index(note.name)
+            nOctave=note.getOctave()
+            nDuration=note.getDuration()
+            nVolume=note.getVolume()
+            absNote=noteAbsoluteTranslator(note)
+            newAbs=absNote+2
+            octaveAndIndexDict=noteOctavePositionTranslator(newAbs)
+            print("key:"+nKey)
+            print("index:"+str(nIndex))
+            print("octave old:"+str(nOctave))
+            print("duration:"+str(nDuration))
+            print("volume:"+str(nVolume))
+            print("octave new:"+str(octaveAndIndexDict["octave"]))
+            print("index new:"+str(octaveAndIndexDict["index"]))
+            newNote=Note(scales[octaveAndIndexDict["index"]],octaveAndIndexDict["octave"],nDuration,nVolume)
+            total.append(newNote)
         for note in melodyToFeedHarmonyCreation["patternChorus"]:
+            nKey=theKey
+            nIndex=scales.index(note.name)
+            nOctave=note.getOctave()
+            nDuration=note.getDuration()
+            nVolume=note.getVolume()
+            absNote=noteAbsoluteTranslator(note)
+            newAbs=absNote+2
+            octaveAndIndexDict=noteOctavePositionTranslator(newAbs)
+            print("key:"+nKey)
+            print("index:"+str(nIndex))
+            print("octave old:"+str(nOctave))
+            print("duration:"+str(nDuration))
+            print("volume:"+str(nVolume))
+            print("octave new:"+str(octaveAndIndexDict["octave"]))
+            print("index new:"+str(octaveAndIndexDict["index"]))
+            newNote=Note(scales[octaveAndIndexDict["index"]],octaveAndIndexDict["octave"],nDuration,nVolume)
+            total.append(newNote)
+        for note in melodyToFeedHarmonyCreation["patternChorusVariable"]:
             nKey=theKey
             nIndex=scales.index(note.name)
             nOctave=note.getOctave()
