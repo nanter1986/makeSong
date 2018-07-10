@@ -552,9 +552,12 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     harmonizedBridge=patternHarmonizer(melodyToFeedHarmonyCreation["patternBridge"])
     harmonizedChorus=patternHarmonizer(melodyToFeedHarmonyCreation["patternChorus"])
     for round in range(0,2):
-        total.append(harmonizedVerse)
-        total.append(harmonizedBridge)
-        total.append(harmonizedChorus)
+        for v in harmonizedVerse:
+            total.append(v)
+        for b in harmonizedBridge:
+            total.append(b)
+        for c in harmonizedChorus:
+            total.append(c)
     harmonyTrack.addNotes(total)
     print("----------pprint harmony track---------")
     pprint(harmonyTrack.getNotes())
@@ -587,9 +590,10 @@ def makeSong():
     melodyToFeedHarmonyCreation=makeMelody(progression)
     makeHarmony(progression,melodyToFeedHarmonyCreation)
     notes=harmonyTrack.getNotes()
+    pprint(notes)
     totalDuration=0
     for n in notes:
-        print(n.name+"/"+str(n.getOctave())+"/"+str(n.getDuration())+"/"+str(n.getVolume()))
+        print(n.getName()+"/"+str(n.getOctave())+"/"+str(n.getDuration())+"/"+str(n.getVolume()))
         totalDuration=totalDuration+n.getDuration()
         print(totalDuration)
     exportFile()
