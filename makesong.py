@@ -100,59 +100,35 @@ def addProgression(progression):
                 track1.addChord(chord1)
                 notes1=chord1.getNotes()
                 totalBarschords+=1
-                #print("bar "+str(totalBarschords)+" "+chord1.getNumeral())
-                #for n in notes1:
-                #    print("chord 1:"+n.name)
             for t2 in range(0,2):
                 track1.addChord(chord2)
                 notes2=chord2.getNotes()
                 totalBarschords+=1
-                #print("bar "+str(totalBarschords)+" "+chord2.getNumeral())
-                #for n in notes2:
-                #    print("chord 2:"+n.name)
             for t3 in range(0,2):
                 track1.addChord(chord3)
                 notes3=chord3.getNotes()
                 totalBarschords+=1
-                #print("bar "+str(totalBarschords)+" "+chord3.getNumeral())
-                #for n in notes3:
-                #    print("chord 3:"+n.name)
             for t4 in range(0,2):
                 track1.addChord(chord4)
                 notes4=chord4.getNotes()
                 totalBarschords+=1
-                #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
-                #for n in notes4:
-                #    print("chord 4:"+n.name)
         for i in range(0,4):
             for t1 in range(0,2):
                 track1.addChord(chord5)
                 notes1=chord5.getNotes()
                 totalBarschords+=1
-                #print("bar "+str(totalBarschords)+" "+chord1.getNumeral())
-                #for n in notes1:
-                #    print("chord 1:"+n.name)
             for t2 in range(0,2):
                 track1.addChord(chord6)
                 notes2=chord6.getNotes()
                 totalBarschords+=1
-                #print("bar "+str(totalBarschords)+" "+chord2.getNumeral())
-                #for n in notes2:
-                #    print("chord 2:"+n.name)
             for t3 in range(0,2):
                 track1.addChord(chord7)
                 notes3=chord7.getNotes()
                 totalBarschords+=1
-                #print("bar "+str(totalBarschords)+" "+chord3.getNumeral())
-                #for n in notes3:
-                #    print("chord 3:"+n.name)
             for t4 in range(0,2):
                 track1.addChord(chord8)
                 notes4=chord8.getNotes()
                 totalBarschords+=1
-                #print("bar "+str(totalBarschords)+" "+chord4.getNumeral())
-                #for n in notes4:
-                #    print("chord 4:"+n.name)
     print(totalBarschords)
     assert totalBarschords==256
 
@@ -174,16 +150,12 @@ def addPercussion(progression):
             kickTrack.addNotes(noteEmpty)
             snareTrack.addNotes(noteEmpty)
             snareTrack.addNotes(noteSnare)
-            #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
-            #print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
         for i in range(0,32):
             for times in range(0,2):
                 kickTrack.addNotes(noteKickFast)
                 kickTrack.addNotes(noteEmptyFast)
                 snareTrack.addNotes(noteEmptyFast)
                 snareTrack.addNotes(noteSnareFast)
-                #print(str(i)+" "+organOptions["kickTrack"]+" "+noteKick.name+organOptions["snareTrack"]+" "+noteSnare.name)
-                #print("{} {} {} {} {}".format(i,organOptions["kickTrack"],noteKick.name,organOptions["snareTrack"],noteSnare.name))
     print("end of drums----------------------------------------")
 
 def bassVolumePattern():
@@ -219,7 +191,6 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
                 for i in range(0,4):
                     if i==0:
                         volume=bassGeneralVolume
-                        #print(ch.getNotes()[0].name)
                         note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     else:
@@ -227,13 +198,11 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
                         note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     pattern.append(note)
-        print("bass first half:"+str(totalBars))
         for difProgCh in range(0,4):
             for ch in ch2:
                 for i in range(0,4):
                     if i==0:
                         volume=bassGeneralVolume
-                        #print(ch.getNotes()[0].name)
                         note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     else:
@@ -241,7 +210,6 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
                         note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     pattern.append(note)
-                    #print("bass note")
     print(str(totalBars))
     print("bass second half:"+str(totalBars))
     assert totalBars==256
@@ -254,7 +222,6 @@ def addBass(progression):
     scales=theory.getMajorScales()[theKey]
     bassVolumes=bassVolumePattern()
     bassVolumesChorus=bassVolumePattern()
-    print(scales)
     chordNotes=makeChordsFromPattern(progression,bassGeneralVolume)
     pattern=addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus)
     for n in pattern:
@@ -285,7 +252,6 @@ def verseSeq(section):
         elif result>6:
             result=6
         theSeq.append(result)
-    print("-------------"+section+" sequence-----------")
     pprint(theSeq)
     return theSeq
 
@@ -307,7 +273,6 @@ def volumeVerseMaker(section):
         options=volumeOptionsForSections(section)
         choice=random.choice(options)
         theSeq.append(choice)
-    print("-------------"+section+" volumes-----------")
     pprint(theSeq)
     return theSeq
 
@@ -406,44 +371,29 @@ def makeMelodyPattern(scales,progression):
     bridgeRepeating=bridgeSixRepeatingNotes(variablesNeededForMelody,scales)
     for verseLength in range(0,2):
         for j in range(0,4):
-            print("adding verse------------------")
             variablesNeededForMelody["patternVerse"].append(verseStarting[j])
-            print(verseStarting[j].name+" "+str(verseStarting[j].octave)+" "+str(verseStarting[j].volume))
             for note in verseRepeating:
                 variablesNeededForMelody["patternVerse"].append(note)
-                print(note.name+" "+str(note.octave)+" "+str(note.volume))
-    print("--------------------------end of verse----------------")
 
     for bridgeLength in range(0,2):
         for j in range(0,4):
-            print("adding bridge------------------")
             variablesNeededForMelody["patternBridge"].append(bridgeStarting[j])
-            print(bridgeStarting[j].name+" "+str(bridgeStarting[j].octave)+" "+str(bridgeStarting[j].volume))
             for note in bridgeRepeating:
                 variablesNeededForMelody["patternBridge"].append(note)
-                print(note.name+" "+str(note.octave)+" "+str(note.volume))
-    print("--------------------------end of bridge----------------")
 
     for chorusLength in range(0,2):
         for j in range(0,4):
-            print("adding chorus------------------")
             variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
-            print(chorusStarting[j].name+" "+str(chorusStarting[j].octave)+" "+str(chorusStarting[j].volume))
             for note in chorusRepeating:
                 variablesNeededForMelody["patternChorus"].append(note)
-                print(note.name+" "+str(note.octave)+" "+str(note.volume))
-    print("--------------------------end of chorus----------------")
 
 
     for chorusVarLength in range(0,2):
         for j in range(0,4):
-            print("adding chorus variable------------------")
             variablesNeededForMelody["patternChorusVariable"].append(chorusStarting[j])
             print(chorusStarting[j].name+" "+str(chorusStarting[j].octave)+" "+str(chorusStarting[j].volume))
             for note in chorusRepVar:
                 variablesNeededForMelody["patternChorusVariable"].append(note)
-                print(note.name+" "+str(note.octave)+" "+str(note.volume))
-    print("--------------------------end of chorus----------------")
 
     return variablesNeededForMelody
 
@@ -455,26 +405,18 @@ def makeMelody(progression):
     print(scales)
     patterns=makeMelodyPattern(scales,progression)
     for times in range(0,4):
-        print("verse starts here----------------------------")
         for j in patterns["patternVerse"]:
             melodyTrack.addNotes(j)
-            #print(j.name+"/"+str(j.volume))
-        print("bridge starts here----------------------------")
         for y in patterns["patternBridge"]:
             melodyTrack.addNotes(y)
-            #print(y.name+"/"+str(y.volume))
-        print("chorus starts here----------------------------")
         for x in patterns["patternChorus"]:
             melodyTrack.addNotes(x)
-            #print(x.name+"/"+str(x.volume))
         for z in patterns["patternChorusVariable"]:
             melodyTrack.addNotes(z)
-            #print(z.name+"/"+str(z.volume))
     return patterns
 
 def noteAbsoluteTranslator(inputNote):
     absolutePosition=0
-    print("note absolute translator runs")
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     pprint(scales)
@@ -551,6 +493,7 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     harmonizedVerse=patternHarmonizer(melodyToFeedHarmonyCreation["patternVerse"])
     harmonizedBridge=patternHarmonizer(melodyToFeedHarmonyCreation["patternBridge"])
     harmonizedChorus=patternHarmonizer(melodyToFeedHarmonyCreation["patternChorus"])
+    harmonizedChorusVariable=patternHarmonizer(melodyToFeedHarmonyCreation["patternChorusVariable"])
     for round in range(0,2):
         for v in harmonizedVerse:
             total.append(v)
@@ -558,6 +501,8 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
             total.append(b)
         for c in harmonizedChorus:
             total.append(c)
+        for cv in harmonizedChorusVariable:
+            total.append(cv)
     harmonyTrack.addNotes(total)
     print("----------pprint harmony track---------")
     pprint(harmonyTrack.getNotes())
