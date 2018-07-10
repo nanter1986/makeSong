@@ -39,6 +39,8 @@ snareTrack=Track(organOptions['snareTrack'],tempo)
 bassTrack=Track(organOptions['bassTrack'],tempo)
 melodyTrack=Track(organOptions['melodyTrack'],tempo)
 harmonyTrack=Track(organOptions['melodyTrack'],tempo)
+theory=MusicTheory()
+scales=theory.getMajorScales()[theKey]
 duration=8
 duration2=4
 
@@ -546,13 +548,13 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print("---------------feed--------------")
-    harmonizedVerse=patternHarmonizer(melodyToFeedHarmonyCreation["patternVerse"]
-    harmonizedBridge=patternHarmonizer(melodyToFeedHarmonyCreation["patternBridge"]
-    harmonizedChorus=patternHarmonizer(melodyToFeedHarmonyCreation["patternChorus"]
+    harmonizedVerse=patternHarmonizer(melodyToFeedHarmonyCreation["patternVerse"])
+    harmonizedBridge=patternHarmonizer(melodyToFeedHarmonyCreation["patternBridge"])
+    harmonizedChorus=patternHarmonizer(melodyToFeedHarmonyCreation["patternChorus"])
     for round in range(0,2):
         total.append(harmonizedVerse)
-        total.append(patternBridge)
-        total.append(patternChorus)
+        total.append(harmonizedBridge)
+        total.append(harmonizedChorus)
     harmonyTrack.addNotes(total)
     print("----------pprint harmony track---------")
     pprint(harmonyTrack.getNotes())
