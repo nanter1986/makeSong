@@ -9,7 +9,6 @@ def chooseKey():
     #returns a random key
     keys=['C','D','E','F','G','A','B']
     key=random.choice(keys)
-    #key='C'
     return key
 
 
