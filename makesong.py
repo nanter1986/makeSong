@@ -238,6 +238,19 @@ def pitchOptionsForSections(section):
         options=[0,+1,-1]
     return options
 
+def pitchOptionsForSectionsFree(section):
+    '''Provide the pitch movement options,more important sections get highlighted'''
+    if section=="bridge":
+        options=[0,+1,-1,+1,-1,+2,-2]
+    elif section=="chorus":
+        options=[0,+1,-1,+1,-1,+2,-2,+3,-3]
+    elif section=="chorusVariable":
+        options=[0,+1,-1,+1,-1,+3,-3,+6,-6]
+    else:
+        options=[0,+1,-1]
+    return options
+
+
 def verseSeq(section):
     '''make the basic sequence of notes used for verse lines,preferes smooth transitions'''
     theSeq=[]
