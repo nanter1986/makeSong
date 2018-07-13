@@ -241,13 +241,13 @@ def pitchOptionsForSections(section):
 def pitchOptionsForSectionsFree(section):
     '''Provide the pitch movement options,more important sections get highlighted'''
     if section=="bridge":
-        options=[0,+1,-1,+1,-1,+2,-2]
+        options=[0,+1,-1,+1,-1,+2,-2,+3,-3,+4,-4,+5,-5,+6,-6,+7,-7]
     elif section=="chorus":
-        options=[0,+1,-1,+1,-1,+2,-2,+3,-3]
+        options=[0,+1,-1,+1,-1,+2,-2,+3,-3,+4,-4,+5,-5,+6,-6,+7,-7]
     elif section=="chorusVariable":
-        options=[0,+1,-1,+1,-1,+3,-3,+6,-6]
+        options=[0,+1,-1,+1,-1,+2,-2,+3,-3,+4,-4,+5,-5,+6,-6,+7,-7]
     else:
-        options=[0,+1,-1]
+        options=[0,+1,-1,+1,-1,+2,-2,+3,-3,+4,-4,+5,-5,+6,-6,+7,-7]
     return options
 
 
