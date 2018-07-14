@@ -27,6 +27,9 @@ def setTheOrgans():
 
 organOptions=setTheOrgans()
 
+def chooseIfFree():
+    pass
+
 
 theKey=chooseKey()
 tempo=random.choice([220,240,260,280,300])
@@ -40,6 +43,7 @@ melodyTrack=Track(organOptions['melodyTrack'],tempo)
 harmonyTrack=Track(organOptions['melodyTrack'],tempo)
 theory=MusicTheory()
 scales=theory.getMajorScales()[theKey]
+freeMelody=chooseIfFree()
 duration=8
 duration2=4
 
