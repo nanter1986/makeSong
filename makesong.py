@@ -540,7 +540,8 @@ def exportFile():
     easyMIDI.addTrack(harmonyTrack)
     name=getTheTime()
     #easyMIDI.writeMIDI("songs/"+name+".mid")
-    easyMIDI.writeMIDI("../../storage/downloads/"+name+".mid")
+    easyMIDI.writeMIDI("../../../storage/downloads/"+name+".mid")
+    #easyMIDI.writeMIDI("../../storage/"+name+".mid")
 
 def makeSong():
     '''main function,delegates to other functions'''
