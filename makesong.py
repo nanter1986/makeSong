@@ -259,8 +259,10 @@ def pitchOptionsForSections(section):
     options=[]
     if freeMelody:
         options=pitchOptionsForSectionsFree(section)
+        print("F R E E  M E L O D Y")
     else:
         options=pitchOptionsForSectionsLimited(section)
+        print("L I M I T E D  M E L O D Y")
     return options
 
 def verseSeq(section):
