@@ -28,8 +28,9 @@ def setTheOrgans():
 organOptions=setTheOrgans()
 
 def chooseIfFree():
-    pass
-
+    options=[0,1]
+    selection=random.choice(options)
+    return selection
 
 theKey=chooseKey()
 tempo=random.choice([220,240,260,280,300])
@@ -230,17 +231,6 @@ def addBass(progression):
     for n in pattern:
         bassTrack.addNotes(n)
 
-def pitchOptionsForSections(section):
-    '''Provide the pitch movement options,more important sections get highlighted'''
-    if section=="bridge":
-        options=[0,+1,-1,+1,-1,+2,-2]
-    elif section=="chorus":
-        options=[0,+1,-1,+1,-1,+2,-2,+3,-3]
-    elif section=="chorusVariable":
-        options=[0,+1,-1,+1,-1,+3,-3,+6,-6]
-    else:
-        options=[0,+1,-1]
-    return options
 
 def pitchOptionsForSectionsFree(section):
     '''Provide the pitch movement options,more important sections get highlighted'''
@@ -254,6 +244,24 @@ def pitchOptionsForSectionsFree(section):
         options=[0,+1,-1,+1,-1,+2,-2,+3,-3,+4,-4,+5,-5,+6,-6,+7,-7]
     return options
 
+def pitchOptionsForSectionsLimited(section):
+    if section=="bridge":
+        options=[0,+1,-1,+1,-1,+2,-2]
+    elif section=="chorus":
+        options=[0,+1,-1,+1,-1,+2,-2,+3,-3]
+    elif section=="chorusVariable":
+        options=[0,+1,-1,+1,-1,+3,-3,+6,-6]
+    else:
+        options=[0,+1,-1]
+    return options
+
+def pitchOptionsForSections(section):
+    options=[]
+    if freeMelody:
+        options=pitchOptionsForSectionsFree(section)
+    else:
+        options=pitchOptionsForSectionsLimited(section)
+    return options
 
 def verseSeq(section):
     '''make the basic sequence of notes used for verse lines,preferes smooth transitions'''
