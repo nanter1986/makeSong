@@ -28,7 +28,7 @@ def setTheOrgans():
 organOptions=setTheOrgans()
 
 def chooseIfFree():
-    options=["free","limited"]
+    options=["free","limited","thirds"]
     selection=random.choice(options)
     return selection
 
@@ -255,6 +255,17 @@ def pitchOptionsForSectionsLimited(section):
         options=[0,+1,-1]
     return options
 
+def pitchOptionsForSectionsThirds(section):
+    if section=="bridge":
+        options=[0,+2,-2]
+    elif section=="chorus":
+        options=[0,+2,-2,+3,-3]
+    elif section=="chorusVariable":
+        options=[0,+2,-2,+5,-5]
+    else:
+        options=[0,+1,-1]
+    return options
+
 def pitchOptionsForSections(section):
     options=[]
     if freeMelody=="free":
@@ -263,6 +274,9 @@ def pitchOptionsForSections(section):
     elif freeMelody=="limited":
         options=pitchOptionsForSectionsLimited(section)
         print("L I M I T E D  M E L O D Y")
+    elif freeMelody=="thirds":
+        options=pitchOptionsForSectionsThirds(section)
+        print("T H I R D S   M E L O D Y")
     return options
 
 def verseSeq(section):
@@ -549,8 +563,10 @@ def exportFile():
     easyMIDI.addTrack(melodyTrack)
     easyMIDI.addTrack(harmonyTrack)
     name=getTheTime()
-    if freeMelody:
+    if freeMelody=="free":
         freedom="FREE"
+    elif freeMelody=="thirds":
+        freedom="THIRDS"
     else:
         freedom="LIMITED"
     #easyMIDI.writeMIDI("songs/"+name+".mid")
