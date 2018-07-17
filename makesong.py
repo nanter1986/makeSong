@@ -28,7 +28,7 @@ def setTheOrgans():
 organOptions=setTheOrgans()
 
 def chooseIfFree():
-    options=[0,1]
+    options=["free","limited"]
     selection=random.choice(options)
     return selection
 
@@ -257,10 +257,10 @@ def pitchOptionsForSectionsLimited(section):
 
 def pitchOptionsForSections(section):
     options=[]
-    if freeMelody:
+    if freeMelody=="free":
         options=pitchOptionsForSectionsFree(section)
         print("F R E E  M E L O D Y")
-    else:
+    elif freeMelody=="limited":
         options=pitchOptionsForSectionsLimited(section)
         print("L I M I T E D  M E L O D Y")
     return options
