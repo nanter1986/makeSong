@@ -32,6 +32,11 @@ def chooseIfFree():
     selection=random.choice(options)
     return selection
 
+def chooseIfRiff():
+    options=[0,1]
+    selection=random.choice(options)
+    return selection
+
 theKey=chooseKey()
 tempo=random.choice([220,240,260,280,300])
 print("key: "+theKey)
@@ -45,6 +50,7 @@ harmonyTrack=Track(organOptions['melodyTrack'],tempo)
 theory=MusicTheory()
 scales=theory.getMajorScales()[theKey]
 freeMelody=chooseIfFree()
+riff=chooseIfRiff()
 duration=8
 duration2=4
 
@@ -79,6 +85,11 @@ def createProgression():
     print(dictChordsFlavor)
     return dictChordsFlavor
 
+def addBackground(progression):
+    if riff:
+        pass
+    else:
+        addProgression(progression)
 
 def addProgression(progression):
     '''adds chords to the chord track'''
@@ -576,7 +587,7 @@ def exportFile():
 def makeSong():
     '''main function,delegates to other functions'''
     progression=createProgression()
-    addProgression(progression)
+    addBackground(progression)
     addPercussion(progression)
     addBass(progression)
     melodyToFeedHarmonyCreation=makeMelody(progression)
