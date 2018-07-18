@@ -514,7 +514,7 @@ def patternHarmonizer(pattern):
         nDuration=note.getDuration()
         nVolume=note.getVolume()
         absNote=noteAbsoluteTranslator(note)
-        newAbs=absNote+2
+        newAbs=absNote-2
         octaveAndIndexDict=noteOctavePositionTranslator(newAbs)
         print("key:"+nKey)
         print("index:"+str(nIndex))
