@@ -86,13 +86,13 @@ def createProgression():
     return dictChordsFlavor
 
 def riffMaker():
-   container=[]
-   optionsVolume=[0,100,100]
-   optionNotes=scales
-   for n in range(0,8):
+    container=[]
+    optionsVolume=[0,100,100]
+    optionNotes=scales
+    for n in range(0,8):
        volume=random.choice(optionsVolume)
        pitch=random.choice(optionNotes)
-       container.append(Note(pitch,4,0.5,volume)
+       container.append(Note(pitch,4,0.5,volume))
     return container
 
 def addRiff(progression):
@@ -105,19 +105,21 @@ def addRiff(progression):
         for i in range(0,8):
             for n in riff1:
                 riffTrack.addNotes(n)
-                totalBarschords+=1
+                totalBarschords+=0.5
         for i in range(0,8):
             for n in riff2:
                 riffTrack.addNotes(n)
-                totalBarschords+=1
+                totalBarschords+=0.5
     print(totalBarschords)
     assert totalBarschords==256
 
 def addBackground(progression):
     if riff:
         addRiff(progression)
+        print("R I F F")
     else:
         addProgression(progression)
+        print("C H O R D S")
 
 def addProgression(progression):
     '''adds chords to the chord track'''
@@ -133,9 +135,6 @@ def addProgression(progression):
     allChords=[chord1,chord2,chord3,chord4,chord5,chord6,chord7,chord8]
     for chd in allChords:
         notes=chd.getNotes()
-        for n in notes:
-            print(n.name)
-        print("---------chord end----------1")
     totalBarschords=0
     for vch in range(0,4):
         for i in range(0,4):
@@ -584,7 +583,6 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
             total.append(cv)
     harmonyTrack.addNotes(total)
     print("----------pprint harmony track---------")
-    pprint(harmonyTrack.getNotes())
     print("-----------patterns end---------------")
 
 def majorOrMinor(pattern):
@@ -602,6 +600,9 @@ def exportFile():
     easyMIDI.addTrack(melodyTrack)
     easyMIDI.addTrack(harmonyTrack)
     name=getTheTime()
+    hasRiff="riff"
+    if not riff:
+        hasRiff="Chords"
     if freeMelody=="free":
         freedom="FREE"
     elif freeMelody=="thirds":
@@ -609,7 +610,7 @@ def exportFile():
     else:
         freedom="LIMITED"
     #easyMIDI.writeMIDI("songs/"+name+".mid")
-    easyMIDI.writeMIDI("../../../storage/downloads/"+name+freedom+".mid")
+    easyMIDI.writeMIDI("../../../storage/downloads/"+name+freedom+hasRiff+".mid")
     #easyMIDI.writeMIDI("../../storage/"+name+".mid")
 
 def makeSong():
@@ -623,10 +624,6 @@ def makeSong():
     notes=harmonyTrack.getNotes()
     pprint(notes)
     totalDuration=0
-    for n in notes:
-        print(n.getName()+"/"+str(n.getOctave())+"/"+str(n.getDuration())+"/"+str(n.getVolume()))
-        totalDuration=totalDuration+n.getDuration()
-        print(totalDuration)
     exportFile()
 
 makeSong()
