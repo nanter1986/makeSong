@@ -599,6 +599,7 @@ def exportFile():
     easyMIDI.addTrack(bassTrack)
     easyMIDI.addTrack(melodyTrack)
     easyMIDI.addTrack(harmonyTrack)
+    easyMIDI.addTrack(riffTrack)
     name=getTheTime()
     hasRiff="riff"
     if not riff:
