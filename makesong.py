@@ -207,7 +207,6 @@ def bassVolumePattern():
         choice=random.choice(options)
         theSeq.append(choice)
     print("-------------bass volumes sequence-----------")
-    pprint(theSeq)
     return theSeq
 
 def makeChordsFromPattern(progression,volume):
@@ -330,7 +329,6 @@ def verseSeq(section):
         elif result>6:
             result=6
         theSeq.append(result)
-    pprint(theSeq)
     return theSeq
 
 def volumeOptionsForSections(section):
@@ -351,7 +349,6 @@ def volumeVerseMaker(section):
         options=volumeOptionsForSections(section)
         choice=random.choice(options)
         theSeq.append(choice)
-    pprint(theSeq)
     return theSeq
 
 
@@ -482,7 +479,10 @@ def makeMelody(progression):
     scales=theory.getMajorScales()[theKey]
     print(scales)
     patterns=makeMelodyPattern(scales,progression)
-    for times in range(0,4):
+    #melody will be added only the first
+    #two times of four,harmony part will play
+    #third and fourth for variety
+    for times in range(0,2):
         for j in patterns["patternVerse"]:
             melodyTrack.addNotes(j)
         for y in patterns["patternBridge"]:
@@ -564,7 +564,6 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     for n in notesEmpty:
        print(n.name+" "+str(notesEmpty.index(n))+" "+str(len(notesEmpty)))
     print("-----------patterns---------------")
-    pprint(patterns)
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     print("---------------feed--------------")
