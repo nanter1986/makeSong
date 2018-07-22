@@ -622,7 +622,6 @@ def makeSong():
     melodyToFeedHarmonyCreation=makeMelody(progression)
     makeHarmony(progression,melodyToFeedHarmonyCreation)
     notes=harmonyTrack.getNotes()
-    pprint(notes)
     totalDuration=0
     exportFile()
 
