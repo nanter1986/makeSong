@@ -14,13 +14,16 @@ def chooseKey():
 
 def setTheOrgans():
     '''returns a dictionary with randomly selected organs'''
+    options=[]
     org={}
     org['track1']=random.choice(['Acoustic Grand Piano'])
     org['melodyTrack']=random.choice(['Acoustic Grand Piano'])
     org['bassTrack']=random.choice(['Electric Bass (finger)'])
     org['kickTrack']=random.choice(['Synth Drum'])
     org['snareTrack']=random.choice(['Taiko Drum'])
-    for key,value in org.items():
+    options.append(org)
+    choice=random.choice(options)
+    for key,value in choice.items():
         print('organs:')
         print(key+':'+value)
     return org
