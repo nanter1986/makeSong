@@ -512,17 +512,17 @@ def noteAbsoluteTranslator(inputNote):
     pprint(scales)
     for note in scales:
         if note==inputNote.name:
-            print("match found")
-            print(note)
+            #print("match found")
+            #print(note)
             index=scales.index(note)
-            print("index of note:")
-            print(str(index))
+            #print("index of note:")
+            #print(str(index))
             octave=inputNote.getOctave()
-            print("octave of note:")
-            print(str(octave))
-            print("print absolute position:")
+            #print("octave of note:")
+            #print(str(octave))
+            #print("print absolute position:")
             absolutePosition=index+octave*7
-            print(absolutePosition)
+            #print(absolutePosition)
             break
     return absolutePosition
 
@@ -535,12 +535,12 @@ def noteOctavePositionTranslator(inputNoteAbsolutePosition):
     pprint(scales)
     octave=inputNoteAbsolutePosition//7
     index=inputNoteAbsolutePosition%7
-    print("input absolute position")
-    print(str(inputNoteAbsolutePosition))
-    print("index of note:")
-    print(str(index))
-    print("octave of note:")
-    print(str(octave))
+    #print("input absolute position")
+    #print(str(inputNoteAbsolutePosition))
+    #print("index of note:")
+    #print(str(index))
+    #print("octave of note:")
+    #print(str(octave))
     theDict={"index":index,"octave":octave}
     return theDict
 
@@ -555,13 +555,13 @@ def patternHarmonizer(pattern):
         absNote=noteAbsoluteTranslator(note)
         newAbs=absNote-2
         octaveAndIndexDict=noteOctavePositionTranslator(newAbs)
-        print("key:"+nKey)
-        print("index:"+str(nIndex))
-        print("octave old:"+str(nOctave))
-        print("duration:"+str(nDuration))
-        print("volume:"+str(nVolume))
-        print("octave new:"+str(octaveAndIndexDict["octave"]))
-        print("index new:"+str(octaveAndIndexDict["index"]))
+        #print("key:"+nKey)
+        #print("index:"+str(nIndex))
+        #print("octave old:"+str(nOctave))
+        #print("duration:"+str(nDuration))
+        #print("volume:"+str(nVolume))
+        #print("octave new:"+str(octaveAndIndexDict["octave"]))
+        #print("index new:"+str(octaveAndIndexDict["index"]))
         newNote=Note(scales[octaveAndIndexDict["index"]],octaveAndIndexDict["octave"],nDuration,nVolume)
         harmonizedPattern.append(newNote)
     return harmonizedPattern
@@ -573,8 +573,8 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
         total.append(noteEmpty)
     print("harmony track")
     notesEmpty=harmonyTrack.getNotes()
-    for n in notesEmpty:
-       print(n.name+" "+str(notesEmpty.index(n))+" "+str(len(notesEmpty)))
+    #for n in notesEmpty:
+    #   print(n.name+" "+str(notesEmpty.index(n))+" "+str(len(notesEmpty)))
     print("-----------patterns---------------")
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
