@@ -395,11 +395,26 @@ def verseFourVaryingStartingNotes(variablesNeededForMelody):
 
 def chorusFourVaryingStartingNotes(variablesNeededForMelody):
     notes=[]
-    for i in range(0,4):
-        volume=variablesNeededForMelody["generalMelodyVolume"]
-        nnn=random.choice(variablesNeededForMelody["chordsChorus"][i].getNotes())
-        note=Note(nnn.name,5,0.5,volume)
+    volume=variablesNeededForMelody["generalMelodyVolume"]
+    tonic=Note(scales[0],5,0.5,volume)  
+    unstableNotes=[]
+    second=Note(scales[1],5,0.5,volume)
+    fourth=Note(scales[3],5,0.5,volume)
+    fifth=Note(scales[4],5,0.5,volume)
+    seventh=Note(scales[6],5,0.5,volume)
+    unstableNotes.append(second)
+    unstableNotes.append(fourth)
+    unstableNotes.append(fifth)
+    unstableNotes.append(seventh)
+    for i in range(0,3):
+        #nnn=random.choice(variablesNeededForMelody["chordsChorus"][i].getNotes())
+        #this will not be random anymore
+        note=random.choice(unstableNotes)
         notes.append(note)
+    notes.append(tonic)
+    print("starting notes")
+    for n in notes:
+        print(n.name)
     return notes
 
 
