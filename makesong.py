@@ -522,7 +522,7 @@ def makeMelody(progression):
     #melody will be added only the first
     #two times of four,harmony part will play
     #third and fourth for variety
-    for times in range(0,2):
+    for times in range(0,1):
         for j in patterns["patternVerse"]:
             melodyTrack.addNotes(j)
         for y in patterns["patternVerse"]:
