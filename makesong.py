@@ -483,9 +483,9 @@ def makeMelodyPattern(scales,progression):
             variablesNeededForMelody["patternVerse"].append(verseStarting[j])
             for note in verseRepeating:
                 variablesNeededForMelody["patternVerse"].append(note)
-            variablesNeededForMelody["patternBridge"].append(bridgeStarting[j])
+            variablesNeededForMelody["patternVerse"].append(bridgeStarting[j])
             for note in bridgeRepeating:
-                variablesNeededForMelody["patternBridge"].append(note)
+                variablesNeededForMelody["patternVerse"].append(note)
 
     #for bridgeLength in range(0,2):
     #    for j in range(0,4):
@@ -498,9 +498,9 @@ def makeMelodyPattern(scales,progression):
             variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
             for note in chorusRepeating:
                 variablesNeededForMelody["patternChorus"].append(note)
-            variablesNeededForMelody["patternChorusVariable"].append(chorusStarting[j])
+            variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
             for note in chorusRepVar:
-                variablesNeededForMelody["patternChorusVariable"].append(note)
+                variablesNeededForMelody["patternChorus"].append(note)
 
 
     #for chorusVarLength in range(0,2):
@@ -525,11 +525,11 @@ def makeMelody(progression):
     for times in range(0,2):
         for j in patterns["patternVerse"]:
             melodyTrack.addNotes(j)
-        for y in patterns["patternBridge"]:
+        for y in patterns["patternVerse"]:
             melodyTrack.addNotes(y)
         for x in patterns["patternChorus"]:
             melodyTrack.addNotes(x)
-        for z in patterns["patternChorusVariable"]:
+        for z in patterns["patternChorus"]:
             melodyTrack.addNotes(z)
     return patterns
 
