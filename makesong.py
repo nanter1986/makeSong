@@ -30,8 +30,8 @@ def setTheOrgans():
     orgMetal['snareTrack']=random.choice(['Taiko Drum'])
     orgMetal['name']="metal organs"
     orgOrchestral={}
-    orgOrchestral['track1']=random.choice(['Distortion Guitar'])
-    orgOrchestral['melodyTrack']=random.choice(['Overdriven Guitar'])
+    orgOrchestral['track1']=random.choice(['Pad 2 (warm)]')
+    orgOrchestral['melodyTrack']=random.choice(['String Ensemble 1'])
     orgOrchestral['bassTrack']=random.choice(['Electric Bass (finger)'])
     orgOrchestral['kickTrack']=random.choice(['Synth Drum'])
     orgOrchestral['snareTrack']=random.choice(['Taiko Drum'])
