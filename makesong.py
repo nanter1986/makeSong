@@ -30,7 +30,7 @@ def setTheOrgans():
     orgMetal['snareTrack']=random.choice(['Taiko Drum'])
     orgMetal['name']="metal organs"
     orgOrchestral={}
-    orgOrchestral['track1']=random.choice(['Pad 2 (warm)]')
+    orgOrchestral['track1']=random.choice(['Pad 2 (warm)'])
     orgOrchestral['melodyTrack']=random.choice(['String Ensemble 1'])
     orgOrchestral['bassTrack']=random.choice(['Electric Bass (finger)'])
     orgOrchestral['kickTrack']=random.choice(['Synth Drum'])
@@ -483,26 +483,32 @@ def makeMelodyPattern(scales,progression):
             variablesNeededForMelody["patternVerse"].append(verseStarting[j])
             for note in verseRepeating:
                 variablesNeededForMelody["patternVerse"].append(note)
-
-    for bridgeLength in range(0,2):
-        for j in range(0,4):
             variablesNeededForMelody["patternBridge"].append(bridgeStarting[j])
             for note in bridgeRepeating:
                 variablesNeededForMelody["patternBridge"].append(note)
+
+    #for bridgeLength in range(0,2):
+    #    for j in range(0,4):
+    #        variablesNeededForMelody["patternBridge"].append(bridgeStarting[j])
+    #        for note in bridgeRepeating:
+    #            variablesNeededForMelody["patternBridge"].append(note)
 
     for chorusLength in range(0,2):
         for j in range(0,4):
             variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
             for note in chorusRepeating:
                 variablesNeededForMelody["patternChorus"].append(note)
-
-
-    for chorusVarLength in range(0,2):
-        for j in range(0,4):
             variablesNeededForMelody["patternChorusVariable"].append(chorusStarting[j])
-            print(chorusStarting[j].name+" "+str(chorusStarting[j].octave)+" "+str(chorusStarting[j].volume))
             for note in chorusRepVar:
                 variablesNeededForMelody["patternChorusVariable"].append(note)
+
+
+    #for chorusVarLength in range(0,2):
+    #    for j in range(0,4):
+    #        variablesNeededForMelody["patternChorusVariable"].append(chorusStarting[j])
+    #        print(chorusStarting[j].name+" "+str(chorusStarting[j].octave)+" "+str(chorusStarting[j].volume))
+    #        for note in chorusRepVar:
+    #            variablesNeededForMelody["patternChorusVariable"].append(note)
 
     return variablesNeededForMelody
 
