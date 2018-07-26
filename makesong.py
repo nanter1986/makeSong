@@ -378,7 +378,11 @@ def melodyPatternVariables(progression):
     v["volumePatternVerse"]=volumeVerseMaker("verse")
     v["sequenceChorus"]=verseSeq("chorus")
     v["sequenceChorusVariable"]=verseSeq("chorusVariable")
+    v["sequenceChorusVariable1"]=verseSeq("chorusVariable")
+    v["sequenceChorusVariable2"]=verseSeq("chorusVariable")
     v["sequenceBridge"]=verseSeq("bridge")
+    v["sequenceBridge1"]=verseSeq("bridge")
+    v["sequenceBridge2"]=verseSeq("bridge")
     v["volumePatternChorus"]=volumeVerseMaker("chorus")
     v["volumePatternChorusVariable"]=volumeVerseMaker("chorusVariable")
     v["volumePatternBridge"]=volumeVerseMaker("bridge")
@@ -451,6 +455,22 @@ def bridgeSixRepeatingNotes(variablesNeededForMelody,scales):
         notes.append(note)
     return notes
 
+def bridgeSixRepeatingNotes1(variablesNeededForMelody,scales):
+    notes=[]
+    for i in range(0,6):
+        volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternBridge"][i]
+        note=Note(scales[variablesNeededForMelody["sequenceBridge1"][i]],4,0.25,volume)
+        notes.append(note)
+    return notes
+
+def bridgeSixRepeatingNotes2(variablesNeededForMelody,scales):
+    notes=[]
+    for i in range(0,6):
+        volume=variablesNeededForMelody["generalMelodyVolume"]*variablesNeededForMelody["volumePatternBridge"][i]
+        note=Note(scales[variablesNeededForMelody["sequenceBridge2"][i]],4,0.25,volume)
+        notes.append(note)
+    return notes
+
 def chorusSixRepeatingNotes(variablesNeededForMelody,scales):
     notes=[]
     for i in range(0,6):
@@ -478,6 +498,8 @@ def makeMelodyPattern(scales,progression):
     chorusRepVar=chorusSixRepeatingNotesVariable(variablesNeededForMelody,scales)
     bridgeStarting=verseStarting
     bridgeRepeating=bridgeSixRepeatingNotes(variablesNeededForMelody,scales)
+    bridgeRepeating1=bridgeSixRepeatingNotes1(variablesNeededForMelody,scales)
+    bridgeRepeating2=bridgeSixRepeatingNotes2(variablesNeededForMelody,scales)
     for verseLength in range(0,2):
         for j in range(0,4):
             variablesNeededForMelody["patternVerse"].append(verseStarting[j])
