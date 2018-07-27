@@ -533,7 +533,7 @@ def makeMelodyPattern(scales,progression):
             for note in bridgeRepeating2:
                 variablesNeededForMelody["patternVerse"].append(note)
 
-    for chorusLength in range(0,2):
+    for chorusLength in range(0,1):
         for j in range(0,4):
             variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
             for note in chorusRepeating:
