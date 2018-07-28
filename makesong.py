@@ -593,10 +593,10 @@ def noteAbsoluteTranslator(inputNote):
 def noteOctavePositionTranslator(inputNoteAbsolutePosition):
     octave=0
     index=0
-    print("note octave translator runs")
+    #print("note octave translator runs")
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
-    pprint(scales)
+    #pprint(scales)
     octave=inputNoteAbsolutePosition//7
     index=inputNoteAbsolutePosition%7
     #print("input absolute position")
@@ -635,7 +635,7 @@ def makeHarmony(patterns,melodyToFeedHarmonyCreation):
     total=[]
     for i in range(0,128):
         total.append(noteEmpty)
-    print("harmony track")
+    #print("harmony track")
     notesEmpty=harmonyTrack.getNotes()
     #for n in notesEmpty:
     #   print(n.name+" "+str(notesEmpty.index(n))+" "+str(len(notesEmpty)))
