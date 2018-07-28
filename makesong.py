@@ -326,13 +326,13 @@ def pitchOptionsForSections(section):
     options=[]
     if freeMelody=="free":
         options=pitchOptionsForSectionsFree(section)
-        print("F R E E  M E L O D Y")
+        #print("F R E E  M E L O D Y")
     elif freeMelody=="limited":
         options=pitchOptionsForSectionsLimited(section)
-        print("L I M I T E D  M E L O D Y")
+        #print("L I M I T E D  M E L O D Y")
     elif freeMelody=="thirds":
         options=pitchOptionsForSectionsThirds(section)
-        print("T H I R D S   M E L O D Y")
+        #print("T H I R D S   M E L O D Y")
     return options
 
 def verseSeq(section):
@@ -573,7 +573,7 @@ def noteAbsoluteTranslator(inputNote):
     absolutePosition=0
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
-    pprint(scales)
+    #pprint(scales)
     for note in scales:
         if note==inputNote.name:
             #print("match found")
