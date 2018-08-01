@@ -441,10 +441,23 @@ def chorusFourVaryingStartingNotes(variablesNeededForMelody):
 
 def bridgeFourVaryingStartingNotes(variablesNeededForMelody):
     notes=[]
+    volume=variablesNeededForMelody["generalMelodyVolume"]
+    tonic=Note(scales[0],5,0.5,volume)  
+    unstableNotes=[]
+    second=Note(scales[1],5,0.5,volume)
+    fourth=Note(scales[3],5,0.5,volume)
+    fifth=Note(scales[4],5,0.5,volume)
+    seventh=Note(scales[6],5,0.5,volume)
+    unstableNotes.append(second)
+    unstableNotes.append(fourth)
+    unstableNotes.append(fifth)
+    unstableNotes.append(seventh)
     for i in range(0,4):
-        volume=variablesNeededForMelody["generalMelodyVolume"]
-        nnn=random.choice(variablesNeededForMelody["chords"][i].getNotes())
-        note=Note(nnn.name,4,0.5,volume)
+        #volume=variablesNeededForMelody["generalMelodyVolume"]
+        #nnn=random.choice(variablesNeededForMelody["chords"][i].getNotes())
+        #note=Note(nnn.name,4,0.5,volume)
+        #notes.append(note)
+        note=random.choice(unstableNotes)
         notes.append(note)
     return notes
 
