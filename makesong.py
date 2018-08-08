@@ -104,7 +104,7 @@ def createProgression():
     print(dictChordsFlavor)
     return dictChordsFlavor
 
-def createProgression():
+def createProgressionIdea():
     '''returns a random progression from predefined chords'''
     progression=[]
     progressionChorus=[]
@@ -157,6 +157,14 @@ def addRiff(progression):
     assert totalBarschords==256
 
 def addBackground(progression):
+    if riff:
+        addRiff(progression)
+        print("R I F F")
+    else:
+        addProgression(progression)
+        print("C H O R D S")
+
+def addBackgroundIdea(progression):
     if riff:
         addRiff(progression)
         print("R I F F")
@@ -751,7 +759,7 @@ def makeSong():
 def makeSongIdea():
     '''main function,delegates to other functions'''
     progression=createProgressionIdea()
-    addBackground(progression)
+    addBackgroundIdea(progression)
     addPercussion(progression)
     addBass(progression)
     melodyToFeedHarmonyCreation=makeMelody(progression)
