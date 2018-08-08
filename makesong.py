@@ -104,6 +104,30 @@ def createProgression():
     print(dictChordsFlavor)
     return dictChordsFlavor
 
+def createProgression():
+    '''returns a random progression from predefined chords'''
+    progression=[]
+    progressionChorus=[]
+    flavor=[]
+    flavorChorus=[]
+    dictChordsFlavor={}
+    options=[['I','VI'],['I','III','V','VI','VII'],['II','IV'],['V']]
+    print(len(options))
+    for i in range(0,4):
+        chord=random.choice(options[i])
+        progression.append(chord)
+        flavor.append(majorOrMinor(chord))
+    for i in range(0,4):
+        chord=random.choice(options[i])
+        progressionChorus.append(chord)
+        flavorChorus.append(majorOrMinor(chord))
+    dictChordsFlavor['progression']=progression
+    dictChordsFlavor['progressionChorus']=progressionChorus
+    dictChordsFlavor['flavor']=flavor
+    dictChordsFlavor['flavorChorus']=flavorChorus
+    print(dictChordsFlavor)
+    return dictChordsFlavor
+
 def riffMaker():
     container=[]
     optionsVolume=[0,100,100]
@@ -726,7 +750,7 @@ def makeSong():
 
 def makeSongIdea():
     '''main function,delegates to other functions'''
-    progression=createProgression()
+    progression=createProgressionIdea()
     addBackground(progression)
     addPercussion(progression)
     addBass(progression)
