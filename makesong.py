@@ -166,10 +166,10 @@ def addBackground(progression):
 
 def addBackgroundIdea(progression):
     if riff:
-        addRiff(progression)
+        addRiffIdea(progression)
         print("R I F F")
     else:
-        addProgression(progression)
+        addProgressionIdea(progression)
         print("C H O R D S")
 
 def addProgression(progression):
