@@ -791,12 +791,12 @@ def makeSongIdea():
     '''main function,delegates to other functions'''
     progression=createProgressionIdea()
     addBackgroundIdea(progression)
-    addPercussion(progression)
+    #addPercussion(progression)
     addBass(progression)
-    melodyToFeedHarmonyCreation=makeMelody(progression)
-    makeHarmony(progression,melodyToFeedHarmonyCreation)
+    makeMelodyIdea(progression)
+    #makeHarmony(progression,melodyToFeedHarmonyCreation)
     notes=harmonyTrack.getNotes()
-    totalDuration=0
+    #totalDuration=0
     exportFile()
 
 makeSong()
