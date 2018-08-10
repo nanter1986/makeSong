@@ -165,13 +165,8 @@ def addBackground(progression):
         print("C H O R D S")
 
 def addBackgroundIdea(progression):
-    if riff:
-        addRiffIdea(progression)
-        print("R I F F")
-    else:
-        addProgressionIdea(progression)
-        print("C H O R D S")
-
+    addProgressionIdea(progression)
+    
 def addProgression(progression):
     '''adds chords to the chord track'''
     volumeOfChords=40
