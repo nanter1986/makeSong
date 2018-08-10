@@ -258,25 +258,8 @@ def addProgressionIdea(progression):
                 track1.addChord(chord4)
                 notes4=chord4.getNotes()
                 totalBarschords+=1
-        for i in range(0,4):
-            for t1 in range(0,2):
-                track1.addChord(chord5)
-                notes1=chord5.getNotes()
-                totalBarschords+=1
-            for t2 in range(0,2):
-                track1.addChord(chord6)
-                notes2=chord6.getNotes()
-                totalBarschords+=1
-            for t3 in range(0,2):
-                track1.addChord(chord7)
-                notes3=chord7.getNotes()
-                totalBarschords+=1
-            for t4 in range(0,2):
-                track1.addChord(chord8)
-                notes4=chord8.getNotes()
-                totalBarschords+=1
     print(totalBarschords)
-    assert totalBarschords==256
+    assert totalBarschords==128
 
 
 def addPercussion(progression):
