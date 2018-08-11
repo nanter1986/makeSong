@@ -815,6 +815,9 @@ def makeSongIdea():
     #totalDuration=0
     exportFile()
 
+def bootFunction():
+    pass
+
 makeSong()
 
 
