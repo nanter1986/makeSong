@@ -816,8 +816,14 @@ def makeSongIdea():
     exportFile()
 
 def bootFunction():
-    pass
-
-makeSong()
+    choice=input("Insert 1 for idea,or anything else for long song")
+    if choice==1:
+        makeSong()
+        print("Long Song")
+    else:
+        makeSongIdea()
+        print("Idea")
+        
+bootFunction()
 
 
