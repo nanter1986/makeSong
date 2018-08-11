@@ -308,7 +308,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
     ch1=[chordNotes[0],chordNotes[1],chordNotes[2],chordNotes[3]]
     ch2=[chordNotes[4],chordNotes[5],chordNotes[6],chordNotes[7]]
     totalBars=0
-    for j in range(0,4):
+    for j in range(0,2):
         for difProg in range(0,4):
             for ch in ch1:
                 for i in range(0,4):
@@ -335,7 +335,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
                     pattern.append(note)
     print(str(totalBars))
     print("bass second half:"+str(totalBars))
-    assert totalBars==256
+    assert totalBars==128
     return pattern
 
 def addBass(progression):
