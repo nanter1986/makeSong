@@ -664,11 +664,24 @@ def makeMelodyIdea(progression):
     #melody will be added only the first
     #two times of four,harmony part will play
     #third and fourth for variety
-    for times in range(0,1):
+    ttdr=0
+    for times in range(0,4):
         for j in patterns["patternVerse"]:
             melodyTrack.addNotes(j)
+            print(j.name)
+            print(j.duration)
+            print(ttdr)
+            print("------------")
+            ttdr+=j.duration
+        print("###################")
         for x in patterns["patternChorus"]:
             melodyTrack.addNotes(x)
+            print(x.name)
+            print(x.duration)
+            print(ttdr)
+            print("------------")
+            ttdr+=x.duration
+        print("###################")
     return patterns
 
 def noteAbsoluteTranslator(inputNote):
