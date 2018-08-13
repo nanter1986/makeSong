@@ -37,7 +37,8 @@ def setTheOrgans():
     orgOrchestral['snareTrack']=random.choice(['Taiko Drum'])
     orgOrchestral['name']="orchestral organs"
     options.append(orgFirst)
-    options.append(orgMetal)
+    #options.append(orgOrchestral)
+    #options.append(orgMetal)
     choice=random.choice(options)
     for key,value in choice.items():
         print('organs:')
@@ -224,7 +225,7 @@ def addProgression(progression):
 
 def addProgressionIdea(progression):
     '''adds chords to the chord track'''
-    volumeOfChords=40
+    volumeOfChords=60
     chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],volumeOfChords)
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
@@ -342,7 +343,7 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
 
 def addBass(progression):
     '''creates bass pattern based on parameter,and adds ut to bass track'''
-    bassGeneralVolume=70
+    bassGeneralVolume=50
     theory=MusicTheory()
     scales=theory.getMajorScales()[theKey]
     bassVolumes=bassVolumePattern()
@@ -803,7 +804,7 @@ def exportFile():
     else:
         freedom="LIMITED"
     #easyMIDI.writeMIDI("songs/"+name+".mid")
-    easyMIDI.writeMIDI("../../../storage/downloads/"+name+freedom+hasRiff+".mid")
+    easyMIDI.writeMIDI("../../../storage/downloads/"+name+".mid")
     #easyMIDI.writeMIDI("../../storage/"+name+".mid")
 
 def makeSong():
