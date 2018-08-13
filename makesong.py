@@ -188,6 +188,8 @@ def addProgression(progression):
                 track1.addChord(chord1)
                 notes1=chord1.getNotes()
                 totalBarschords+=1
+                print(chord1)
+                print(totalBarschords)
             for t2 in range(0,2):
                 track1.addChord(chord2)
                 notes2=chord2.getNotes()
