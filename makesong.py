@@ -170,16 +170,17 @@ def addBackgroundIdea(progression):
     
 def addProgression(progression):
     '''adds chords to the chord track'''
-    volumeOfChords=40
+    volumeOfChords=60
     chord1=RomanChord(progression['progression'][0],4,1,theKey,progression['flavor'][0],volumeOfChords)
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
-    chord5=RomanChord(progression['progressionChorus'][0],4,1,theKey,progression['flavorChorus'][0],volumeOfChords)
-    chord6=RomanChord(progression['progressionChorus'][1],4,1,theKey,progression['flavorChorus'][1],volumeOfChords)
-    chord7=RomanChord(progression['progressionChorus'][2],4,1,theKey,progression['flavorChorus'][2],volumeOfChords)
-    chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][3],volumeOfChords)
-    allChords=[chord1,chord2,chord3,chord4,chord5,chord6,chord7,chord8]
+    #chord5=RomanChord(progression['progressionChorus'][0],4,1,theKey,progression['flavorChorus'][0],volumeOfChords)
+    #chord6=RomanChord(progression['progressionChorus'][1],4,1,theKey,progression['flavorChorus'][1],volumeOfChords)
+    #chord7=RomanChord(progression['progressionChorus'][2],4,1,theKey,progression['flavorChorus'][2],volumeOfChords)
+    #chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][3],volumeOfChords)
+    #allChords=[chord1,chord2,chord3,chord4,chord5,chord6,chord7,chord8]
+    allChords=[chord1,chord2,chord3,chord4]
     for chd in allChords:
         notes=chd.getNotes()
     totalBarschords=0
@@ -203,25 +204,8 @@ def addProgression(progression):
                 track1.addChord(chord4)
                 notes4=chord4.getNotes()
                 totalBarschords+=1
-        for i in range(0,4):
-            for t1 in range(0,2):
-                track1.addChord(chord5)
-                notes1=chord5.getNotes()
-                totalBarschords+=1
-            for t2 in range(0,2):
-                track1.addChord(chord6)
-                notes2=chord6.getNotes()
-                totalBarschords+=1
-            for t3 in range(0,2):
-                track1.addChord(chord7)
-                notes3=chord7.getNotes()
-                totalBarschords+=1
-            for t4 in range(0,2):
-                track1.addChord(chord8)
-                notes4=chord8.getNotes()
-                totalBarschords+=1
     print(totalBarschords)
-    assert totalBarschords==256
+    assert totalBarschords==128
 
 def addProgressionIdea(progression):
     '''adds chords to the chord track'''
@@ -230,11 +214,11 @@ def addProgressionIdea(progression):
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volumeOfChords)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volumeOfChords)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volumeOfChords)
-    chord5=RomanChord(progression['progressionChorus'][0],4,1,theKey,progression['flavorChorus'][0],volumeOfChords)
-    chord6=RomanChord(progression['progressionChorus'][1],4,1,theKey,progression['flavorChorus'][1],volumeOfChords)
-    chord7=RomanChord(progression['progressionChorus'][2],4,1,theKey,progression['flavorChorus'][2],volumeOfChords)
-    chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][3],volumeOfChords)
-    allChords=[chord1,chord2,chord3,chord4,chord5,chord6,chord7,chord8]
+    #chord5=RomanChord(progression['progressionChorus'][0],4,1,theKey,progression['flavorChorus'][0],volumeOfChords)
+    #chord6=RomanChord(progression['progressionChorus'][1],4,1,theKey,progression['flavorChorus'][1],volumeOfChords)
+    #chord7=RomanChord(progression['progressionChorus'][2],4,1,theKey,progression['flavorChorus'][2],volumeOfChords)
+    #chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][3],volumeOfChords)
+    allChords=[chord1,chord2,chord3,chord4]
     for chd in allChords:
         notes=chd.getNotes()
     totalBarschords=0
@@ -310,9 +294,9 @@ def makeChordsFromPattern(progression,volume):
 def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
     pattern=[]
     ch1=[chordNotes[0],chordNotes[1],chordNotes[2],chordNotes[3]]
-    ch2=[chordNotes[4],chordNotes[5],chordNotes[6],chordNotes[7]]
+    #ch2=[chordNotes[4],chordNotes[5],chordNotes[6],chordNotes[7]]
     totalBars=0
-    for j in range(0,2):
+    for j in range(0,4):
         for difProg in range(0,4):
             for ch in ch1:
                 for i in range(0,4):
@@ -322,18 +306,6 @@ def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
                         totalBars+=0.5
                     else:
                         volume=random.choice([0,bassGeneralVolume])*bassVolumes[i]
-                        note=Note(ch.getNotes()[0].name,3,0.5,volume)
-                        totalBars+=0.5
-                    pattern.append(note)
-        for difProgCh in range(0,4):
-            for ch in ch2:
-                for i in range(0,4):
-                    if i==0:
-                        volume=bassGeneralVolume
-                        note=Note(ch.getNotes()[0].name,3,0.5,volume)
-                        totalBars+=0.5
-                    else:
-                        volume=random.choice([0,bassGeneralVolume])*bassVolumesChorus[i]
                         note=Note(ch.getNotes()[0].name,3,0.5,volume)
                         totalBars+=0.5
                     pattern.append(note)
@@ -477,8 +449,8 @@ def verseFourVaryingStartingNotes(variablesNeededForMelody):
     #unstableNotes.append(seventh)
     for i in range(0,4):
         nnn=random.choice(variablesNeededForMelody["chords"][i].getNotes())
-        note=random.choice(nnn)
-        notes.append(note)
+        #note=random.choice(nnn)
+        notes.append(nnn)
         #notes.append(note)
     return notes
 
@@ -498,8 +470,8 @@ def chorusFourVaryingStartingNotes(variablesNeededForMelody):
     for i in range(0,4):
         nnn=random.choice(variablesNeededForMelody["chordsChorus"][i].getNotes())
         #this will not be random anymore
-        note=random.choice(nnn)
-        #notes.append(note)
+        #note=random.choice(nnn)
+        notes.append(nnn)
     #notes.append(tonic)
     print("starting notes chorus")
     for n in notes:
@@ -668,6 +640,14 @@ def makeMelodyIdea(progression):
     #melody will be added only the first
     #two times of four,harmony part will play
     #third and fourth for variety
+    testDurationV=0
+    for t in patterns["patternVerse"]:
+        testDurationV+=t.duration
+    testDurationC=0
+    for c in patterns["patternChorus"]:
+        testDurationC+=c.duration
+    print("test duration Verse:"+str(testDurationV))
+    print("test duration Chorus:"+str(testDurationC))
     ttdr=0
     for times in range(0,4):
         for j in patterns["patternVerse"]:
@@ -841,6 +821,8 @@ def bootFunction():
         makeSongIdea()
         print("Idea")
         
-bootFunction()
+#bootFunction()
+
+makeSongIdea()
 
 
