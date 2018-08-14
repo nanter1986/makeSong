@@ -299,11 +299,12 @@ def makeChordsFromPattern(progression,volume):
     chord2=RomanChord(progression['progression'][1],4,1,theKey,progression['flavor'][1],volume)
     chord3=RomanChord(progression['progression'][2],4,1,theKey,progression['flavor'][2],volume)
     chord4=RomanChord(progression['progression'][3],4,1,theKey,progression['flavor'][3],volume)
-    chord5=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][0],volume)
-    chord6=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][1],volume)
-    chord7=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][2],volume)
-    chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][3],volume)
-    chords=[chord1,chord2,chord3,chord4,chord5,chord6,chord7,chord8]
+    #chord5=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][0],volume)
+    #chord6=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][1],volume)
+    #chord7=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][2],volume)
+    #chord8=RomanChord(progression['progressionChorus'][3],4,1,theKey,progression['flavorChorus'][3],volume)
+    #chords=[chord1,chord2,chord3,chord4,chord5,chord6,chord7,chord8]
+    chords=[chord1,chord2,chord3,chord4]
     return chords
 
 def addBassBar(chordNotes,bassGeneralVolume,bassVolumes,bassVolumesChorus):
@@ -464,42 +465,43 @@ def melodyPatternVariables(progression):
 def verseFourVaryingStartingNotes(variablesNeededForMelody):
     notes=[]
     volume=variablesNeededForMelody["generalMelodyVolume"]
-    tonic=Note(scales[0],5,0.5,volume)  
-    unstableNotes=[]
-    second=Note(scales[1],5,0.5,volume)
-    fourth=Note(scales[3],5,0.5,volume)
-    fifth=Note(scales[4],5,0.5,volume)
-    seventh=Note(scales[6],5,0.5,volume)
-    unstableNotes.append(second)
-    unstableNotes.append(fourth)
-    unstableNotes.append(fifth)
-    unstableNotes.append(seventh)
+    #tonic=Note(scales[0],5,0.5,volume)  
+    #unstableNotes=[]
+    #second=Note(scales[1],5,0.5,volume)
+    #fourth=Note(scales[3],5,0.5,volume)
+    #fifth=Note(scales[4],5,0.5,volume)
+    #seventh=Note(scales[6],5,0.5,volume)
+    #unstableNotes.append(second)
+    #unstableNotes.append(fourth)
+    #unstableNotes.append(fifth)
+    #unstableNotes.append(seventh)
     for i in range(0,4):
-        note=random.choice(unstableNotes)
+        nnn=random.choice(variablesNeededForMelody["chords"][i].getNotes())
+        note=random.choice(nnn)
         notes.append(note)
-        notes.append(note)
+        #notes.append(note)
     return notes
 
 def chorusFourVaryingStartingNotes(variablesNeededForMelody):
     notes=[]
     volume=variablesNeededForMelody["generalMelodyVolume"]
-    tonic=Note(scales[0],5,0.5,volume)  
-    unstableNotes=[]
-    second=Note(scales[1],5,0.5,volume)
-    fourth=Note(scales[3],5,0.5,volume)
-    fifth=Note(scales[4],5,0.5,volume)
-    seventh=Note(scales[6],5,0.5,volume)
-    unstableNotes.append(second)
-    unstableNotes.append(fourth)
-    unstableNotes.append(fifth)
-    unstableNotes.append(seventh)
+    #tonic=Note(scales[0],5,0.5,volume)  
+    #unstableNotes=[]
+    #second=Note(scales[1],5,0.5,volume)
+    #fourth=Note(scales[3],5,0.5,volume)
+    #fifth=Note(scales[4],5,0.5,volume)
+    #seventh=Note(scales[6],5,0.5,volume)
+    #unstableNotes.append(second)
+    #unstableNotes.append(fourth)
+    #unstableNotes.append(fifth)
+    #unstableNotes.append(seventh)
     for i in range(0,4):
-        #nnn=random.choice(variablesNeededForMelody["chordsChorus"][i].getNotes())
+        nnn=random.choice(variablesNeededForMelody["chordsChorus"][i].getNotes())
         #this will not be random anymore
-        note=random.choice(unstableNotes)
-        notes.append(note)
+        note=random.choice(nnn)
+        #notes.append(note)
     #notes.append(tonic)
-    print("starting notes")
+    print("starting notes chorus")
     for n in notes:
         print(n.name)
     return notes
@@ -508,22 +510,21 @@ def chorusFourVaryingStartingNotes(variablesNeededForMelody):
 def bridgeFourVaryingStartingNotes(variablesNeededForMelody):
     notes=[]
     volume=variablesNeededForMelody["generalMelodyVolume"]
-    tonic=Note(scales[0],5,0.5,volume)  
-    unstableNotes=[]
-    second=Note(scales[1],5,0.5,volume)
-    fourth=Note(scales[3],5,0.5,volume)
-    fifth=Note(scales[4],5,0.5,volume)
-    seventh=Note(scales[6],5,0.5,volume)
-    unstableNotes.append(second)
-    unstableNotes.append(fourth)
-    unstableNotes.append(fifth)
-    unstableNotes.append(seventh)
+    #tonic=Note(scales[0],5,0.5,volume)  
+    #unstableNotes=[]
+    #second=Note(scales[1],5,0.5,volume)
+    #fourth=Note(scales[3],5,0.5,volume)
+    #fifth=Note(scales[4],5,0.5,volume)
+    #seventh=Note(scales[6],5,0.5,volume)
+    #unstableNotes.append(second)
+    #unstableNotes.append(fourth)
+    #unstableNotes.append(fifth)
+    #unstableNotes.append(seventh)
     for i in range(0,4):
-        #volume=variablesNeededForMelody["generalMelodyVolume"]
-        #nnn=random.choice(variablesNeededForMelody["chords"][i].getNotes())
-        #note=Note(nnn.name,4,0.5,volume)
-        #notes.append(note)
-        note=random.choice(unstableNotes)
+        nnn=random.choice(variablesNeededForMelody["chords"][i].getNotes())
+        note=Note(nnn.name,4,0.5,volume)
+        notes.append(note)
+        #note=random.choice(unstableNotes)
         notes.append(note)
     return notes
 
