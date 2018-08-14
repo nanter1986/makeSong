@@ -585,7 +585,7 @@ def makeMelodyPattern(scales,progression):
             variablesNeededForMelody["patternVerse"].append(verseStarting[j])
             for note in verseRepeating:
                 variablesNeededForMelody["patternVerse"].append(note)
-            variablesNeededForMelody["patternVerse"].append(bridgeStarting[j])
+            #variablesNeededForMelody["patternVerse"].append(bridgeStarting[j])
             for note in bridgeRepeating:
                 variablesNeededForMelody["patternVerse"].append(note)
             #variablesNeededForMelody["patternVerse"].append(bridgeStarting[j])
@@ -600,7 +600,7 @@ def makeMelodyPattern(scales,progression):
             variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
             for note in chorusRepeating:
                 variablesNeededForMelody["patternChorus"].append(note)
-            variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
+            #variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
             for note in chorusRepVar:
                 variablesNeededForMelody["patternChorus"].append(note)
             #variablesNeededForMelody["patternChorus"].append(chorusStarting[j])
