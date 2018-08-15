@@ -88,12 +88,16 @@ def createProgression():
     flavor=[]
     flavorChorus=[]
     dictChordsFlavor={}
-    options=[['I','VI'],['I','III','V','VI','VII'],['II','IV'],['V']]
+    options=[['I','VI','Imaj7','VImin7'],['I','III','V','VI','VII','Imaj7','IIImin7','Vdom7','VI'],['II','IV','IImin7','IVmaj7'],['Vdom7']]
     print(len(options))
     for i in range(0,4):
         chord=random.choice(options[i])
         progression.append(chord)
         flavor.append(majorOrMinor(chord))
+        notes=chord.getNotes()
+        print('notes of selected chord')
+        for n in notes:
+            print(n.name)
     for i in range(0,4):
         chord=random.choice(options[i])
         progressionChorus.append(chord)
@@ -112,7 +116,7 @@ def createProgressionIdea():
     flavor=[]
     flavorChorus=[]
     dictChordsFlavor={}
-    options=[['I','VI'],['I','III','V','VI','VII'],['II','IV'],['V']]
+    options=[['I','VI','Imaj7','VImin7'],['I','III','V','VI','VII','Imaj7','IIImin7','Vdom7','VI'],['II','IV','IImin7','IVmaj7'],['Vdom7']]
     print(len(options))
     for i in range(0,4):
         chord=random.choice(options[i])
@@ -183,6 +187,9 @@ def addProgression(progression):
     allChords=[chord1,chord2,chord3,chord4]
     for chd in allChords:
         notes=chd.getNotes()
+        print('notes of selected chord')
+        for n in notes:
+            print(n)
     totalBarschords=0
     for vch in range(0,4):
         for i in range(0,4):
@@ -221,6 +228,9 @@ def addProgressionIdea(progression):
     allChords=[chord1,chord2,chord3,chord4]
     for chd in allChords:
         notes=chd.getNotes()
+        print('notes of selected chord')
+        for n in notes:
+            print(n.name)
     totalBarschords=0
     for vch in range(0,4):
         for i in range(0,4):
