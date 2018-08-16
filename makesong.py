@@ -22,23 +22,7 @@ def setTheOrgans():
     orgFirst['kickTrack']=random.choice(['Synth Drum'])
     orgFirst['snareTrack']=random.choice(['Taiko Drum'])
     orgFirst['name']="first organs"
-    orgMetal={}
-    orgMetal['track1']=random.choice(['Distortion Guitar'])
-    orgMetal['melodyTrack']=random.choice(['Overdriven Guitar'])
-    orgMetal['bassTrack']=random.choice(['Electric Bass (finger)'])
-    orgMetal['kickTrack']=random.choice(['Synth Drum'])
-    orgMetal['snareTrack']=random.choice(['Taiko Drum'])
-    orgMetal['name']="metal organs"
-    orgOrchestral={}
-    orgOrchestral['track1']=random.choice(['Pad 2 (warm)'])
-    orgOrchestral['melodyTrack']=random.choice(['String Ensemble 1'])
-    orgOrchestral['bassTrack']=random.choice(['Electric Bass (finger)'])
-    orgOrchestral['kickTrack']=random.choice(['Synth Drum'])
-    orgOrchestral['snareTrack']=random.choice(['Taiko Drum'])
-    orgOrchestral['name']="orchestral organs"
     options.append(orgFirst)
-    #options.append(orgOrchestral)
-    #options.append(orgMetal)
     choice=random.choice(options)
     for key,value in choice.items():
         print('organs:')
